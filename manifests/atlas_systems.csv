@@ -1,0 +1,12 @@
+system,enabled,expected_replicas,dataset_group,status
+1bzy_A,true,3,pilot_batch_v1,validated
+1k5n_A,true,3,smoke,validated
+4zya_A,true,3,atlas_batch_v1,validated
+4xqm_A,true,3,atlas_batch_v1,validated
+1tzw_A,true,3,atlas_batch_v1,validated
+2glz_B,true,3,atlas_batch_v1,validated
+3ga3_A,true,3,atlas_batch_v1,validated
+4geh_A,true,3,atlas_batch_v1,validated
+7fd1_A,true,3,atlas_batch_v1,validated
+2vri_A,true,3,atlas_batch_v1,validated
+3jsy_B,true,3,atlas_batch_v1,validated

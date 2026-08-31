@@ -1,0 +1,49 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Python
+__pycache__/
+*.py[cod]
+*.poc_backup
+.pytest_cache/
+.mypy_cache/
+
+# Entornos Python
+.venv/
+venv/
+
+# Datos y resultados HPC
+work
+work/
+raw/
+processed/
+results/
+logs/
+
+# Slurm
+slurm-*.out
+*.err
+
+# Editores
+.vscode/
+.idea/
+*~
+
+# OS
+.DS_Store
+
+# Enlace al scratch
+/work
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example

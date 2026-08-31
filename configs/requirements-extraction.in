@@ -1,0 +1,9 @@
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.3
+matplotlib==3.9.2
+PyYAML==6.0.2
+biopython==1.84
+MDAnalysis==2.9.0
+mdtraj==1.10.3
+pymbar==4.0.3

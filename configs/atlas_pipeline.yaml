@@ -1,0 +1,57 @@
+dataset:
+  name: ATLAS
+  replicas:
+    - 1
+    - 2
+    - 3
+
+trajectory:
+  duration_ns: 100.0
+  native_step_ps: 10.0
+  sequence_step_ps: 100
+  input_prefix_end_ns: 20.0
+
+features:
+  order:
+    - rmsd_backbone_A
+    - radius_gyration_A
+    - core_rmsd_q30_A
+    - core_rmsd_q40_A
+    - core_rmsd_q50_A
+    - total_sasa_A2
+    - helix_fraction
+    - strand_fraction
+
+targets:
+  order:
+    - rmsd
+    - rg
+    - sasa
+    - helix
+    - strand
+
+equilibration:
+  basic_resolution_ps: 10
+  structural_resolution_ps: 100
+  minimum_duration_ns: 20.0
+  minimum_neff: 10.0
+  tail_start_ns: 80.0
+
+core:
+  quantiles:
+    - 0.30
+    - 0.40
+    - 0.50
+  minimum_segment_length: 3
+  minimum_consensus_votes: 2
+  model_variant: replica_prefix
+
+sasa:
+  stride: 10
+  chunk_size: 25
+  sphere_points: 960
+
+leakage:
+  maximum_input_time_ns: 20.0
+  allow_full_oracle_features: false
+  split_level: protein

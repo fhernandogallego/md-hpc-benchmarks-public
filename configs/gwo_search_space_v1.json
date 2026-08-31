@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "space_id": "atlas11_gru_gwo_space_v1_2026-08-12",
+  "position_dimension": 5,
+  "position_lower_bound": 0.0,
+  "position_upper_bound": 1.0,
+
+  "dimensions": [
+    {
+      "name": "hidden_size",
+      "type": "categorical",
+      "values": [16, 32, 64, 96]
+    },
+    {
+      "name": "num_layers",
+      "type": "categorical",
+      "values": [1, 2, 3]
+    },
+    {
+      "name": "dropout",
+      "type": "categorical",
+      "values": [0.0, 0.1, 0.2, 0.3, 0.4],
+      "conditional_rule": "canonicalize_to_zero_when_num_layers_equals_1"
+    },
+    {
+      "name": "learning_rate",
+      "type": "log_uniform",
+      "minimum": 0.0001,
+      "maximum": 0.005
+    },
+    {
+      "name": "weight_decay",
+      "type": "log_uniform",
+      "minimum": 0.000001,
+      "maximum": 0.001
+    }
+  ],
+
+  "fixed_training": {
+    "trainer": "src/modeling/train_gru_tunable.py",
+    "trainer_seed": 20260811,
+    "optimizer": "Adam",
+    "batching": "full_batch",
+    "max_epochs": 5000,
+    "patience": 50,
+    "min_delta": 0.00001,
+    "objective": "masked_equal_target_mse",
+    "target_scale": "inner_train_standardized",
+    "checkpoint_policy": "strict_lowest_validation_loss",
+    "early_stopping_policy": "separate_min_delta_patience_reference"
+  },
+
+  "fitness": {
+    "scope": "one_outer_context",
+    "inner_folds_per_candidate": 5,
+    "candidate_fitness": "arithmetic_mean_of_five_inner_best_valid_loss",
+    "inner_fold_weighting": "equal",
+    "target_weighting_inside_fold": "equal_across_active_targets",
+    "invalid_targets": "masked_no_imputation",
+    "lower_is_better": true
+  },
+
+  "outer_test_policy": {
+    "available_to_optimizer": false,
+    "used_for_fitness": false,
+    "used_for_early_stopping": false,
+    "used_for_selection": false,
+    "status": "blind_until_final_outer_evaluation"
+  },
+
+  "search_budget": {
+    "population_size": 5,
+    "fitness_evaluation_budget_per_search": 30,
+    "optimizer_seeds": [
+      20260811,
+      20260812,
+      20260813
+    ],
+
+    "methods": {
+      "standard_gwo": [],
+      "improved_gwo": ["M1", "M2", "M3"],
+      "improved_no_m1": ["M2", "M3"],
+      "improved_no_m2": ["M1", "M3"],
+      "improved_no_m3": ["M1", "M2"]
+    },
+
+    "standard_or_no_m1_accounting": {
+      "initial_population_evaluations": 5,
+      "update_generations": 5,
+      "evaluations_per_update_generation": 5,
+      "total_evaluations": 30
+    },
+
+    "m1_accounting": {
+      "initial_base_candidates": 5,
+      "initial_opposition_candidates": 5,
+      "initial_candidate_evaluations": 10,
+      "retain_after_initialization": 5,
+      "update_generations": 4,
+      "evaluations_per_update_generation": 5,
+      "total_evaluations": 30
+    },
+
+    "decoded_candidate_cache": {
+      "enabled": true,
+      "key": "canonical_decoded_hyperparameters",
+      "cache_hit_counts_toward_algorithmic_evaluation_budget": true,
+      "cache_hit_retrains_model": false
+    },
+
+    "tie_break_order": [
+      "lower_fitness",
+      "lower_parameter_count",
+      "lexicographically_smaller_candidate_key"
+    ],
+
+    "n_outer_contexts": 11,
+    "n_inner_folds_per_candidate": 5,
+    "n_methods": 5,
+    "n_optimizer_seeds": 3,
+    "maximum_theoretical_fold_trainings_without_cache": 24750
+  },
+
+  "baseline_reference": {
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "parameter_count": 4197
+  }
+}

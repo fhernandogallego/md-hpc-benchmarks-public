@@ -1,0 +1,112 @@
+{
+  "global_mixed_unit_score": {
+    "reason": "physical target units differ and must not be mixed into one number",
+    "reported": false
+  },
+  "identities": {
+    "fixed_gru_manifest_sha256": "3ab14d059c1396eb85bc8adb1545ac6590f1ff6cb5055396515641247eb5d510",
+    "fixed_gru_metadata_sha256": "bc8d3e0264c83d8f4d3588136ca305b37505d28a85868584af734ebdee3f77bf",
+    "gwo_manifest_sha256": "d8977f5bad683578b908b257eccded511f547bb0ff9f8e30c12a2ae6ce572798",
+    "gwo_metadata_sha256": "8c6788ea0b0f9b98ada0dc67cc1031fe5bde4d286e97fa4202f72242d5bc0ea3",
+    "lopo_split_sha256": "a0d4ef82dd5ee201f848b3bfb65426a5bc394726fe51e9b5ef50d1644dca148d",
+    "model_lock_metadata_sha256": "52200ef8a6e0ed7ec6182ec72caa819f35327ec4e12ee7050be30fc1ccbd628d",
+    "model_lock_sha256": "2deb1a7e6f72fde5ec7627858c5397bfcb2aa432ca25f34beaad7a5eeea1521c",
+    "preproc_manifest_sha256": "3f9ed24195fd97c060ca478d3ee326cc2306f2a8b8db7772151c745cbbe45576",
+    "preproc_scalers_sha256": "3981aad4c13e7ac821c09c2961aa6720f588da7296023cf84c44766aee3d2ecd",
+    "raw_dataset_sha256": "86369f44d7ea2711d986c48efed733ae1a8984b9387b1eba0ca462178eb212d1",
+    "ridge_manifest_sha256": "1f0c7a91e311d05afc9710c667427bb34d882f5b4907415e33715994ce0484f4",
+    "ridge_metadata_sha256": "6ca66a8d9ac8e2cf7fce7e425f5489990039a95b78ca3a4a50e7e65e14a5b2a7"
+  },
+  "input_prefix": "0_to_20_ns",
+  "input_shape_per_replica": [
+    201,
+    8
+  ],
+  "mape": {
+    "primary": false,
+    "reason": "unstable for fractional targets that may approach zero"
+  },
+  "model_families": [
+    "ridge_summary",
+    "gru_fixed_h32",
+    "gru_improved_gwo"
+  ],
+  "outer_test_evaluated": false,
+  "paired_model_comparison": {
+    "bootstrap_replicates": 10000,
+    "comparators": [
+      "gru_fixed_h32",
+      "ridge_summary"
+    ],
+    "confidence_interval": "95_percent_bootstrap_over_proteins",
+    "interpretation": "negative_favors_proposed",
+    "p_values": false,
+    "proposed_model": "gru_improved_gwo",
+    "quantity": "mean paired difference in protein-level absolute error: proposed minus comparator",
+    "seed": 20260817
+  },
+  "post_test_rules": {
+    "epoch_changes_allowed": false,
+    "exclude_bad_proteins_after_results": false,
+    "hyperparameter_tuning_allowed": false,
+    "metric_changes_allowed": false,
+    "model_selection_allowed": false
+  },
+  "primary_analysis": {
+    "equal_weight_per_protein": true,
+    "metrics": [
+      "MAE",
+      "RMSE",
+      "R2",
+      "Pearson"
+    ],
+    "missing_target_policy": "include protein-target only when at least one held-out replica has a valid true target",
+    "replica_aggregation": "for each protein-target, average true and predicted values over valid held-out replicas",
+    "unit_of_analysis": "held_out_protein"
+  },
+  "protocol_id": "atlas11_outer_test_v1_2026-08-17",
+  "secondary_analysis": {
+    "label": "pooled_replica_secondary",
+    "metrics": [
+      "MAE",
+      "RMSE",
+      "R2",
+      "Pearson"
+    ],
+    "unit_of_analysis": "held_out_replica"
+  },
+  "status": "frozen_before_outer_test",
+  "targets": [
+    {
+      "name": "rmsd",
+      "unit": "A"
+    },
+    {
+      "name": "rg",
+      "unit": "A"
+    },
+    {
+      "name": "sasa",
+      "unit": "A2"
+    },
+    {
+      "name": "helix",
+      "unit": "fraction"
+    },
+    {
+      "name": "strand",
+      "unit": "fraction"
+    }
+  ],
+  "task": "long_term_equilibrium_regression",
+  "uncertainty": {
+    "bootstrap_replicates": 10000,
+    "confidence_level": 0.95,
+    "method": "nonparametric_bootstrap_over_proteins",
+    "metrics_with_ci": [
+      "MAE",
+      "RMSE"
+    ],
+    "seed": 20260817
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "algorithm_id": "atlas11_gwo_algorithm_v1_2026-08-12",
+
+  "common": {
+    "boundary_handling": "clip_to_unit_hypercube",
+    "leader_count": 3,
+    "leader_roles": ["alpha", "beta", "delta"],
+    "position_update": "mean_of_three_standard_gwo_leader_updates",
+    "global_best_tracking": true
+  },
+
+  "standard_gwo": {
+    "a_schedule": "linear_2_to_0_over_update_generations"
+  },
+
+  "M1": {
+    "name": "chaotic_opposition_initialization",
+    "chaotic_map": "logistic",
+    "mu": 4.0,
+    "burn_in": 32,
+    "base_population_size": 5,
+    "opposition_transform": "1_minus_x",
+    "initial_candidates_evaluated": 10,
+    "retain_after_initialization": 5
+  },
+
+  "M2": {
+    "name": "diversity_modulated_a_schedule",
+    "diversity": "mean_dimension_population_std_divided_by_0.5_clipped_0_1",
+    "boost_coefficient": 0.5,
+    "formula": "clip(a_linear*(1+boost*(1-diversity)),0,2)"
+  },
+
+  "M3": {
+    "name": "levy_flight_mutation",
+    "method": "Mantegna",
+    "beta": 1.5,
+    "mutation_probability_per_wolf": 0.2,
+    "scale_start": 0.05,
+    "scale_end": 0.01,
+    "application": "additive_per_dimension_after_gwo_update_then_clip"
+  },
+
+  "budget_interpretation": {
+    "algorithmic_evaluation": "one_decoded_candidate_fitness_request",
+    "candidate_fitness": "mean_of_five_inner_fold_best_validation_losses",
+    "cache_hit_counts_as_algorithmic_evaluation": true,
+    "cache_hit_retrains": false
+  }
+}
