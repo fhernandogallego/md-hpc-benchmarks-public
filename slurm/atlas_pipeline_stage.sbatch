@@ -12,8 +12,8 @@ set -euo pipefail
 : "${DATASET_GROUP:?Falta DATASET_GROUP}"
 : "${RUN_ROOT:?Falta RUN_ROOT}"
 
-PROJECT="$HOME/md-hpc-benchmarks"
-WORK="$SCRATCH/md-hpc-benchmarks"
+PROJECT="${PROJECT:-$HOME/md-hpc-benchmarks}"
+WORK="${WORK:-$SCRATCH/md-hpc-benchmarks}"
 VENV="$HOME/venvs/md-poc-py311"
 
 RAW_ROOT="$WORK/raw/atlas"
@@ -49,10 +49,20 @@ module load Python/3.11.5-GCCcore-13.2.0
 source "$VENV/bin/activate"
 
 export PYTHONNOUSERSITE=1
-export OMP_NUM_THREADS=1
+
+# SASA/Shrake-Rupley escala con OpenMP. El stage sasa_dssp
+# utiliza los CPUs reservados por Slurm; el resto del pipeline
+# permanece limitado a un único hilo OpenMP.
+if [[ "$STAGE" == "sasa_dssp" || "$STAGE" == "sasa_replica" ]]; then
+    export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
+else
+    export OMP_NUM_THREADS=1
+fi
+
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
+export BLIS_NUM_THREADS=1
 export VECLIB_MAXIMUM_THREADS=1
 
 echo "================================================================================"
@@ -190,12 +200,78 @@ case "$STAGE" in
           --expected-duration-ns 100
         ;;
 
+    sasa_replica)
+        : "${SLURM_ARRAY_TASK_ID:?sasa_replica requiere array 1-3}"
+
+        REPLICA="$SLURM_ARRAY_TASK_ID"
+        REPLICA_ROOT="$RUN_ROOT/sasa_replica_outputs/R${REPLICA}"
+
+        echo "SASA replica:   R${REPLICA}"
+        echo "OMP threads:    ${OMP_NUM_THREADS}"
+        echo "Replica root:   ${REPLICA_ROOT}"
+
+        python \
+          "$PROJECT/src/pipeline/extract_atlas_sasa_dssp.py" \
+          --system "$SYSTEM" \
+          --dataset-group "$DATASET_GROUP" \
+          --raw-root "$RAW_ROOT" \
+          --processed-root "$REPLICA_ROOT" \
+          --replicas "$REPLICA" \
+          --stride 10 \
+          --chunk-size 25 \
+          --sphere-points 960 \
+          --probe-radius-nm 0.14 \
+          --prefix-end-ns 20 \
+          --expected-native-step-ps 10 \
+          --expected-duration-ns 100
+        ;;
+
+    sasa_merge)
+        mkdir -p "$SASA_DSSP_DIR"
+
+        python \
+          "$PROJECT/src/pipeline/merge_atlas_sasa_dssp.py" \
+          --system "$SYSTEM" \
+          --dataset-group "$DATASET_GROUP" \
+          --replicas "1,2,3" \
+          --input-parent "$RUN_ROOT/sasa_replica_outputs" \
+          --output-dir "$SASA_DSSP_DIR"
+        ;;
+
     sensitivity)
         python \
           "$PROJECT/src/diagnostics/equilibration_sensitivity.py" \
           --system "$SYSTEM" \
           --replicas "1,2,3" \
           --input-dir "$BASIC_DIR" \
+          --output-dir "$SENSITIVITY_ROOT"
+        ;;
+
+    sensitivity_replica)
+        : "${SLURM_ARRAY_TASK_ID:?sensitivity_replica requiere array 1-3}"
+
+        REPLICA="$SLURM_ARRAY_TASK_ID"
+        REPLICA_ROOT="$RUN_ROOT/sensitivity_replica_outputs/R${REPLICA}"
+
+        echo "Sensitivity replica: R${REPLICA}"
+        echo "Replica root:        ${REPLICA_ROOT}"
+
+        python \
+          "$PROJECT/src/diagnostics/equilibration_sensitivity.py" \
+          --system "$SYSTEM" \
+          --replicas "$REPLICA" \
+          --input-dir "$BASIC_DIR" \
+          --output-dir "$REPLICA_ROOT"
+        ;;
+
+    sensitivity_merge)
+        mkdir -p "$SENSITIVITY_ROOT"
+
+        python \
+          "$PROJECT/src/pipeline/merge_atlas_equilibration_sensitivity.py" \
+          --system "$SYSTEM" \
+          --replicas "1,2,3" \
+          --input-parent "$RUN_ROOT/sensitivity_replica_outputs" \
           --output-dir "$SENSITIVITY_ROOT"
         ;;
 
@@ -347,12 +423,12 @@ EOF
 
         echo
         echo "================================================================================"
-        echo "ATLAS SYSTEM PIPELINE: PASS"
-        echo "================================================================================"
-        echo "System:   $SYSTEM"
-        echo "Group:    $DATASET_GROUP"
-        echo "Run root: $RUN_ROOT"
-        echo
+echo "ATLAS SYSTEM PIPELINE: PASS"
+echo "================================================================================"
+echo "System:   $SYSTEM"
+echo "Group:    $DATASET_GROUP"
+echo "Run root: $RUN_ROOT"
+echo
         ;;
 
     *)

@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-PROJECT="$HOME/md-hpc-benchmarks"
-WORK="$SCRATCH/md-hpc-benchmarks"
+PROJECT="${PROJECT:-$HOME/md-hpc-benchmarks}"
+WORK="${WORK:-$SCRATCH/md-hpc-benchmarks}"
 
 WORKER="$PROJECT/slurm/atlas_pipeline_stage.sbatch"
 MANIFEST="$PROJECT/manifests/atlas_systems.csv"
@@ -211,21 +211,21 @@ if [[ "$DRY_RUN" == "true" ]]; then
 
 preflight
    |
-   +--> basic[1-3] ---------> basic_official
+   +--> basic[1-3] -----------------------------> basic_official
    |        |
-   |        +--------------> sensitivity --> basic_targets
+   |        +--> sensitivity_replica[1-3] --> sensitivity_merge --> basic_targets
    |
-   +--> rmsf --------------> rmsf_official
+   +--> rmsf -----------------------------------> rmsf_official
    |        |
-   |        +--------------> core -----------+
-   |                                           |
-   +--> sasa_dssp --> structural_targets       |
-                         |                     |
-basic_targets -----------+                     |
-          |                                     |
-          +--> master_targets                   |
-                    |                           |
-                    +---------------------------+--> core_rmsd
+   |        +-----------------------------------> core -----------+
+   |                                                               |
+   +--> sasa_replica[1-3] --> sasa_merge --> structural_targets    |
+                         |                     |                    |
+basic_targets -----------+                     |                    |
+          |                                     |                    |
+          +--> master_targets                   |                    |
+                    |                           |                    |
+                    +---------------------------+--> core_rmsd <----+
                     |                               |
                     +-------------------------------+
                                                     |
@@ -246,7 +246,7 @@ else
     mkdir -p \
       "$LOG_DIR"
 
-    export_common="ALL,SYSTEM=$SYSTEM,DATASET_GROUP=$DATASET_GROUP,RUN_ROOT=$RUN_ROOT"
+    export_common="ALL,SYSTEM=$SYSTEM,DATASET_GROUP=$DATASET_GROUP,RUN_ROOT=$RUN_ROOT,PROJECT=$PROJECT,WORK=$WORK"
 
     submit_job() {
         local stage="$1"
@@ -346,20 +346,40 @@ else
           "1"
     )"
 
-    SASA_ID="$(
+    SASA_REPLICA_ID="$(
         submit_job \
-          sasa_dssp \
+          sasa_replica \
           "$PREFLIGHT_ID" \
           "04:00:00" \
           "8G" \
-          "4"
+          "4" \
+          "1-3"
     )"
 
-    SENSITIVITY_ID="$(
+    SASA_MERGE_ID="$(
         submit_job \
-          sensitivity \
+          sasa_merge \
+          "$SASA_REPLICA_ID" \
+          "00:10:00" \
+          "2G" \
+          "1"
+    )"
+
+    SENSITIVITY_REPLICA_ID="$(
+        submit_job \
+          sensitivity_replica \
           "$BASIC_ID" \
           "00:30:00" \
+          "2G" \
+          "1" \
+          "1-3"
+    )"
+
+    SENSITIVITY_MERGE_ID="$(
+        submit_job \
+          sensitivity_merge \
+          "$SENSITIVITY_REPLICA_ID" \
+          "00:10:00" \
           "2G" \
           "1"
     )"
@@ -367,7 +387,7 @@ else
     BASIC_TARGETS_ID="$(
         submit_job \
           basic_targets \
-          "$SENSITIVITY_ID" \
+          "$SENSITIVITY_MERGE_ID" \
           "00:20:00" \
           "2G" \
           "1"
@@ -376,7 +396,7 @@ else
     STRUCTURAL_TARGETS_ID="$(
         submit_job \
           structural_targets \
-          "$SASA_ID" \
+          "$SASA_MERGE_ID" \
           "00:20:00" \
           "2G" \
           "1"
@@ -404,7 +424,7 @@ else
           "1"
     )"
 
-    PREFIX_DEP="${MASTER_ID}:${CORE_RMSD_ID}:${SASA_ID}"
+    PREFIX_DEP="${MASTER_ID}:${CORE_RMSD_ID}:${SASA_MERGE_ID}"
 
     PREFIX_ID="$(
         submit_job \
@@ -446,8 +466,10 @@ basic_official=$BASIC_OFFICIAL_ID
 rmsf=$RMSF_ID
 rmsf_official=$RMSF_OFFICIAL_ID
 core=$CORE_ID
-sasa_dssp=$SASA_ID
-sensitivity=$SENSITIVITY_ID
+sasa_replica=$SASA_REPLICA_ID
+sasa_merge=$SASA_MERGE_ID
+sensitivity_replica=$SENSITIVITY_REPLICA_ID
+sensitivity_merge=$SENSITIVITY_MERGE_ID
 basic_targets=$BASIC_TARGETS_ID
 structural_targets=$STRUCTURAL_TARGETS_ID
 master_targets=$MASTER_ID
@@ -466,8 +488,10 @@ EOF
     printf '%-22s %s\n' "rmsf" "$RMSF_ID"
     printf '%-22s %s\n' "rmsf official" "$RMSF_OFFICIAL_ID"
     printf '%-22s %s\n' "core" "$CORE_ID"
-    printf '%-22s %s\n' "sasa/dssp" "$SASA_ID"
-    printf '%-22s %s\n' "sensitivity" "$SENSITIVITY_ID"
+    printf '%-22s %s\n' "sasa replicas" "$SASA_REPLICA_ID"
+    printf '%-22s %s\n' "sasa merge" "$SASA_MERGE_ID"
+    printf '%-22s %s\n' "sensitivity replicas" "$SENSITIVITY_REPLICA_ID"
+    printf '%-22s %s\n' "sensitivity merge" "$SENSITIVITY_MERGE_ID"
     printf '%-22s %s\n' "basic targets" "$BASIC_TARGETS_ID"
     printf '%-22s %s\n' "structural targets" "$STRUCTURAL_TARGETS_ID"
     printf '%-22s %s\n' "master targets" "$MASTER_ID"
