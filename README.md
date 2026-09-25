@@ -14,7 +14,7 @@ configuration files and manifests needed to reproduce the study.
 - **Primary benchmark:** the public **ATLAS** molecular-dynamics dataset
   (Vander Meersche et al., *Nucleic Acids Research*, 2024;
   https://www.dsimb.inserm.fr/ATLAS/). ATLAS is released under CC BY-NC 4.0.
-- **External cross-system validation:** in-house p53 DNA-binding-domain
+- **Preliminary cross-engine zero-shot assessment:** in-house p53 DNA-binding-domain
   trajectories generated with NAMD.
 
 **Not included in this repository:**
@@ -37,6 +37,30 @@ pipeline scripts; see `slurm/` and `src/pipeline/`.
 
 Software versions are pinned in the configuration files. Random seeds, splits and
 SHA-256 manifests are recorded alongside the released artifacts.
+
+
+## ATLAS20 major-revision reproducibility snapshot
+
+The complete reproducibility snapshot used for the major revision of
+manuscript `mathematics-4566470` is available at:
+
+`releases/atlas20_revision_20260925/`
+
+It contains the frozen ATLAS20 protein-level splits, primary results,
+reviewer-requested baselines and sensitivity analyses, the high-capacity
+fixed-GRU control, optimizer audits, and the completed matched-budget
+comparison of Improved-GWO, Random Search and Bayesian Optimization.
+
+The HPO comparison contains 180 optimizer runs
+(60 per method), with 30 algorithmic candidate evaluations per run and
+five inner folds per candidate. Random-Search- and Bayesian-selected
+configurations were not evaluated on held-out outer tests; therefore
+the HPO comparison concerns optimization of the frozen inner-validation
+objective rather than a held-out predictive ranking.
+
+The snapshot contains its own file inventory and SHA-256 manifest.
+Raw ATLAS trajectories and in-house p53/NAMD trajectories are not
+redistributed.
 
 ## Citation
 

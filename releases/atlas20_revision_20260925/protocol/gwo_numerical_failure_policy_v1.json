@@ -1,0 +1,30 @@
+{
+  "policy_id": "gwo_numerical_failure_policy_v1_2026-08-14",
+  "scope": "final_improved_gwo_v3_inner_cv",
+  "trigger": [
+    "non-finite gradient",
+    "non-finite train loss",
+    "non-finite logged train loss",
+    "non-finite validation loss"
+  ],
+  "action": "replace_only_the_numerically_failed_inner_fold_loss_with_penalty_and_continue",
+  "failed_fold_penalty": 1000000.0,
+  "candidate_fitness": "arithmetic_mean_of_five_inner_fold_losses_including_penalty",
+  "non_numerical_failures": "fatal",
+  "reason": "Numerically divergent hyperparameter configurations are treated as infeasible candidates rather than aborting the entire optimizer search.",
+  "observed_trigger": {
+    "outer_fold": 8,
+    "optimizer_seed": 20260812,
+    "inner_fold": 4,
+    "epoch": 29,
+    "candidate": {
+      "hidden_size": 512,
+      "num_layers": 2,
+      "dropout": 0.3,
+      "learning_rate": 0.004999999999999999,
+      "weight_decay": 4.639769398830521e-05
+    }
+  },
+  "completed_searches_affected_retroactively": 0,
+  "outer_test_used": false
+}
