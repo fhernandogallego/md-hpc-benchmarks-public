@@ -1,0 +1,19 @@
+{
+  "analysis": "capacity_matched_fixed_gru_outer_test",
+  "dropout": 0.0,
+  "epoch_policy": "median_of_five_inner_best_epochs",
+  "frozen_true_mean_max_abs_diff": 0.0,
+  "hidden_size": 512,
+  "hyperparameter_tuning_after_test": false,
+  "learning_rate": 0.001,
+  "model": "gru_fixed_h512",
+  "model_selection_after_test": false,
+  "num_layers": 1,
+  "outer_contexts": 20,
+  "outer_test_evaluated": true,
+  "outer_test_unit": "held_out_protein",
+  "parameter_count": 804357,
+  "post_review_capacity_control": true,
+  "trainer_seed": 20260811,
+  "weight_decay": 0.0001
+}

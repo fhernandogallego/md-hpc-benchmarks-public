@@ -1,0 +1,19 @@
+FINAL MATCHED-BUDGET HPO COMPARISON
+===================================
+
+Optimizer runs: 180
+60 Improved-GWO + 60 Random Search + 60 Bayesian Optimization
+30 algorithmic candidate evaluations per search
+5 inner folds per candidate
+Outer test evaluated: NO
+
+METHOD SUMMARIES
+improved_gwo: mean=0.213147180580, median=0.214271897450, cache_hits=180, penalty_candidates=1, penalty_folds=1
+random_search: mean=0.230418826053, median=0.237402418442, cache_hits=0, penalty_candidates=0, penalty_folds=0
+bayesian_optimization: mean=0.201329767335, median=0.204627675936, cache_hits=0, penalty_candidates=2, penalty_folds=2
+
+PAIRED COMPARISONS
+Delta = first - second; negative favors first.
+improved_gwo_minus_random_search: n=60, mean_delta=-0.017271645473, median_delta=-0.020948592573, CI95=[-0.026944352809, -0.007428420343], p_raw=0.000948545640966, p_Holm=0.000948545640966, first_better=40, ties=0, second_better=20
+improved_gwo_minus_bayesian_optimization: n=60, mean_delta=0.011817413246, median_delta=0.010734790377, CI95=[0.006993850100, 0.016936697582], p_raw=1.18595580861e-05, p_Holm=2.37191161723e-05, first_better=15, ties=0, second_better=45
+random_search_minus_bayesian_optimization: n=60, mean_delta=0.029089058718, median_delta=0.029265294597, CI95=[0.020921860676, 0.037555572311], p_raw=6.00156306852e-07, p_Holm=1.80046892056e-06, first_better=17, ties=0, second_better=43

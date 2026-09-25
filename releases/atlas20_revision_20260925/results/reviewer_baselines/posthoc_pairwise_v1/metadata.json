@@ -1,0 +1,29 @@
+{
+  "analysis": "review_requested_pairwise_sensitivity",
+  "bootstrap_replicates": 10000,
+  "comparisons": [
+    {
+      "comparator": "gru_fixed_h32",
+      "proposed": "last_value_persistence"
+    },
+    {
+      "comparator": "ridge_summary",
+      "proposed": "last_value_persistence"
+    },
+    {
+      "comparator": "gru_improved_gwo",
+      "proposed": "last_value_persistence"
+    },
+    {
+      "comparator": "ridge_summary",
+      "proposed": "ridge_alpha_nested"
+    }
+  ],
+  "holm_scope": "five observable-specific tests separately within each comparator family",
+  "negative_delta_favors_proposed": true,
+  "post_review_sensitivity": true,
+  "primary_original_results_replaced": false,
+  "primary_unit": "held_out_protein",
+  "proposed_error_minus_comparator_error": true,
+  "wilcoxon": "two-sided paired signed-rank"
+}

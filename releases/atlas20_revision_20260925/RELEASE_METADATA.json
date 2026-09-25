@@ -1,0 +1,25 @@
+{
+  "algorithmic_candidate_evaluations_per_run": 30,
+  "benchmark": "ATLAS20",
+  "bundle_status": "public_release",
+  "hpo_comparison_completed": true,
+  "hpo_methods": [
+    "improved_gwo",
+    "random_search",
+    "bayesian_optimization"
+  ],
+  "inner_folds_per_candidate": 5,
+  "interpretation": "optimizer comparison on frozen inner-validation objective only",
+  "matched_contexts_per_pair": 60,
+  "optimizer_runs_per_method": 60,
+  "optimizer_runs_total": 180,
+  "outer_test_used_for_hpo_comparison": false,
+  "proteins": 20,
+  "public_release_date": "2026-09-25",
+  "public_repository": "https://github.com/fhernandogallego/md-hpc-benchmarks-public",
+  "public_repository_path": "releases/atlas20_revision_20260925",
+  "public_upload_performed": true,
+  "raw_atlas_trajectories_included": false,
+  "raw_p53_trajectories_included": false,
+  "trajectories": 60
+}

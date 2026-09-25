@@ -1,0 +1,51 @@
+{
+  "actual_inner_fold_trainer_invocations": 8100,
+  "algorithmic_candidate_evaluations": 1800,
+  "best_hidden_distribution_all_60_searches": {
+    "320": 3,
+    "384": 10,
+    "512": 47
+  },
+  "cache_hits": 180,
+  "checksum_verified_searches": 60,
+  "evaluated_candidate_hidden_distribution": {
+    "16": 137,
+    "32": 64,
+    "64": 78,
+    "96": 38,
+    "128": 81,
+    "160": 27,
+    "192": 62,
+    "224": 116,
+    "256": 87,
+    "320": 181,
+    "384": 353,
+    "512": 576
+  },
+  "final_selected_hidden_distribution_20_outer_contexts": {
+    "384": 4,
+    "512": 16
+  },
+  "fixed_h32_parameter_count": 4197,
+  "fixed_h512_parameter_count": 804357,
+  "h512_vs_h32_parameter_ratio": 191.650464617584,
+  "hidden512_best_searches": 47,
+  "hidden512_final_selected_fraction": 0.8,
+  "hidden512_final_selected_outer_contexts": 16,
+  "inner_fold_trainings_avoided_by_cache": 900,
+  "maximum_inner_fold_trainings": 9000,
+  "mean_selected_inner_fitness": 0.20000340718775989,
+  "median_selected_inner_fitness": 0.20607709512114525,
+  "n_outer_contexts": 20,
+  "n_searches": 60,
+  "noncache_candidate_evaluations": 1620,
+  "optimizer_seeds": [
+    20260811,
+    20260812,
+    20260813
+  ],
+  "outer_test_evaluated": false,
+  "selected_parameter_count_max": 2380293,
+  "selected_parameter_count_median": 1861573.0,
+  "selected_parameter_count_min": 804357
+}

@@ -1,0 +1,42 @@
+{
+  "benchmark": "ATLAS20",
+  "feature_names": [
+    "rmsd_backbone_A",
+    "radius_gyration_A",
+    "core_rmsd_q30_A",
+    "core_rmsd_q40_A",
+    "core_rmsd_q50_A",
+    "total_sasa_A2",
+    "helix_fraction",
+    "strand_fraction"
+  ],
+  "input_shape": [
+    60,
+    201,
+    8
+  ],
+  "large_processed_tensor_included": false,
+  "proteins": 20,
+  "raw_trajectory_files_included": false,
+  "replicates_per_protein": 3,
+  "source": "ATLAS public molecular-dynamics dataset",
+  "target_names": [
+    "rmsd",
+    "rg",
+    "sasa",
+    "helix",
+    "strand"
+  ],
+  "time_grid_end_ns": 20.0,
+  "time_grid_start_ns": 0.0,
+  "total_possible_targets": 300,
+  "total_valid_targets": 180,
+  "trajectories": 60,
+  "valid_target_counts": {
+    "helix": 43,
+    "rg": 25,
+    "rmsd": 34,
+    "sasa": 35,
+    "strand": 43
+  }
+}
