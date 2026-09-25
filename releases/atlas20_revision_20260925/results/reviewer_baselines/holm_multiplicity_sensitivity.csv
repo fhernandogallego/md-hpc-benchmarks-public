@@ -1,0 +1,11 @@
+target,unit,proposed,comparator,n_proteins,mean_abs_error_delta,wilcoxon_statistic,p_raw,holm_family,p_holm,holm_reject_0_05,original_bootstrap_ci_low,original_bootstrap_ci_high
+rmsd,A,gru_improved_gwo,gru_fixed_h32,18,0.05005948326581258,65.0,0.39273834228515625,gru_improved_gwo_vs_gru_fixed_h32_five_targets,0.39273834228515625,False,-0.0625773942674938,0.16234281893688243
+rg,A,gru_improved_gwo,gru_fixed_h32,16,-0.47921941804370116,27.0,0.033538818359375,gru_improved_gwo_vs_gru_fixed_h32_five_targets,0.06707763671875,False,-0.88926840963449,-0.10269579117241821
+sasa,A2,gru_improved_gwo,gru_fixed_h32,19,-622.8919006315671,27.0,0.00457763671875,gru_improved_gwo_vs_gru_fixed_h32_five_targets,0.01373291015625,True,-1148.2397864377601,-199.9192859519601
+helix,fraction,gru_improved_gwo,gru_fixed_h32,20,-0.020301851390808773,26.0,0.0019855499267578125,gru_improved_gwo_vs_gru_fixed_h32_five_targets,0.00794219970703125,True,-0.03347867880402388,-0.008096144483514471
+strand,fraction,gru_improved_gwo,gru_fixed_h32,20,-0.02167800665145462,8.0,4.76837158203125e-05,gru_improved_gwo_vs_gru_fixed_h32_five_targets,0.0002384185791015625,True,-0.03477316637075362,-0.011617796363690841
+rmsd,A,gru_improved_gwo,ridge_summary,18,0.03730295345023699,85.0,1.0,gru_improved_gwo_vs_ridge_summary_five_targets,1.0,False,-0.15480028585611072,0.25141660762281354
+rg,A,gru_improved_gwo,ridge_summary,16,0.2836395064430379,42.0,0.19281005859375,gru_improved_gwo_vs_ridge_summary_five_targets,0.771240234375,False,-0.028800576068741982,0.6284104111078825
+sasa,A2,gru_improved_gwo,ridge_summary,19,40.71539112218551,74.0,0.4180412292480469,gru_improved_gwo_vs_ridge_summary_five_targets,1.0,False,-142.0585413415617,206.73618375070325
+helix,fraction,gru_improved_gwo,ridge_summary,20,0.0067421680749621005,36.0,0.00830841064453125,gru_improved_gwo_vs_ridge_summary_five_targets,0.04154205322265625,True,0.0005591267378019442,0.013103005216815181
+strand,fraction,gru_improved_gwo,ridge_summary,20,0.0005643186562192245,89.0,0.5705966949462891,gru_improved_gwo_vs_ridge_summary_five_targets,1.0,False,-0.005612416680014806,0.007608349909482584

@@ -1,0 +1,34 @@
+{
+  "algorithmic_evaluations_per_search": 30,
+  "analysis": "matched_budget_hpo_final_comparison",
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 20260817,
+  "bootstrap_statistic": "mean_paired_difference",
+  "confidence_interval": "percentile_95_percent",
+  "fitness_direction": "lower_is_better",
+  "gwo_root": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/atlas20/modeling/gwo_improved_v3_search_v1_2026-08-24",
+  "hpo_root": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper_revision/paper_revision_hpo_20260921_094522",
+  "inner_folds_per_candidate": 5,
+  "methods": [
+    "improved_gwo",
+    "random_search",
+    "bayesian_optimization"
+  ],
+  "multiplicity": "Holm_across_three_optimizer_pairwise_comparisons",
+  "optimizer_seeds": [
+    20260811,
+    20260812,
+    20260813
+  ],
+  "outer_contexts": 20,
+  "outer_test_evaluated": false,
+  "paired_difference": "fitness(first_method)-fitness(second_method)",
+  "paired_test": "two_sided_Wilcoxon_signed_rank",
+  "search_space_sha256_values": [
+    "ef1ab63caffaed81615a4232f643748096b76bfa3301351463fd97f5e714e3d0"
+  ],
+  "searches_per_method": 60,
+  "trainer_sha256_values": [
+    "2232acfd5e44199a5f7a96313bc6d84bf000226d2ff7d4483e41142cf8acc282"
+  ]
+}

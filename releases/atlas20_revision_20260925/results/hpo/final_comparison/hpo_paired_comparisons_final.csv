@@ -1,0 +1,4 @@
+comparison,first_method,second_method,n,mean_delta,median_delta,bootstrap_ci95_low,bootstrap_ci95_high,wilcoxon_statistic,wilcoxon_p_raw,first_better_contexts,ties,second_better_contexts,wilcoxon_p_holm,holm_reject_0_05
+improved_gwo_minus_random_search,improved_gwo,random_search,60,-0.017271645472695434,-0.020948592573404312,-0.026944352809494983,-0.0074284203429706396,466.0,0.0009485456409656531,40,0,20,0.0009485456409656531,True
+improved_gwo_minus_bayesian_optimization,improved_gwo,bayesian_optimization,60,0.011817413245638212,0.010734790377318865,0.006993850100242225,0.01693669758178293,320.0,1.1859558086146421e-05,15,0,45,2.3719116172292842e-05,True
+random_search_minus_bayesian_optimization,random_search,bayesian_optimization,60,0.02908905871833364,0.02926529459655286,0.02092186067579314,0.03755557231077303,237.0,6.001563068523746e-07,17,0,43,1.800468920557124e-06,True

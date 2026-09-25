@@ -1,0 +1,15 @@
+{
+  "analysis": "h512_vs_persistence_and_consolidated_table",
+  "consolidated_models": [
+    "ridge_summary",
+    "gru_fixed_h32",
+    "gru_fixed_h512",
+    "gru_improved_gwo",
+    "trained_mean",
+    "last_value_persistence"
+  ],
+  "multiplicity": "Holm across five targets",
+  "paired_delta": "abs_error_h512 minus abs_error_persistence",
+  "positive_delta_favors_persistence": true,
+  "primary_unit": "held_out_protein"
+}

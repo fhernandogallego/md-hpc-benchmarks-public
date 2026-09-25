@@ -1,0 +1,45 @@
+{
+  "analysis": "paper_revision_cheap_analyses",
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed_source": 20260817,
+  "dataset": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/atlas20/dataset_v1_2026-08-24/raw/multisystem_dataset_raw.npz",
+  "dataset_sha256": "f77d769f4100794d018a3d7716d0feee0244cc2d74b9372d0d725e1ebb272bcd",
+  "frozen_evaluation_root": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/atlas20/evaluation/outer_test_v1_2026-08-25_final_retry1/results",
+  "last_value_persistence_mapping": {
+    "helix": "helix_fraction",
+    "rg": "radius_gyration_A",
+    "rmsd": "rmsd_backbone_A",
+    "sasa": "total_sasa_A2",
+    "strand": "strand_fraction"
+  },
+  "lopo": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/atlas20/dataset_v1_2026-08-24/lopo/lopo_folds.json",
+  "lopo_sha256": "c797c3d9b145dfad06e4c0122c16ceeedd54942c5407cf595d54d6d2a830165e",
+  "multiplicity_analysis": "two-sided paired Wilcoxon signed-rank test on held-out-protein absolute errors; Holm correction separately across the five observable-specific tests for each comparator",
+  "nested_root": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/atlas20/preprocessing_v1_2026-08-24/nested_training",
+  "new_baselines": [
+    "trained_mean",
+    "last_value_persistence",
+    "ridge_alpha_nested"
+  ],
+  "outer_test_used_for_alpha_selection": false,
+  "outer_test_used_for_final_sensitivity_evaluation": true,
+  "outer_training_root": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/atlas20/preprocessing_v1_2026-08-24/outer_training",
+  "post_review_sensitivity_analysis": true,
+  "primary_unit": "held_out_protein",
+  "protein_aggregation_reproduction_max_abs_diff": 0.0,
+  "ridge_alpha1_reproduction_max_abs_diff": 3.637978807091713e-12,
+  "ridge_alpha_grid": [
+    0.0001,
+    0.001,
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0,
+    1000.0,
+    10000.0
+  ],
+  "ridge_alpha_selection": "lowest mean masked equal-target MSE across five inner folds independently within each outer context; lower alpha breaks exact ties",
+  "ridge_primary_baseline_replaced": false,
+  "trained_mean_definition": "per-target mean of valid outer-training targets only"
+}

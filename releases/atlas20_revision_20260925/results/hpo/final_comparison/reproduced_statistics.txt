@@ -1,0 +1,33 @@
+METHOD SUMMARIES
+================
+improved_gwo: mean=0.213147180580, median=0.214271897450
+random_search: mean=0.230418826053, median=0.237402418442
+bayesian_optimization: mean=0.201329767335, median=0.204627675936
+
+PAIRED COMPARISONS
+==================
+delta = first - second; negative favors first
+
+improved_gwo - random_search
+mean_delta=-0.017271645473
+median_delta=-0.020948592573
+ci95=[-0.026944352809,-0.007428420343]
+p_raw=0.000948545640966
+p_holm=0.000948545640966
+contexts=40/0/20
+
+improved_gwo - bayesian_optimization
+mean_delta=0.011817413246
+median_delta=0.010734790377
+ci95=[0.006993850100,0.016936697582]
+p_raw=1.18595580861e-05
+p_holm=2.37191161723e-05
+contexts=15/0/45
+
+random_search - bayesian_optimization
+mean_delta=0.029089058718
+median_delta=0.029265294597
+ci95=[0.020921860676,0.037555572311]
+p_raw=6.00156306852e-07
+p_holm=1.80046892056e-06
+contexts=17/0/43

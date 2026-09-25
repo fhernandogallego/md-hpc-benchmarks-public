@@ -1,0 +1,3 @@
+method,searches,mean_best_inner_fitness,median_best_inner_fitness,min_best_inner_fitness,max_best_inner_fitness,total_cache_hits
+random_search,60,0.23041882605291905,0.2374024184420705,0.1175771951675415,0.28985356390476225,0
+bayesian_optimization,60,0.2013297673345854,0.20462767593562603,0.10160593539476395,0.2714881159365177,0

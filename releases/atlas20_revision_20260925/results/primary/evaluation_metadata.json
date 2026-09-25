@@ -1,0 +1,23 @@
+{
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 20260817,
+  "evaluation": "atlas20_outer_test_v1",
+  "hyperparameter_tuning_after_test": false,
+  "model_families": [
+    "ridge_summary",
+    "gru_fixed_h32",
+    "gru_improved_gwo"
+  ],
+  "model_selection_after_test": false,
+  "outer_folds_evaluated": 20,
+  "outer_test_evaluated": true,
+  "primary_metrics": [
+    "MAE",
+    "RMSE",
+    "R2",
+    "Pearson"
+  ],
+  "primary_unit": "held_out_protein",
+  "protocol_sha256": "22d42bf84b87bbb9e2a7889f9e1360d6416614deec3963d803298fae81523a3b",
+  "test_replicas_total": 60
+}
