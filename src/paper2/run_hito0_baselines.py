@@ -13,7 +13,12 @@ import csv
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
+
+# Small Ridge systems gain nothing from 64 BLAS threads on constrained nodes.
+for name in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[name] = "1"
 
 import numpy as np
 

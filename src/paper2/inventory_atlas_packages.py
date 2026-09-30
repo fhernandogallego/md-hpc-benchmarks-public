@@ -6,8 +6,14 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 from collections import Counter
 from pathlib import Path
+
+# Login-node process quotas can be lower than the default OpenBLAS thread count.
+# This inventory does not benefit from threaded linear algebra.
+for name in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[name] = "1"
 
 import numpy as np
 
