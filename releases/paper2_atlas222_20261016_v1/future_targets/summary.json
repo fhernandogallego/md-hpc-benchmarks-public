@@ -1,0 +1,26 @@
+{
+  "scope": "train_only_RMSD",
+  "protocol": "original t0 retained; t>20 ns and t>=t0; original recalculate reused",
+  "train_systems": 204,
+  "train_groups": 173,
+  "replicas_processed": 612,
+  "original_valid_replicas": 291,
+  "future_valid_replicas": 288,
+  "future_valid_systems": 170,
+  "future_valid_groups": 149,
+  "lost_from_original": 3,
+  "gained_vs_original": 0,
+  "historical_replication": "PASS",
+  "historical_max_future_target_delta_A": 0.0,
+  "validation_test_series_read": false,
+  "numpy_version": "1.26.4",
+  "pymbar_version": "4.0.3",
+  "input_sha256": {
+    "/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_hito0/atlas222_grouped_development_v1/system_assignment.csv": "79b983deb8c1f857fb7a22ce05dcdd107dbb1ff4fd37ee2971c046e7564e2149",
+    "/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_hito0/atlas222_source_inventory_20261015_125033/source_inventory.csv": "8877f3fcb12e53af21ae609d1b1a1176965f2584fd75ad03a2db21b6ab5ca3ce",
+    "/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_hito0/atlas80_split_v1/protein_split.csv": "d31ef5c7d5fcea49e4f6414ea8bb70254ee5c63008b8c02707ab462c31e24bee",
+    "/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_hito0/atlas80_future_rmsd_targets_train_v1/train_future_rmsd_rows.csv": "ec1e9a5a0dd55491058cc006da6d8e953d2f63e07c3ccc19fe60c20f3ee15beb",
+    "/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_hito0/atlas222_future_rmsd_train_3239158/original_target_builder.py": "caead5aef5fa4c500d1ddd0389d8a0892a8ae5c0a437fe781fb3b8f6c801446d"
+  },
+  "rows_sha256": "3caa09b9171ea5d12dccc3d9b9f44b0e2eff622083c849e31f623c876a53c1d9"
+}

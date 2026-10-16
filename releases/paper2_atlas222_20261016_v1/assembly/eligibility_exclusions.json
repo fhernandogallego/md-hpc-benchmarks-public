@@ -1,0 +1,11 @@
+[
+  {
+    "system": "3txs_C",
+    "scope": "current_complete_three_replica_eight_feature_schema",
+    "reason": "R3 replica_prefix core is empty at q=0.30",
+    "evidence": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/atlas_pipeline_runs/paper2_wave3_v1/3txs_C/wave3_remaining117_20261014_v1/processed/paper2_wave3_v1/3txs_C/core_overlap/core_overlap_summary.csv",
+    "evidence_sha256": "55fd9dcb4e2e1799dce9e9e6504462f2a1f5647834af227d4e16ff1276a252fa",
+    "source_data_retained": true,
+    "pipeline_status_not_changed": true
+  }
+]

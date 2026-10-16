@@ -1,0 +1,9 @@
+{
+  "systems": 222,
+  "systems_with_self_alignment": 222,
+  "screen": "identity>=30%; coverage>=80% each sequence; single HSP",
+  "candidate_pairs": 31,
+  "cross_scope_pairs_involving_validation_or_test": [],
+  "split_modified": false,
+  "definitive_clusters_created": false
+}

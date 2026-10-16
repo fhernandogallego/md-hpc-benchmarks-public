@@ -1,0 +1,372 @@
+[
+  {
+    "a": "1b2s_E",
+    "b": "1b2s_F",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "1cm3_A",
+    "b": "1pch_A",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "1ef1_C",
+    "b": "1ef1_D",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "1x6i_A",
+    "b": "1x6j_A",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "2dlb_A",
+    "b": "2dlb_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "2hl7_A",
+    "b": "5j2l_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "2hnu_A",
+    "b": "2hnu_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "2i9x_A",
+    "b": "2i9x_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "2qsk_A",
+    "b": "2qt4_A",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "2y4x_A",
+    "b": "2y4x_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3a1g_A",
+    "b": "3a1g_C",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3a39_A",
+    "b": "5wqq_A",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3ajf_A",
+    "b": "3ajf_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3b4q_A",
+    "b": "3b4q_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3bpj_B",
+    "b": "3bpj_C",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3bri_A",
+    "b": "3rjs_A",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3hgl_A",
+    "b": "3svi_A",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3nrl_A",
+    "b": "3nrl_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3ofg_A",
+    "b": "3ofg_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3pes_A",
+    "b": "3pes_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3sol_A",
+    "b": "4a56_A",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3tbn_A",
+    "b": "6avj_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3vc8_A",
+    "b": "3vc8_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "3zzo_A",
+    "b": "3zzr_A",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "4gip_A",
+    "b": "4gip_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "4jo7_A",
+    "b": "4jo7_C",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "4u5h_B",
+    "b": "4u5h_G",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "6fbz_B",
+    "b": "6fc0_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "6fub_B",
+    "b": "8b2r_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "6h86_A",
+    "b": "6h86_B",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "7a66_B",
+    "b": "7a66_C",
+    "reason": "blast_30pct_80pct_both"
+  },
+  {
+    "a": "1b2s_E",
+    "b": "1b2s_F",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "1ef1_C",
+    "b": "1ef1_D",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "1x6i_A",
+    "b": "1x6j_A",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "2dlb_A",
+    "b": "2dlb_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "2hnu_A",
+    "b": "2hnu_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "2i9x_A",
+    "b": "2i9x_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "2qsk_A",
+    "b": "2qt4_A",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "2y4x_A",
+    "b": "2y4x_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3a1g_A",
+    "b": "3a1g_C",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3a39_A",
+    "b": "5wqq_A",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3ajf_A",
+    "b": "3ajf_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3b4q_A",
+    "b": "3b4q_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3bpj_B",
+    "b": "3bpj_C",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3nrl_A",
+    "b": "3nrl_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3ofg_A",
+    "b": "3ofg_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3pes_A",
+    "b": "3pes_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3vc8_A",
+    "b": "3vc8_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "3zzo_A",
+    "b": "3zzr_A",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "4gip_A",
+    "b": "4gip_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "4jo7_A",
+    "b": "4jo7_C",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "4u5h_B",
+    "b": "4u5h_G",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "6fbz_B",
+    "b": "6fc0_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "6h86_A",
+    "b": "6h86_B",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "7a66_B",
+    "b": "7a66_C",
+    "reason": "identical_observed_sequence"
+  },
+  {
+    "a": "1b2s_E",
+    "b": "1b2s_F",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "1ef1_C",
+    "b": "1ef1_D",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "2dlb_A",
+    "b": "2dlb_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "2hnu_A",
+    "b": "2hnu_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "2i9x_A",
+    "b": "2i9x_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "2y4x_A",
+    "b": "2y4x_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "3a1g_A",
+    "b": "3a1g_C",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "3ajf_A",
+    "b": "3ajf_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "3b4q_A",
+    "b": "3b4q_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "3bpj_B",
+    "b": "3bpj_C",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "3nrl_A",
+    "b": "3nrl_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "3ofg_A",
+    "b": "3ofg_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "3pes_A",
+    "b": "3pes_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "3vc8_A",
+    "b": "3vc8_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "4gip_A",
+    "b": "4gip_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "4jo7_A",
+    "b": "4jo7_C",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "4u5h_B",
+    "b": "4u5h_G",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "6h86_A",
+    "b": "6h86_B",
+    "reason": "same_pdb"
+  },
+  {
+    "a": "7a66_B",
+    "b": "7a66_C",
+    "reason": "same_pdb"
+  }
+]

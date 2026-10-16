@@ -1,0 +1,148 @@
+{
+  "systems": 222,
+  "systems_by_split": {
+    "train": 204,
+    "test": 9,
+    "validation": 9
+  },
+  "groups_total": 191,
+  "groups_by_split": {
+    "train": 173,
+    "test": 9,
+    "validation": 9
+  },
+  "non_singleton_groups": [
+    [
+      "1b2s_E",
+      "1b2s_F"
+    ],
+    [
+      "1cm3_A",
+      "1pch_A"
+    ],
+    [
+      "1ef1_C",
+      "1ef1_D"
+    ],
+    [
+      "1x6i_A",
+      "1x6j_A"
+    ],
+    [
+      "2dlb_A",
+      "2dlb_B"
+    ],
+    [
+      "2hl7_A",
+      "5j2l_B"
+    ],
+    [
+      "2hnu_A",
+      "2hnu_B"
+    ],
+    [
+      "2i9x_A",
+      "2i9x_B"
+    ],
+    [
+      "2qsk_A",
+      "2qt4_A"
+    ],
+    [
+      "2y4x_A",
+      "2y4x_B"
+    ],
+    [
+      "3a1g_A",
+      "3a1g_C"
+    ],
+    [
+      "3a39_A",
+      "5wqq_A"
+    ],
+    [
+      "3ajf_A",
+      "3ajf_B"
+    ],
+    [
+      "3b4q_A",
+      "3b4q_B"
+    ],
+    [
+      "3bpj_B",
+      "3bpj_C"
+    ],
+    [
+      "3bri_A",
+      "3rjs_A"
+    ],
+    [
+      "3hgl_A",
+      "3svi_A"
+    ],
+    [
+      "3nrl_A",
+      "3nrl_B"
+    ],
+    [
+      "3ofg_A",
+      "3ofg_B"
+    ],
+    [
+      "3pes_A",
+      "3pes_B"
+    ],
+    [
+      "3sol_A",
+      "4a56_A"
+    ],
+    [
+      "3tbn_A",
+      "6avj_B"
+    ],
+    [
+      "3vc8_A",
+      "3vc8_B"
+    ],
+    [
+      "3zzo_A",
+      "3zzr_A"
+    ],
+    [
+      "4gip_A",
+      "4gip_B"
+    ],
+    [
+      "4jo7_A",
+      "4jo7_C"
+    ],
+    [
+      "4u5h_B",
+      "4u5h_G"
+    ],
+    [
+      "6fbz_B",
+      "6fc0_B"
+    ],
+    [
+      "6fub_B",
+      "8b2r_B"
+    ],
+    [
+      "6h86_A",
+      "6h86_B"
+    ],
+    [
+      "7a66_B",
+      "7a66_C"
+    ]
+  ],
+  "group_conflicts": [],
+  "new_system_assignment": "train",
+  "atlas80_split_sha256": "d31ef5c7d5fcea49e4f6414ea8bb70254ee5c63008b8c02707ab462c31e24bee",
+  "blast_pairs_sha256": "ad6a75f4b0d9fa26bfe8ca0da410f9afe606bb4cdcfcae52814665ddbf02dfc1",
+  "sequence_fasta_sha256": "a6da7bd4d2c2a56fb9d7f2256f09678690e72455602eee7f393cd7f14cf1c4e6",
+  "assignment_sha256": "79b983deb8c1f857fb7a22ce05dcdd107dbb1ff4fd37ee2971c046e7564e2149",
+  "cv_folds_created": false,
+  "targets": "future_RMSD_pending"
+}
