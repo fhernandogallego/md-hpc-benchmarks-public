@@ -6,6 +6,11 @@ stopping policy or a new claim that HITO 0 is satisfied.
 
 ## Run on CALÉNDULA
 
+Set `PAPER2_SLURM_ACCOUNT` and `PAPER2_SLURM_PARTITION` locally (or pass
+`--account` and `--partition`). No personal account or absolute work directory
+is stored in this controller update. The work directory uses `$SCRATCH` or
+an explicit `--work` argument.
+
 ```bash
 bash automation/paper2_batch_v1/run.sh launch --parallel 8
 ```
@@ -37,6 +42,11 @@ pointer. The pipeline defaults to the already executed snapshot at
    preflight and the system orchestrator's dry-run for every selected system.
 3. Submit up to eight independent system pipelines, register job IDs, wait for
    finalization and validate final status, checksums and complete finite features.
+   New launches use the versioned core extractor in `recovery/`: empty full-oracle
+   cores are unavailable diagnostics, with NaN diagnostic series, zero comparison
+   points and explicit status metadata. Mandatory replica/consensus prefix cores
+   still fail when empty. No model channel is imputed or changed. Supported
+   reference extractor hashes are checked before installing this policy.
 4. Assemble a new version. Extract observed sequences, run all-against-all BLAST,
    and join components at >=30% identity and >=80% coverage of both sequences in
    one HSP, with exact-sequence and same-PDB links. Preserve existing assignments;
@@ -68,6 +78,23 @@ bash automation/paper2_batch_v1/run.sh status --run /path/to/run
 bash automation/paper2_batch_v1/run.sh resume --run /path/to/run
 ```
 
+For a frozen older run blocked specifically by an empty full-oracle core:
+
+```bash
+bash automation/paper2_batch_v1/run.sh repair-oracle --run /path/to/run --system 2wpq_C
+```
+
+The repair verifies the recorded failure and all prefix selections for three
+replicas and three quantiles. It freezes a separate patched pipeline, dry-runs
+and reruns only that system under a distinct run ID. Only a package that passes
+the original final-status, checksum and finite-feature checks is adopted into
+the original state. Original failure records and a state backup are preserved.
+The original frozen controller is then resumed automatically; its validated
+other systems are reused. Repair does not alter frozen original code/manifests,
+exclude a system, weaken a prefix-core criterion, clean trajectories or evaluate
+protected predictions. Failed repairs leave the original cohort state unchanged.
+Record missing oracle diagnostics separately in any paper update.
+
 A lock prevents concurrent controllers from advancing incompatible bases.
 Completed stages are hash-checked and reused. Jobs already registered as submitted
 are polled rather than resubmitted. A submission interrupted before a reliable
@@ -97,6 +124,9 @@ Synthetic tests cover damaged archives, traversal/symlinks, free space, duplicat
 uploads, partial transfers, pipeline path pinning, job-state ambiguity, phase order,
 interruption recovery, protected partitions, source-cache use, future windows,
 variable fold sizes, train-only NPZ creation, paired bootstrap, tampering and cleanup.
+The suite also checks optional-oracle handling, prefix rejection, equality with
+reference calculations for nonempty cores using a simulated MD kernel, and
+verified state adoption that preserves successful systems and failure history.
 Slurm, BLAST and MD execution are simulated in orchestration tests. The local
 development runtime lacks PyTorch and PyMBAR, so real GRU fitting is not claimed
 as locally tested; an actual scientific-runtime smoke test runs in SCAYLE before

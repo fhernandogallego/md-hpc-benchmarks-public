@@ -20,7 +20,7 @@ from common import (FAILED, GROUP, SYSTEM, atomic_json, execute, fresh_directory
 
 
 def default_work():
-    return Path(os.environ.get('SCRATCH', '/scratch/uva_dma_2/uva_dma_2_1'))/'md-hpc-benchmarks'
+    return Path(os.environ.get('SCRATCH', str(Path.home()/'scratch')))/'md-hpc-benchmarks'
 
 
 def initial_base(work):
@@ -286,6 +286,9 @@ def controller(root):
         if not (root/'pipeline_manifest.json').is_file():
             require(not (root/'pipeline_code').exists(),'Partial pipeline snapshot; inspect before resuming')
             snapshot_pipeline(config['project'],root/'pipeline_code',work,selection)
+            if config.get('optional_oracle_diagnostics'):
+                from recover_empty_oracle import install_extractor
+                install_extractor(root/'pipeline_code')
             atomic_json(root/'pipeline_manifest.json',{
                 str(p.relative_to(root/'pipeline_code')):sha(p)
                 for p in (root/'pipeline_code').rglob('*') if p.is_file()})
@@ -423,6 +426,8 @@ def launch(args,resume=False):
         config=load_json(root/'config.json')
         require(not (root/'summary.json').is_file(),'Run already complete; use status')
     else:
+        require(args.account,'Set PAPER2_SLURM_ACCOUNT or pass --account')
+        require(args.partition,'Set PAPER2_SLURM_PARTITION or pass --partition')
         work=Path(args.work).expanduser().resolve()
         name=args.run_id or 'auto_'+time.strftime('%Y%m%d_%H%M%S')
         require(GROUP.fullmatch(name),'Unsafe run id')
@@ -435,6 +440,7 @@ def launch(args,resume=False):
             base=args.base,parallel=args.parallel,poll=args.poll,plan_only=args.plan_only,
             cleanup_unpacked=args.cleanup_unpacked,account=args.account,partition=args.partition,
             qos=args.qos,blast_module=args.blast_module)
+        config['optional_oracle_diagnostics']=True
         require(args.parallel>=1 and args.poll>=5,'parallel>=1 and poll>=5 required')
         if args.group:
             require(GROUP.fullmatch(args.group),'Unsafe dataset group')
@@ -472,12 +478,16 @@ def main():
     p.add_argument('--group'); p.add_argument('--manifest'); p.add_argument('--project'); p.add_argument('--base')
     p.add_argument('--run-id'); p.add_argument('--parallel',type=int,default=8)
     p.add_argument('--poll',type=int,default=20)
-    p.add_argument('--account',default='uva_dma_2'); p.add_argument('--partition',default='sapphire')
+    p.add_argument('--account',default=os.environ.get('PAPER2_SLURM_ACCOUNT'))
+    p.add_argument('--partition',default=os.environ.get('PAPER2_SLURM_PARTITION'))
     p.add_argument('--qos',default='normal'); p.add_argument('--blast-module',default='BLAST+/2.14.0-gompi-2022b')
     p.add_argument('--plan-only',action='store_true',help='Verify, unpack, preflight and dry-run only')
     p.add_argument('--cleanup-unpacked',action='store_true',help='Verify archive recovery and remove only new unpacked XTC after successful training')
     for name in ('controller','resume','status'):
         p=sub.add_parser(name); p.add_argument('--run',required=True)
+    for name in ('repair-oracle','repair-oracle-worker'):
+        p=sub.add_parser(name)
+        p.add_argument('--run',required=True); p.add_argument('--system',required=True)
     args=parser.parse_args()
     try:
         if args.command=='launch':
@@ -486,6 +496,9 @@ def main():
             launch(args,True)
         elif args.command=='controller':
             controller(args.run)
+        elif args.command in ('repair-oracle','repair-oracle-worker'):
+            from recover_empty_oracle import launch as repair_launch, perform
+            (repair_launch if args.command=='repair-oracle' else perform)(args.run,args.system)
         else:
             root=Path(args.run).expanduser()
             for name in ('controller_job.json','state.json','summary.json'):
