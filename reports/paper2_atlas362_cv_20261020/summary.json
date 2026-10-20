@@ -1,0 +1,79 @@
+{
+  "experiment": "ATLAS362 grouped future-RMSD development CV",
+  "status": "COMPLETE",
+  "evidence_source": "Reported controller summary and system_metrics.csv; public result record, not the complete evidence bundle",
+  "new_systems": 140,
+  "cohort": {
+    "systems": 362,
+    "samples": 1086,
+    "train_systems": 344,
+    "groups": 318,
+    "labeled_systems": 286,
+    "labeled_groups": 258,
+    "labeled_replicas": 477,
+    "base_future_target_rows_reused": 612
+  },
+  "evaluation": {
+    "scope": "train-only grouped outer CV with grouped inner selection",
+    "outer_folds": 5,
+    "fold_systems": [
+      58,
+      57,
+      57,
+      57,
+      57
+    ],
+    "n_train_prefix_samples": 1032,
+    "validation_test_evaluated": false
+  },
+  "comparisons": [
+    {
+      "contrast": "gru_residual_rmsd_pilot minus ridge_summary",
+      "delta_mae_A": -0.02085714691745515,
+      "bootstrap_95_A": [
+        -0.10287618159727047,
+        0.05652116007123599
+      ]
+    },
+    {
+      "contrast": "gru_residual_rmsd_pilot minus last_value_persistence",
+      "delta_mae_A": -0.0391216138567068,
+      "bootstrap_95_A": [
+        -0.07677812494574565,
+        -0.0039072755569645795
+      ]
+    },
+    {
+      "contrast": "ridge_summary minus last_value_persistence",
+      "delta_mae_A": -0.018264466939251656,
+      "bootstrap_95_A": [
+        -0.10844158166711959,
+        0.07521437763917845
+      ]
+    }
+  ],
+  "uncertainty": {
+    "bootstrap_draws": 10000,
+    "unit": "whole sequence group; equal system weight",
+    "scope": "Exploratory percentile intervals conditional on fixed OOF predictions; no refitting"
+  },
+  "outputs": {
+    "model_predictions_sha256": "52595bb3167745355ea21022e61da83e2254c445d1a905161c10132a5dd0e781",
+    "full_train_GRU_and_Ridge_checkpoints_reported": true,
+    "checkpoints_included_in_public_record": false,
+    "new_dataset_sha256": null,
+    "checkpoint_sha256": null
+  },
+  "recovery": {
+    "system": "2wpq_C",
+    "cause": "empty consensus_full_oracle diagnostic",
+    "resolution": "Missing full-oracle diagnostics recorded as unavailable; all mandatory prefix cores and finite model features validated",
+    "status": "PASS"
+  },
+  "code_provenance": {
+    "initial_automation_commit": "ea709b7a8b9c71cd8c9e83693143ee70cd68a6b5",
+    "recovery_and_runtime_fix_commit": "3c25dc5860e509f0c38c46f819395ad5c9569b20",
+    "executed_scientific_reference_commit": "260b8e030461676c14b7e2f5029f4ccbc5ca1552"
+  },
+  "HITO0_passed": false
+}
