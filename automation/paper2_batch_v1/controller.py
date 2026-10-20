@@ -422,9 +422,8 @@ def controller(root):
 
 def launch(args,resume=False):
     if resume:
-        root=Path(args.run).expanduser().resolve()
-        config=load_json(root/'config.json')
-        require(not (root/'summary.json').is_file(),'Run already complete; use status')
+        from resume_frozen import launch as resume_with_queue_fix
+        return resume_with_queue_fix(args.run)
     else:
         require(args.account,'Set PAPER2_SLURM_ACCOUNT or pass --account')
         require(args.partition,'Set PAPER2_SLURM_PARTITION or pass --partition')

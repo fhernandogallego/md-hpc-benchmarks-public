@@ -105,6 +105,18 @@ Failed scientific system pipelines are reported and block training; they are not
 silently discarded or automatically reinterpreted as valid/missing features.
 The controller does not automatically retry those failed pipelines.
 
+Active jobs are queried for the current user and filtered locally before checking
+the requested IDs in `sacct`. This avoids `squeue -j` rejecting an expired active
+job ID. A job missing from both views stays unknown; scheduler errors propagate
+with their stderr rather than being interpreted as completion.
+
+When resuming an older frozen controller, a separate runtime snapshot preserves
+its scientific source files and replaces only the dependency-free `common.py`
+I/O helper. Both old and new hashes are recorded in
+`controller_runtimes/slurm_queue_*/manifest.json`; source inputs, original frozen
+files/manifests and passed systems are unchanged. The runtime is verified again
+on the compute node before the resumed controller executes.
+
 `--plan-only` verifies, unpacks, preflights and dry-runs without submitting real
 system pipelines or training. Use a new launch to execute after a plan-only run.
 

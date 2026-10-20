@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import contextlib
 import csv
+import getpass
 import hashlib
 import json
 import os
@@ -12,6 +13,7 @@ import shlex
 import shutil
 import stat
 import subprocess
+import sys
 import time
 import uuid
 import zipfile
@@ -81,8 +83,14 @@ def execute(command, log=None, cwd=None, env=None):
             subprocess.run(list(map(str, command)), cwd=cwd, env=env,
                            stdout=f, stderr=subprocess.STDOUT, check=True)
         return ""
-    return subprocess.run(list(map(str, command)), cwd=cwd, env=env,
-                          capture_output=True, text=True, check=True).stdout
+    try:
+        return subprocess.run(list(map(str, command)), cwd=cwd, env=env,
+                              capture_output=True, text=True, check=True).stdout
+    except subprocess.CalledProcessError as error:
+        # Preserve the actual scheduler error in the private controller log.
+        if error.stderr:
+            print(error.stderr.rstrip(), file=sys.stderr, flush=True)
+        raise
 
 
 def checked_members(z):
@@ -164,8 +172,13 @@ def slurm_states(ids):
     ids = list(map(str, ids))
     if not ids:
         return {}, set()
-    queued = execute(["squeue", "-h", "-j", ",".join(ids), "-o", "%i|%T"])
-    active = {line.split("|", 1)[0].split("_", 1)[0] for line in queued.splitlines() if line.strip()}
+    # A finished ID may make `squeue -j ID` fail before sacct is queried.
+    # Query our active jobs and filter locally. Scheduler/connectivity errors
+    # still propagate; an absent active ID is never evidence of completion.
+    requested = {identifier.split("_", 1)[0] for identifier in ids}
+    queued = execute(["squeue", "-h", "-u", os.environ.get("USER") or getpass.getuser(), "-o", "%i|%T"])
+    active = {line.split("|", 1)[0].split("_", 1)[0] for line in queued.splitlines()
+              if line.strip() and line.split("|", 1)[0].split("_", 1)[0] in requested}
     text = execute(["sacct", "-X", "-n", "-P", "-j", ",".join(ids),
                     "--format=JobID%64,State%40,ExitCode"])
     result = {}

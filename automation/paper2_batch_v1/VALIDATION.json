@@ -1,6 +1,6 @@
 {
   "date": "2026-10-20",
-  "unit_and_synthetic_integration_tests": 35,
+  "unit_and_synthetic_integration_tests": 45,
   "result": "PASS",
   "command": "python3 -m unittest discover -s automation/paper2_batch_v1/tests -v",
   "python_311_syntax": "PASS",
@@ -9,5 +9,6 @@
   "real_pytorch_fit": "NOT_RUN_LOCALLY; scientific runtime smoke check executes in SCAYLE before processing",
   "reference_commit": "260b8e030461676c14b7e2f5029f4ccbc5ca1552",
   "oracle_recovery": "Optional full-oracle diagnostics only; prefix cores remain mandatory; MD kernel and Slurm simulated locally",
-  "reported_failure": "Empty consensus_full_oracle diagnostic; new recovery not yet run on site"
+  "reported_failure": "Empty consensus_full_oracle diagnostic; new recovery not yet run on site",
+  "slurm_resume": "Expired active IDs use accounting; missing accounting stays unknown; errors propagate; separate runtime preserves frozen science"
 }

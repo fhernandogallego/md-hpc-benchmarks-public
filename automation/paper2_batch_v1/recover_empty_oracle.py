@@ -106,7 +106,8 @@ def resume_original(root):
             print('ORIGINAL_CONTROLLER_ALREADY_ACTIVE='+prior['id'],flush=True)
             return
         require(outcome!='UNKNOWN','Controller accounting unknown; no duplicate submitted')
-    print(execute(['bash',root/'tool/run.sh','resume','--run',root]),flush=True)
+    from resume_frozen import launch as resume_with_queue_fix
+    resume_with_queue_fix(root)
 
 
 def perform(root,system):
