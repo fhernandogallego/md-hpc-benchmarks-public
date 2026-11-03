@@ -1,0 +1,63 @@
+{
+  "status": "COMPLETE",
+  "new_systems": 200,
+  "cohort": {
+    "systems": 942,
+    "samples": 2826,
+    "train_systems": 924,
+    "groups": 835,
+    "labeled_systems": 757,
+    "labeled_groups": 689,
+    "labeled_replicas": 1243,
+    "validation_test_evaluated": false,
+    "base_future_targets_reused": 2172
+  },
+  "paired_audit": {
+    "counts": {
+      "n_systems": 757,
+      "n_groups": 689,
+      "n_replicas": 1243,
+      "n_samples": 2772,
+      "fold_systems": {
+        "0": 152,
+        "1": 152,
+        "2": 151,
+        "3": 151,
+        "4": 151
+      }
+    },
+    "comparisons": [
+      {
+        "contrast": "gru_residual_rmsd_pilot minus ridge_summary",
+        "delta_mae": 0.02563889925928139,
+        "bootstrap_95": [
+          -0.009767248259635741,
+          0.06184667370926636
+        ]
+      },
+      {
+        "contrast": "gru_residual_rmsd_pilot minus last_value_persistence",
+        "delta_mae": -0.03730243666468276,
+        "bootstrap_95": [
+          -0.05243278479620328,
+          -0.022013730750208526
+        ]
+      },
+      {
+        "contrast": "ridge_summary minus last_value_persistence",
+        "delta_mae": -0.06294133592396414,
+        "bootstrap_95": [
+          -0.10389087640571998,
+          -0.023939760753180536
+        ]
+      }
+    ],
+    "bootstrap_draws": 10000,
+    "scope": "Exploratory whole-group bootstrap conditional on fixed OOF predictions; no retraining",
+    "validation_test_evaluated": false,
+    "model_predictions_sha256": "a765eb940c6d61d01774a911b5cdaa630b3a7376693af114594a2b168e12fe7f"
+  },
+  "full_train_model": "/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_automation/auto_20261030_091302/training/full_train/gru_model.pt",
+  "validation_test_evaluated": false,
+  "HITO0_passed": false
+}
