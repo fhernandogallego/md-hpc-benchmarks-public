@@ -1,47 +1,93 @@
 Respuesta_Diego_Miti_cierre — 12/11/2026
-ESTADO: CIERRE PARCIAL. No afirmar verificación completa.
+ESTADO: AUDITORIA DOCUMENTAL COMPLETADA CON SALVEDADES EXPLICITAS.
+No se realizaron simulaciones ni entrenamientos; no se abrieron resultados de test.
 
-1) ATLAS942 757: en el código publicado src/pipeline/extract_atlas_basic.py,
-   RMSD: protein and backbone; primer frame; superposición; weights=None.
-   Rg: todos los átomos protein; ponderación por masas.
-   El código ejecutado en Slurm 3262490 aún debe cotejarse con su copia
-   congelada. Piloto 500: la documentación histórica registra C-alpha para
-   RMSD y Rg, sin ponderación; código real todavía sin contrastar.
-   RUTA ATLAS942: /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_automation/auto_20261030_091302
-   RUTA PILOTO: /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/pid_atlas_poc/full_v2_3262025
+1. DEFINICIONES CONFIRMADAS EN CODIGO CONGELADO
+ATLAS942, controlador Slurm 3262490 (COMPLETED 0:0):
+  RMSD = protein and backbone; referencia primer frame por replica;
+  superposicion de minimos cuadrados; weights=None.
+  Rg = todos los atomos protein; masas atomicas.
+  Codigo: pipeline_code/src/pipeline/extract_atlas_basic.py
+  SHA256=f739b02858a6517820f0747fd39706296d75dc39706fb7bad82af7d4b0bd2620
+  pipeline_manifest.json: SHA256_OK.
+Piloto 500:
+  RMSD = CA, Kabsch al primer frame, sin ponderacion por masa.
+  Rg = CA, no ponderado. Target = media segunda mitad (50-100 ns).
+  Codigo: results/pid_atlas_poc/full_v2_3262025/prueba_atlas_v2.py
+  SHA256=0b3304050c7e7243f96cc8cae2f84f2f88b5e2905d21d753e0f1417fff909343
+  Auditoria posterior: 1500 replicas para 500 sistemas por descriptor.
+  Otra tabla de auditoria abarca 524 train; no mezclar cohortes.
+CONCLUSION: definiciones de observables y objetivos NO equivalentes.
 
-2) Resumen ATLAS942 publicado: 942 sistemas; 924 en entrenamiento;
-   757 etiquetados RMSD; 689 grupos etiquetados; 1243 réplicas
-   etiquetadas. Fuente: reports/paper2_atlas942_cv_20261103/summary.json.
-   Exclusiones por motivo/observable: PENDIENTES de auditoría en SCAYLE.
-   Valores históricos MITI (sin cotejar fuente original):
-   RMSD 757/1243; core 712/1136; Rg 610/992; SASA 701/1384;
-   hélice 728/1549; lámina 728/1547 (sistemas/réplicas).
+2. RECUENTOS Y EXCLUSIONES
+ATLAS942: 942 sistemas, 835 grupos; train 924 sistemas, 817 grupos,
+2772 posiciones de replica. RMSD futuro: 757 sistemas, 689 grupos,
+1243 replicas validas.
+Master target, universo train 924 (sistemas/repl. retenidas):
+  RMSD 760/1253; Rg 725/1154; SASA 860/1675;
+  helix 878/1864; strand 878/1864.
+Master target, subconjunto futuro RMSD 757 (sistemas/repl. retenidas):
+  RMSD 757/1250; Rg 610/995; SASA 701/1386;
+  helix 728/1547; strand 728/1547.
+Las exclusiones por replica estan desglosadas en documentos y CSV del
+repositorio, segun INVALID_SHORT_WINDOW, INVALID_LOW_NEFF y ambas.
+RMSD train: 1519 invalidas original y futuro, 10 validas original pero
+invalidas futuro, 1243 validas original y futuro: 2772 total.
+CORE q30: series disponibles train 923 sistemas/2769 replicas;
+subconjunto 757: 756 sistemas/2268 replicas; falta 1 sistema.
+La disponibilidad no demuestra validez estadistica; desglose de core
+por motivo y etiqueta validada: NO ACREDITADOS.
 
-3) Desarrollo/calibración/test: MANIFIESTO ESPECÍFICO, RECUENTOS DE
-   GRUPOS Y SHA PENDIENTES. No confundir train/validation/test con
-   development/calibration/test. NO se consultaron resultados test.
-   Commit ATLAS942 de referencia:
-   aeac56891e06bb002d50ebdd3a1068c84fd2c600.
+3. PARTICIONES / PROCEDENCIA
+Manifiesto: results/paper2_automation/auto_20261030_091302/cohort/system_assignment.csv
+SHA256=bb12305d7ed029ec7c072e1789b357c77420ef35aeca39ed69469217a7109d37
+Train 924 sistemas/817 grupos; validation 9/9; test 9/9.
+Grupos cruzados: 0.
+Particion independiente development/calibration/test: NO ACREDITADA.
+NO equiparar validation y calibration sin protocolo.
+Commit PUBLICACION ATLAS942:
+aeac56891e06bb002d50ebdd3a1068c84fd2c600
+Commit GENERADOR original del manifiesto: NO ACREDITADO.
+En SCAYLE git no esta en PATH; hay .git en ambos checkouts.
 
-4) SAXS: primer candidato con datos e incertidumbres positivas:
-   Ahmed et al. (2021) DOI 10.3389/fmolb.2021.654333.
-   Perfil (1805 puntos, 3 columnas; sigma>0):
-   https://raw.githubusercontent.com/KULL-Centre/papers/main/2021/aSYN-ahmed-et-al/SAXS/SECSAXS8-chromixs_RAW.dat
-   Secuencia de REFERENCIA: UniProt P37840, 140 aa; constructo
-   experimental exacto pendiente de verificar.
-   Condiciones: monómero alfa-sinucleína humana; PBS, 20 mM fosfato,
-   150 mM NaCl, pH 7.4; glicerol 2 % en tampón SEC; 4.5 mg/ml antes
-   de SEC; T=20 C. Compatibilidad con simulaciones propias: NO CONFIRMADA.
+4. CANDIDATO SAXS
+Ahmed et al. (2021), DOI https://doi.org/10.3389/fmolb.2021.654333
+Archivo experimental 1805 filas q/I/sigma, sigma > 0:
+https://raw.githubusercontent.com/KULL-Centre/papers/main/2021/aSYN-ahmed-et-al/SAXS/SECSAXS8-chromixs_RAW.dat
+Alfa-sinucleina humana monomerica; secuencia de referencia UniProt
+P37840 (140 aa); constructo exacto NO VERIFICADO.
+PBS 20 mM fosfato, 150 mM NaCl, pH 7.4; 2% glicerol en SEC;
+4.5 mg/ml antes de SEC, 20 C.
+Compatibilidad con simulacion concreta: NO CONFIRMADA.
 
-DOCUMENTACION EN REPO:
+ENTREGABLES (WORK=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks):
+A) SCAYLE:
+  WORK/maintenance/earlystop/auditoria_20261112_113942/INFORME.txt
+  WORK/maintenance/earlystop/auditoria_20261112_113942/recuentos_por_observable.csv
+  WORK/maintenance/earlystop/auditoria_20261112_113942/motivos_por_observable.csv
+  WORK/maintenance/earlystop/auditoria_20261112_113942/detalle_no_retenidos.csv
+  WORK/maintenance/earlystop/auditoria_20261112_113942/manifiestos_particiones.csv
+  WORK/maintenance/earlystop/diagnostico_pendientes.txt
+  WORK/maintenance/earlystop/pendientes_20261112_120511/INFORME_v2.txt
+  WORK/maintenance/earlystop/pendientes_20261112_120511/core_q30_disponibilidad.csv
+B) GITHUB:
+  Repositorio: fhernandogallego/md-hpc-benchmarks-public
+  Rama: earlystop-cierre-diego-miti-20261112
   docs/earlystop/cierre_diego_miti_20261112.md
+  docs/earlystop/auditoria_scayle_20261112.md
   docs/earlystop/ficha_saxs_alfa_sinucleina_20261112.md
+  docs/earlystop/INDICE_ENTREGABLES.md
+  docs/earlystop/recuentos_observables_verificados_20261112.csv
+  docs/earlystop/motivos_exclusion_verificados_20261112.csv
+  docs/earlystop/core_q30_resumen_20261112.csv
+  docs/earlystop/manifiesto_particiones_resumen_20261112.csv
   docs/earlystop/Respuesta_Diego_Miti_cierre.txt
-REPO: fhernandogallego/md-hpc-benchmarks-public
-RAMA DOCUMENTAL: earlystop-cierre-diego-miti-20261112
-COMMIT ORIGEN ATLAS942: aeac56891e06bb002d50ebdd3a1068c84fd2c600
-COMMIT DOCUMENTAL FINAL: consultar HEAD de rama documental en GitHub.
+  Commit documental: consultar HEAD rama indicada.
+C) ONEDRIVE:
+  NO SUBIDO. Esta ficha esta preparada en GitHub, no en OneDrive.
+  La carpeta de destino y su confirmacion de carga siguen pendientes.
 
-ONEDRIVE: PENDIENTE DE SUBIDA; no se dispone de conexión autenticada
-a ese destino en esta ejecución. No se ha afirmado subida completada.
+SALVEDADES PARA CIERRE CIENTIFICO:
+  core q30 sin validez/motivos, sistema faltante sin identificar en
+  este resumen, calibracion independiente no acreditada, commit generador
+  no acreditado, compatibilidad SAXS no confirmada.
