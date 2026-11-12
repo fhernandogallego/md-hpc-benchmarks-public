@@ -99,7 +99,7 @@ Ahmed et al. (2021), DOI https://doi.org/10.3389/fmolb.2021.654333, perfil exper
 
 ## 5. Entregables y procedencia
 
-Ver [INDICE_ENTREGABLES.md](INDICE_ENTREGABLES.md) para **todas** las rutas y distinción entre documentos publicados y CSV íntegros solo en SCAYLE. Ficha condensada para OneDrive: [Respuesta_Diego_Miti_cierre.txt](Respuesta_Diego_Miti_cierre.txt). **OneDrive: NO SUBIDO**, pendiente de conexión autorizada o traslado manual.
+Ver [INDICE_ENTREGABLES.md](INDICE_ENTREGABLES.md) para **todas** las rutas y distinción entre documentos publicados y CSV íntegros solo en SCAYLE. Ficha condensada para OneDrive: [Respuesta_Diego_Miti_cierre.txt](Respuesta_Diego_Miti_cierre.txt). **OneDrive: subida de la ficha comunicada por el usuario el 12-11-2026**, sin comprobación independiente de la ubicación o los permisos de acceso.
 
 ### Alcance de la conclusión
 
