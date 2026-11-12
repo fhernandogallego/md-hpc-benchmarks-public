@@ -84,7 +84,9 @@ B) GITHUB:
   docs/earlystop/Respuesta_Diego_Miti_cierre.txt
   Commit documental: consultar HEAD rama indicada.
 C) ONEDRIVE:
-  NO SUBIDO. Esta ficha esta preparada en GitHub, no en OneDrive.
+  SUBIDA CONFIRMADA POR EL USUARIO el 12/11/2026.
+  Ubicacion y existencia en OneDrive no comprobadas independientemente
+  por este asistente. La copia de referencia permanece en GitHub.
   La carpeta de destino y su confirmacion de carga siguen pendientes.
 
 SALVEDADES PARA CIERRE CIENTIFICO:
