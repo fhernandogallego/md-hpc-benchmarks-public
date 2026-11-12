@@ -1,0 +1,47 @@
+Respuesta_Diego_Miti_cierre — 12/11/2026
+ESTADO: CIERRE PARCIAL. No afirmar verificación completa.
+
+1) ATLAS942 757: en el código publicado src/pipeline/extract_atlas_basic.py,
+   RMSD: protein and backbone; primer frame; superposición; weights=None.
+   Rg: todos los átomos protein; ponderación por masas.
+   El código ejecutado en Slurm 3262490 aún debe cotejarse con su copia
+   congelada. Piloto 500: la documentación histórica registra C-alpha para
+   RMSD y Rg, sin ponderación; código real todavía sin contrastar.
+   RUTA ATLAS942: /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_automation/auto_20261030_091302
+   RUTA PILOTO: /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/pid_atlas_poc/full_v2_3262025
+
+2) Resumen ATLAS942 publicado: 942 sistemas; 924 en entrenamiento;
+   757 etiquetados RMSD; 689 grupos etiquetados; 1243 réplicas
+   etiquetadas. Fuente: reports/paper2_atlas942_cv_20261103/summary.json.
+   Exclusiones por motivo/observable: PENDIENTES de auditoría en SCAYLE.
+   Valores históricos MITI (sin cotejar fuente original):
+   RMSD 757/1243; core 712/1136; Rg 610/992; SASA 701/1384;
+   hélice 728/1549; lámina 728/1547 (sistemas/réplicas).
+
+3) Desarrollo/calibración/test: MANIFIESTO ESPECÍFICO, RECUENTOS DE
+   GRUPOS Y SHA PENDIENTES. No confundir train/validation/test con
+   development/calibration/test. NO se consultaron resultados test.
+   Commit ATLAS942 de referencia:
+   aeac56891e06bb002d50ebdd3a1068c84fd2c600.
+
+4) SAXS: primer candidato con datos e incertidumbres positivas:
+   Ahmed et al. (2021) DOI 10.3389/fmolb.2021.654333.
+   Perfil (1805 puntos, 3 columnas; sigma>0):
+   https://raw.githubusercontent.com/KULL-Centre/papers/main/2021/aSYN-ahmed-et-al/SAXS/SECSAXS8-chromixs_RAW.dat
+   Secuencia de REFERENCIA: UniProt P37840, 140 aa; constructo
+   experimental exacto pendiente de verificar.
+   Condiciones: monómero alfa-sinucleína humana; PBS, 20 mM fosfato,
+   150 mM NaCl, pH 7.4; glicerol 2 % en tampón SEC; 4.5 mg/ml antes
+   de SEC; T=20 C. Compatibilidad con simulaciones propias: NO CONFIRMADA.
+
+DOCUMENTACION EN REPO:
+  docs/earlystop/cierre_diego_miti_20261112.md
+  docs/earlystop/ficha_saxs_alfa_sinucleina_20261112.md
+  docs/earlystop/Respuesta_Diego_Miti_cierre.txt
+REPO: fhernandogallego/md-hpc-benchmarks-public
+RAMA DOCUMENTAL: earlystop-cierre-diego-miti-20261112
+COMMIT ORIGEN ATLAS942: aeac56891e06bb002d50ebdd3a1068c84fd2c600
+COMMIT DOCUMENTAL FINAL: consultar HEAD de rama documental en GitHub.
+
+ONEDRIVE: PENDIENTE DE SUBIDA; no se dispone de conexión autenticada
+a ese destino en esta ejecución. No se ha afirmado subida completada.
