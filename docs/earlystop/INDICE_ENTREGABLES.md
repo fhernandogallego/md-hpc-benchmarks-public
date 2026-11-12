@@ -53,7 +53,7 @@ Definir `WORK=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks`.
 
 ## C. OneDrive
 
-Archivo previsto: `Respuesta_Diego_Miti_cierre.txt` (en GitHub arriba). **No se ha subido a OneDrive** por falta de conexión autenticada; no confundir «preparado» con «subido».
+Archivo `Respuesta_Diego_Miti_cierre.txt` (copia de referencia en GitHub arriba): **subida a OneDrive confirmada por el usuario el 12-11-2026**. La ubicación exacta en OneDrive y la presencia del archivo no se han verificado de forma independiente desde esta conversación.
 
 ## D. No acreditado
 
