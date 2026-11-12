@@ -1,0 +1,11 @@
+universo,observable,INVALID_SHORT_WINDOW,INVALID_LOW_NEFF,INVALID_SHORT_WINDOW_AND_LOW_NEFF,total_invalidas
+train_924,rmsd_master,1516,1,2,1519
+train_924,rg,1616,0,2,1618
+train_924,sasa,1096,0,1,1097
+train_924,helix,873,4,31,908
+train_924,strand,873,4,31,908
+rmsd_futuro_757,rmsd_master,1019,1,1,1021
+rmsd_futuro_757,rg,1274,0,2,1276
+rmsd_futuro_757,sasa,884,0,1,885
+rmsd_futuro_757,helix,699,2,23,724
+rmsd_futuro_757,strand,699,2,23,724
