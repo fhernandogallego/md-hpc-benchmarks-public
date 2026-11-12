@@ -1,0 +1,7 @@
+target,filas,c3_validas,c3_invalidas,constant_window,emparejadas_master,master_validas,ambas_validas,validez_distinta,sin_equivalencia_master
+core_rmsd_q30,2271,1136,1135,0,0,0,0,0,2271
+helix,2271,1549,722,11,2271,1547,1547,2,0
+rg,2271,992,1279,0,2271,995,992,3,0
+rmsd,2271,1243,1028,0,2271,1250,1243,7,0
+sasa,2271,1384,887,0,2271,1386,1384,2,0
+strand,2271,1547,724,350,2271,1547,1547,0,0

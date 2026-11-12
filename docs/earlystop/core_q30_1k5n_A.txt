@@ -1,0 +1,6 @@
+Sistema sin serie q30: 1k5n_A
+Causa: NO ACREDITADA en los metadatos inspeccionados.
+/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/poc_releases/1k5n_A/poc_param_v1_2026-08-05/final_dataset/core_rmsd/core_rmsd_summary.csv: AUSENTE
+/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/poc_releases/1k5n_A/poc_param_v1_2026-08-05/final_dataset/core_rmsd/core_rmsd.json: AUSENTE
+/mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/poc_releases/1k5n_A/poc_param_v1_2026-08-05/final_dataset/PIPELINE_STATUS.txt: AUSENTE
+Disponibilidad de trayectoria/serie NO implica validez del target.
