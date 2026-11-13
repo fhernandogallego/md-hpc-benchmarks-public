@@ -98,3 +98,12 @@ done
 4. **PENDIENTE PREVIO AL ENVÍO:** comprobar duración de un primer fragmento, ocupación RAM y presión de E/S, y ajustar concurrencia y tamaño solamente por criterios de capacidad; no por resultados predictivos ni descarte de sistemas.
 
 **Entrega de esta etapa:** propuesta técnica de ejecución recuperable. Estado experimental de las tres correcciones: **PENDIENTE**.
+
+## 8. Implementación entregada y primer piloto (13/11/2026)
+
+- Ejecutable: [`cils_v3_shards.py`](cils_v3_shards.py), con `init` (freeze de inventario y 76 fragmentos de 10/último 7), `run --shard N --policy include|exclude` (checkpoint **por fragmento y política**, SHA, validación 18 filas/sistema y promociones atómicas), `verify`, `consolidate` (rechaza faltantes, duplicados y discrepancias entre políticas) y `selftest`. Solo el subcomando `run` llama al científico v3 original, sin modificar algoritmo ni criterios.
+- Pruebas sintéticas ejecutadas en un contenedor local: [`PRUEBAS_SINTETICAS.md`](PRUEBAS_SINTETICAS.md), [JSON](PRUEBAS_SINTETICAS.json): **11/11 PASS** con interrupción simulada y corrupción de filas/hash. **SCAYLE debe volver a ejecutar estas pruebas sobre el archivo publicado antes del piloto**, para garantizar que la instalación real pasa los mismos controles.
+- Piloto de **un único fragmento (shard 000)**: [`cils_v3_pilot.sbatch`](cils_v3_pilot.sbatch), `--account=uva_dma_2 --partition=sapphire --qos=normal --cpus-per-task=1 --mem=8G --time=06:00:00`. Ejecuta primero `include`, después `exclude` con marcadores independientes. El resto de **75 fragmentos NO se envía**.
+- Ruta nueva sin sobrescritura de evidencias: `WORK/maintenance/paper2_cils_v3_relaunch_v1/`. Checkpoints verificables: `parts/include_000/complete.json`, `parts/exclude_000/complete.json`, cada uno con CSV, summary, log, SHA-256, walltime y RSS máximo del proceso hijo. Logs Slurm: `logs/pilot_JOBID.{out,err}`.
+- **Piloto ATLAS942**: aún NO ejecutado ni acreditado en esta revisión documental. Una vez que SCAYLE informe `COMPLETED 0:0`, ambos `SHARD_PASS` y verificaciones de hashes/filas, se publicarán el registro de Slurm, logs, checkpoints y medidas reales en esta carpeta con el commit resultante.
+- La consolidación de los **757 sistemas** solo está autorizada tras los **152 checkpoints** (76 fragmentos × 2 políticas), no tras el piloto.
