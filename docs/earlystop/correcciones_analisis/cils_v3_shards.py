@@ -440,8 +440,9 @@ def selftest(report_path):
         else: tests['missing_shards_detected']=False
         for i in range(3):run_one(state,i,'exclude')
         bad=rows(state/'parts/include_000/targets.csv')[1]
-        try:validate_fake_rows(bad+[bad[0]],['s01','s02'],'include')
-        except ValueError:tests['duplicate_row_detected']=True
+        duplicated=bad.copy();duplicated[1]=duplicated[0]
+        try:validate_fake_rows(duplicated,['s01','s02'],'include')
+        except ValueError as e:tests['duplicate_row_detected']='Filas duplicadas' in str(e)
         else:tests['duplicate_row_detected']=False
         try:validate_fake_rows(bad[:-1],['s01','s02'],'include')
         except ValueError:tests['missing_row_detected']=True
