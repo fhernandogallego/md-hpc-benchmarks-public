@@ -11,19 +11,19 @@
 
 ## 1. Prefijos 5/10 ns, sin fuga de core de 20 ns
 
-- [`reanalyse.py`](https://github.com/fhernandogallego/md-hpc-benchmarks/blob/2cc3d2b4701e62881b8ece6f9fc53ae1725a34dd/paper/paper%202/cils/revision/calculos/reanalyse.py) `--mode prefix`: `SAFE_CHANNELS=(0,1,5,6,7)` en **5, 10 y 20 ns**; excluye los tres canales derivados del core definido con 20 ns. El mismo código recorta la serie hasta el horizonte evaluado. Esta sensibilidad tiene 30 resúmenes, **no** los 48 originales.
-- [`temporal_controls.py`](https://github.com/fhernandogallego/md-hpc-benchmarks/blob/2cc3d2b4701e62881b8ece6f9fc53ae1725a34dd/paper/paper%202/cils/revision/calculos/temporal_controls.py) restringe los canales para 5/10 ns; **el `ridge_all_full` de 20 ns sí conserva core**, mientras que `ridge_without_core_full` lo excluye. No confundir la comparación de ablaciones con la sensibilidad homogénea sin core de `reanalyse.py`.
+- [`reanalyse.py`](fuente_v3/calculos/reanalyse.py) `--mode prefix`: `SAFE_CHANNELS=(0,1,5,6,7)` en **5, 10 y 20 ns**; excluye los tres canales derivados del core definido con 20 ns. El mismo código recorta la serie hasta el horizonte evaluado. Esta sensibilidad tiene 30 resúmenes, **no** los 48 originales.
+- [`temporal_controls.py`](fuente_v3/calculos/temporal_controls.py) restringe los canales para 5/10 ns; **el `ridge_all_full` de 20 ns sí conserva core**, mientras que `ridge_without_core_full` lo excluye. No confundir la comparación de ablaciones con la sensibilidad homogénea sin core de `reanalyse.py`.
 - Estado: **código corregido, sin ejecución real auditada**. Los resultados originales de 5/10 ns no se pueden reincorporar.
 
 ## 2. Objetivos core RMSD con equilibrado propio
 
-- [`targets_config.json`](https://github.com/fhernandogallego/md-hpc-benchmarks/blob/2cc3d2b4701e62881b8ece6f9fc53ae1725a34dd/paper/paper%202/cils/revision/calculos/targets_config.json) especifica `core_rmsd_q30`, `core_R{r}_csv`, columna `replica_prefix_rmsd_A` y `equilibration="detect"`.
-- [`build_targets.py`](https://github.com/fhernandogallego/md-hpc-benchmarks/blob/2cc3d2b4701e62881b8ece6f9fc53ae1725a34dd/paper/paper%202/cils/revision/calculos/build_targets.py) usa `pymbar.timeseries.detect_equilibration` sobre la serie core y calcula objetivo futuro en `t>20 ns`, `t>=t0_core`, mínimo 20 ns y `Neff>=10`. Para serie constante, usa convención `g=1`, incluye/excluye en dos sensibilidades; no implica independencia estadística.
+- [`targets_config.json`](fuente_v3/calculos/targets_config.json) especifica `core_rmsd_q30`, `core_R{r}_csv`, columna `replica_prefix_rmsd_A` y `equilibration="detect"`.
+- [`build_targets.py`](fuente_v3/calculos/build_targets.py) usa `pymbar.timeseries.detect_equilibration` sobre la serie core y calcula objetivo futuro en `t>20 ns`, `t>=t0_core`, mínimo 20 ns y `Neff>=10`. Para serie constante, usa convención `g=1`, incluye/excluye en dos sensibilidades; no implica independencia estadística.
 - Estado: **reconstrucción definida en código, nuevos targets ATLAS no verificados**. No sustituir resultados anteriores de core hasta verificar archivos de targets y metadatos.
 
 ## 3. Calibración externa por grupos
 
-- [`reanalyse.py`](https://github.com/fhernandogallego/md-hpc-benchmarks/blob/2cc3d2b4701e62881b8ece6f9fc53ae1725a34dd/paper/paper%202/cils/revision/calculos/reanalyse.py) `--mode intervals`: `partition()` divide grupos `training/calibration/evaluation` sin solapamiento; ~20% de grupos no evaluados se destinan a calibración, el resto a entrenamiento. La selección de alpha, fit, normalización, suelo de escala y umbrales de estratos usan solamente training propio; los residuos de calibración usan un modelo ajustado fuera de los grupos calibrados/evaluados.
+- [`reanalyse.py`](fuente_v3/calculos/reanalyse.py) `--mode intervals`: `partition()` divide grupos `training/calibration/evaluation` sin solapamiento; ~20% de grupos no evaluados se destinan a calibración, el resto a entrenamiento. La selección de alpha, fit, normalización, suelo de escala y umbrales de estratos usan solamente training propio; los residuos de calibración usan un modelo ajustado fuera de los grupos calibrados/evaluados.
 - La cobertura por sistema con residuos absolutos es diagnóstico bajo dependencia; variantes por máximo de grupo requieren intercambiabilidad. No hay cobertura ni anchura corregida **confirmada en ATLAS**.
 - Estado: **protocolo implementado, resultados y manifiestos de una ejecución real no verificados**.
 
