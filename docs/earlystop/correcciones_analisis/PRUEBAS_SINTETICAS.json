@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "completed_shard_preserved": true,
+    "duplicate_row_detected": true,
+    "hash_tampering_detected": true,
+    "interruption_detected": true,
+    "merge_complete": true,
+    "merge_resume_verifies": true,
+    "missing_row_detected": true,
+    "missing_shards_detected": true,
+    "partial_shard_has_no_checkpoint": true,
+    "plan_5_systems_3_shards": true,
+    "resume_skips_verified_result": true
+  },
+  "date": "2026-11-13T11:24:36.497488+00:00",
+  "success": true,
+  "synthetic_only": true
+}
