@@ -12,7 +12,8 @@
     "plan_5_systems_3_shards": true,
     "resume_skips_verified_result": true
   },
-  "date": "2026-11-13T11:24:36.497488+00:00",
+  "date": "2026-11-13T11:33:01.843993+00:00",
   "success": true,
-  "synthetic_only": true
+  "synthetic_only": true,
+  "duplicate_detection_policy": "duplicate replaces another row so row count is unchanged; validator must report Filas duplicadas"
 }
