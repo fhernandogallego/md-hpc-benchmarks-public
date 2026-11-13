@@ -27,12 +27,18 @@
 - La cobertura por sistema con residuos absolutos es diagnóstico bajo dependencia; variantes por máximo de grupo requieren intercambiabilidad. No hay cobertura ni anchura corregida **confirmada en ATLAS**.
 - Estado: **protocolo implementado, resultados y manifiestos de una ejecución real no verificados**.
 
-## Trabajo posterior (NO verificado)
+## Trabajo posterior: `3344624` — TIMEOUT confirmado
 
-- Referencia histórica de envío: Slurm **3344624**, modo `full`, enviado el 12/11/2026. Último estado conocido anteriormente: `PD`; **no se ha comprobado su estado actual ni su salida**.
-- Posibles rutas del trabajo: `WORK/results/paper2_cils_v3_20261112_101652` y `WORK/results/paper2_cils_v3_20261112_101652_logs`, con `WORK=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks`. Rutas indicativas, **sin confirmación de existencia de resultados finales**.
-- Entrada de referencia: `WORK/results/paper2_automation/auto_20261030_091302/training`.
-- Entry point **documentado**, no comando Slurm realmente recuperado: `bash calculos/run_revision.sh RUN_ATLAS942 INVENTARIO.csv OUTPUT_NUEVO`. Comando `sbatch` real, recursos, log y hash del snapshot ejecutado: **NO ACREDITADOS**.
+La **auditoría de SCAYLE del 13/11/2026** ha comprobado el estado del trabajo `paper2_cils_v3` lanzado el 12/11/2026. **NO TERMINÓ**: `sacct` devuelve `State=TIMEOUT`, `Elapsed=12:00:28`; el paso `3344624.batch` aparece como `CANCELLED (0:15)`. El log de error indica explícitamente `DUE TO TIME LIMIT`. El `ExitCode=0:0` del registro principal no demuestra éxito.
+
+- Preflight **PASS**: paquete v3 (22 ficheros verificados), Python 3.11.5, NumPy 1.26.4, Pandas 2.2.3, PyMBAR 4.0.3; inventario de 757 sistemas con 2271 CSV de core revisados sin error.
+- Log de procesamiento: últimos mensajes `[1/757]`, `[2/757]`, `[3/757]`, `[100/757]`. No consta progreso final ni `PASS` del flujo.
+- Directorio de resultados `WORK/results/paper2_cils_v3_20261112_101652/` **existe**, pero la auditoría encontró **0 productos corregidos relevantes**. No existen en la salida verificada `targets_include_constants.csv`, `prefix_without_core/`, `intervals_rmsd/`, `intervals_core_rmsd_q30/` ni `coverage.csv`.
+- Logs: `WORK/results/paper2_cils_v3_20261112_101652_logs/{ejecucion_v3.log,slurm_3344624.out,slurm_3344624.err}`. Preflight y script `paper2_cils_v3.sbatch` existentes bajo `WORK/maintenance/paper2_cils_v3_20261112_101652/`.
+- El script de envío Slurm está **localizado pero su contenido no se recuperó** en esta comprobación; el comando realmente ejecutado no se atribuye sin inspeccionarlo. El entrypoint documentado de v3 sigue siendo `bash calculos/run_revision.sh RUN_ATLAS942 INVENTARIO.csv OUTPUT_NUEVO`.
+- **Evidencia de ejecución:** [`COMPROBACION_SLURM_3344624_20261113.md`](COMPROBACION_SLURM_3344624_20261113.md) y [`ESTADO_EJECUCION.md`](ESTADO_EJECUCION.md).
+
+La cancelación documentada es por límite de tiempo. No se ha demostrado un fallo metodológico de v3 ni tampoco que las tres correcciones hayan producido resultados ATLAS válidos. La no disponibilidad de JAX aparece como advertencia de rendimiento de PyMBAR, no como excepción fatal.
 
 ## Matriz de resultados que se solicitaron
 
@@ -44,7 +50,7 @@
 | Cobertura y anchura global/estratos con n | No aplica | NO RECUPERADAS | NO RECUPERADAS (`coverage.csv` e `intervals.csv`) |
 | Objetivos corregidos y provenance | Requiere verificar el archivo de targets usado | NO RECUPERADOS (se esperan `targets_include_constants.csv`, `targets_exclude_constants.csv` y sus resúmenes) | NO RECUPERADOS |
 
-Los nombres de archivos son **salidas esperadas por el código**, no evidencia de que existan. No hay comprobación de salida `COMPLETED`/exit 0, log `PASS`, identidades/roles, valores y hashes finales v3.
+Los nombres de archivos son **salidas esperadas por el código**, no evidencia de que existan. Sí se ha comprobado el estado de ejecución: **TIMEOUT por límite de 12 horas**, paso batch cancelado; **sin** log `PASS`, ni predicciones, identidades/roles, métricas, intervalos o hashes de productos finales v3.
 
 ## Conclusión: sustitución posible
 
@@ -52,4 +58,4 @@ Los nombres de archivos son **salidas esperadas por el código**, no evidencia d
 2. Objetivo anterior core con `t0` heredado: **retirado; v3 ofrece algoritmo correcto, pero no se ha verificado ejecución ATLAS**.
 3. Intervalos/cobertura con calibración contaminada: **retirados; no sustituibles sin comprobar una ejecución y sus manifiestos/estadísticos**.
 
-**Decisión:** mantener las tres evidencias **fuera** de la memoria; no abrir test, crear particiones ni ejecutar análisis nuevos solo para responder a esta solicitud.
+**Decisión tras auditoría del 13/11/2026:** mantener las tres evidencias **fuera** de la memoria. Esta ejecución es **incompleta por TIMEOUT** y no ofrece ningún resultado corregido verificable. No abrir test, crear particiones ni ejecutar análisis nuevos solo para responder al estado del trabajo.
