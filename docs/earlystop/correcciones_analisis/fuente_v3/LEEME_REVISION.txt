@@ -1,0 +1,123 @@
+REVISION DE TRABAJO - PAQUETE V3 - 10/11/2026
+
+Estado: no lista para envio. Se ha ejecutado un control estructural no lineal y
+una auditoria de resultados archivados ATLAS; siguen pendientes el recalculo de
+prefijos y calibracion. No se ha evaluado validacion/test. Los fuentes y resultados originales permanecen conservados.
+
+MANUSCRITO
+cils_revision.tex y output/pdf/cils_revision.pdf: titulo, resumen, highlights,
+introduccion y conclusiones centrados en el benchmark de 20 ns. Se retiran los
+resultados de 5/10 ns, el core pendiente de corregir y las afirmaciones de cobertura.
+Se explican las auditorias, seleccion por etiqueta futura y promedio entre replicas.
+El piloto y los contrastes detallados pasan al apendice.
+La declaracion de asistencia de IA incluye esta revision; falta visto bueno autoral.
+
+PAQUETE DE RECALCULO (calculos/)
+Necesita Python con numpy, pandas y pymbar. No necesita GRU, torch ni trayectorias
+para el analisis de prefijos y calibracion; reconstruir objetivos necesita las series
+CSV y los metadatos de equilibrado. common.py es copia del helper previo.
+
+1. Prefijos: reanalyse.py --mode prefix usa SOLO RMSD, Rg, SASA, helice y lamina
+   en 5/10/20 ns (30 resumenes). Excluye todos los canales derivados de core a
+   todas las longitudes. Es una sensibilidad sin core, no una reproduccion del
+   predictor original de 48 resumenes ni una recalculacion de la GRU.
+2. Intervalos: --mode intervals utiliza ocho canales a 20 ns. Cada fold externo
+   se mantiene fuera de entrenamiento, ajuste interno, calibracion y ajuste de
+   escalas. Dentro de los otros grupos, 20% se reserva para calibracion sin refit
+   posterior. Seleccion de alpha por CV interna SOLO en entrenamiento propio.
+   Se exportan roles de cada grupo, seleccion, predicciones por replica y bandas.
+3. El escalado de RMSD usa variabilidad 15-20 ns y suelo/estratos ajustados SOLO
+   sobre prefijos de entrenamiento propio. Se comparan residuos absolutos por
+   sistema, maximos por grupo y maximos escalados por grupo. Los primeros son
+   diagnosticos con sistemas dependientes; la interpretacion de maximos requiere
+   grupos intercambiables y se refiere a grupos nuevos, no cobertura condicional
+   por proteina ni cobertura de una expectativa fisica de equilibrio.
+4. Se exportan errores del promedio y errores absolutos por replica promediados
+   dentro de proteina; tambien se separa por 1/2/3 replicas validas. La seleccion
+   de replicas sigue siendo retrospectiva y NO establece una politica online.
+5. build_targets.py detecta t0 del core sobre SU propia serie. Usa las columnas
+   de la configuracion archivada: core_R{r}_csv / replica_prefix_rmsd_A. Para el
+   resto exige metadatos de t0: no sustituye ausencias silenciosamente por cero.
+6. Se generan ambas sensibilidades de ventanas constantes: incluir con g=1 como
+   convencion documentada, y excluir. Ninguna demuestra independencia.
+7. Baselines y ablacion: temporal_controls.py agrega medias de los ultimos
+   0.5/1/2/5/10 ns y medias exponenciales con semividas 0.25/0.5/1/2/5 ns.
+   La ventana/semivida se elige por MAE interno por grupos en cada fold exterior.
+   Se informa cada candidato fijo, cada familia seleccionada y simple_selected,
+   elegido conjuntamente sin mirar etiquetas del fold exterior.
+   La ablacion separa ultimo valor; media+dispersion; incorporacion de ultimo
+   valor; pendiente; extremos; un canal vs multiples canales; y presencia de core.
+   El modelo completo a 20 ns reproduce sus 48 resumenes originales. Sus
+   predicciones RMSD se cotejan sistema a sistema con sources/reference_rmsd20.csv.
+   Se detiene si no coinciden grupos/folds, etiquetas o predicciones (tolerancia
+   1e-8 A). Los datos de referencia son OOF de entrenamiento ya publicados.
+8. No se modifica outer_folds.csv ni se evalua ningun conjunto final. No se
+   generan nuevos grupos ni se amplia la poblacion de forma implicita.
+
+EJECUCION (desde cualquier directorio, salida nueva)
+bash calculos/run_revision.sh /ruta/training_ATLAS942 /ruta/inventory.csv /ruta/output_nuevo
+Recomendado: trabajo batch de CPU en el entorno del pipeline. Faltan confirmar
+cuenta, particion y activacion de entorno antes de generar el sbatch definitivo.
+Devolver output_nuevo completo comprimido, el log y las versiones de dependencias.
+
+ARCHIVOS/INFORMACION QUE FALTAN
+- Carpeta training del controlador 3262490 con dataset.npz, outer_folds.csv y
+  train_future_rmsd_rows.csv. Ruta archivada:
+  /mnt/lustre_fs/_HPC/SCRATCH/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_automation/auto_20261030_091302/training
+- Inventario que apunte a master_targets_csv y las series basic/core/sasa por replica.
+- Confirmacion de que los core CSV corresponden a nucleos del prefijo de 20 ns.
+- Para ampliar la auditoria a 924 sistemas: inventario completo de entrenamiento y
+  manifiesto de grupos/secuencias de los 924, sin mezclar validacion ni test. El
+  manifiesto actual puede cubrir solo los 757 evaluables; el script no lo amplia.
+- Forma de ejecutar: acceso SSH ya configurado o ejecucion por Miti. No enviar claves.
+
+PENDIENTES FUERA DE ESTE PAQUETE
+- HECHO: control RBF kernel ridge sobre los mismos 17 descriptores (protocolo
+  fijado antes de ejecutar). MAE 1.158 A frente a 1.244 lineal y 0.610 de prefijo.
+  Selecciona el limite inferior de alpha/gamma en todos los folds: no prueba
+  optimalidad no lineal. Pendientes representaciones enriquecidas; ablaciones preparadas en v3, sin resultados ATLAS.
+- Evaluacion externa mdCATH con condiciones compatibles y grupos por dominio,
+  temperatura y homologia; requiere seleccionar datos y congelar protocolo.
+- Cuantificar incertidumbre de cobertura con un procedimiento que reconozca los
+  ajustes compartidos; el paquete no promete IC confirmatorios de cobertura.
+- Reintegrar resultados, actualizar figuras/carta de envio, comprobar bibliografia
+  especifica de CILS y obtener aprobacion de todos los autores.
+
+VALIDACION DEL PAQUETE
+24 pruebas de separacion de grupos, invariancia a etiquetas del fold evaluado,
+aislamiento temporal de resumenes, algebra kernel y semantica de ventanas; smoke test completo con datos
+artificiales. Estas pruebas no sustituyen la ejecucion y auditoria en ATLAS.
+
+AVANCES LOCALES ADICIONALES
+- auditoria_archivo/: reproduce exactamente las 38 filas de metricas a 20 ns;
+  exporta flujo por observable y sensibilidad por numero de replicas validas.
+- resultados_control_estructural/: resultados reales del nuevo control RBF,
+  predicciones por replica/sistema, seleccion por fold y hashes de protocolo/datos.
+- figures/fig2_structural_control.pdf: comparacion estructural y forest plot por
+  numero de replicas validas.
+- NOTA_BIBLIOGRAFICA.txt: cuatro referencias verificadas e incorporadas al borrador.
+- PROTOCOLO_MDCATH_BORRADOR.txt: propuesta de armonizacion (no ejecutada/congelada).
+- carta_cils_revision.txt: carta adaptada al alcance, pendiente de completar y aprobar.
+- El paquete v2 comprueba que reconstruir RMSD mantiene mascara y etiquetas del
+  entrenamiento original antes de ajustar modelos. Exporta cobertura de grupos
+  completos, ademas de cobertura por sistema. No presupone igualdad entre ambas.
+
+COMO EJECUTAR SOLO LO NUEVO SI YA SE EJECUTO V2
+bash calculos/run_temporal_only.sh RUN TARGETS_INCLUDE OUTPUT_NUEVO [TARGETS_EXCLUDE]
+TARGETS_INCLUDE/EXCLUDE son los objetivos corregidos producidos por el paquete v2
+o v3; NO los objetivos del core de la version historica de noviembre 8-10.
+El cuarto argumento opcional permite repetir helice/lamina sin ventanas constantes.
+
+SALIDAS NUEVAS
+- temporal_controls_rmsd/ y directorios por observable y sensibilidad.
+- replica_predictions.csv y system_predictions.csv (todas las variantes).
+- feature_manifest.csv identifica canales, resumenes y dimensiones por horizonte.
+- selection.csv y baseline_inner_scores.csv documentan decisiones internas.
+- contrasts.csv marca primary=True solo para ridge_all_full - simple_selected
+  en error agregado por sistema. IC descriptivos, condicionados a OOF; no se
+  presentan como pruebas confirmatorias ni corrigen comparaciones multiples.
+- RESUMEN_BASELINES_ABLACION.txt se genera automaticamente sin reajustar modelos.
+- PROTOCOLO_BASELINES_ABLACION.txt fija candidatos y comparaciones antes de ejecutar.
+
+No hacen falta otros datos para estas adiciones: usan el mismo dataset de prefijos.
+No hay resultados reales nuevos de estos baselines/ablaciones hasta ejecutar ATLAS.
