@@ -1,6 +1,6 @@
 # EARLYSTOP / CILS v3 — plan de reejecución recuperable (13/11/2026)
 
-**Estado: plan técnico preparado; NO autorizado ni enviado.** Se debe terminar el inventario del `.sbatch`, comprobar el límite/QoS real y verificar la identidad del inventario original antes de ejecutar. Este plan **no es evidencia de resultados corregidos**, y las tres afirmaciones científicas siguen retiradas de la memoria.
+**Estado: propuesta técnica documentada, NO autorizada ni enviada.** El `.sbatch`, los logs completos, el manifiesto y el diagnóstico real de recursos están publicados en [`evidencia_3344624/`](evidencia_3344624/). Se ha verificado el tiempo solicitado de 12 horas y el límite publicado de `sapphire`/QoS `normal`. Falta medir un fragmento antes de ratificar estimaciones y realizar una comprobación previa de los ejecutores de fragmentación. Este plan **no es evidencia de resultados corregidos**; las tres afirmaciones científicas siguen retiradas de la memoria.
 
 ## 1. Incidente y gasto computacional
 
@@ -8,9 +8,32 @@
 - `ejecucion_v3.log` registra `[100/757]` como último hito de progreso. El script imprime `[1]`, `[2]`, `[3]` y luego cada 100; **100 no es una estimación del total que llegó a completar**.
 - Causa de pérdida de trabajo: [`build_targets.py`](fuente_v3/calculos/build_targets.py) acumula `records` durante todo el inventario y **solo al final** escribe `targets_*.csv`. [`run_revision.sh`](fuente_v3/calculos/run_revision.sh) ejecuta **primero include y después exclude**, antes de cualquier sensibilidad/modelado. Ninguna etapa termina y queda marcada si el primer paso agota el walltime.
 - Perfil **deducido del código, no medido con profiler**: 757 sistemas × 3 réplicas × 6 observables = **13.626 valoraciones de objetivos por política**, repetidas para `include/exclude` (27.252). Para core, `detect_equilibration` se llama 2.271 veces por política, además de `statistical_inefficiency`; `pandas.read_csv` carga series por sistema y política. Estas operaciones PyMBAR/IO son los principales candidatos a cuello de botella; confirmarlo con tiempos por fragmento y métricas `sacct`.
-- **Tiempo estimado preliminar**: si el ritmo fuera tan bajo como **100 sistemas/12h**, un barrido de 757 podría tomar unas **91 horas CPU/una tarea** (dos políticas ≈182 h); la posición real al TIMEOUT y la dispersión por sistema no se conocen, por lo que **no es una predicción validada**. Un fragmento de 10 sistemas sería ≈1,2 h bajo ese supuesto; se propone solicitar inicialmente **6h por fragmento** (ajustar tras la primera ejecución controlada). Si algún fragmento excede 6h, subdividirlo sin perder los ya correctos.
-- **Límite permitido**: todavía **NO ACREDITADO** por `scontrol show partition sapphire` + QoS del job; el `TIMEOUT` a las 12h solo prueba que **a este job** se le impuso ese tiempo, no el `MaxTime` global de la partición. Registrar `sacct -j 3344624 -X -P -o JobID,State,Timelimit,AllocCPUS,ReqMem,Elapsed,MaxRSS`, `sinfo -p sapphire -o '%P|%l|%c|%m|%D'`, `scontrol show partition sapphire -o`, `sacctmgr -nP show qos format=Name,MaxWall,MaxTRES` si el acceso lo permite.
-- **Recursos**: cuenta/partición verificadas = `uva_dma_2` / `sapphire`, entorno Python real = `/home/uva_dma_2/uva_dma_2_1/venvs/md-poc-py311/bin/python3`, con `Python/3.11.5-GCCcore-13.2.0`, NumPy `1.26.4`, Pandas `2.2.3`, PyMBAR `4.0.3`. Los `--cpus-per-task` / `--mem` del job original quedan pendientes de recuperar del `.sbatch`. Propuesta inicial para cada fragmento: **1 CPU / 8 GiB / 6 horas / concurrencia máxima 4**, condicionada a comprobar consumo RSS y QoS; no declarar esos recursos como comprobados.
+- **Estimación provisional, no perfilada:** el último hito escrito fue `[100/757]` tras 12 horas. Dado que el programa solo imprime cada 100 sistemas, esto demuestra un avance mínimo de 100, pero no cuántos sistemas posteriores terminó; la aproximación **46–91 h para 757 sistemas y una política** (92–182 h para dos ejecuciones) supone rendimiento lineal y progresión entre 100 y 199, por lo que es **meramente orientativa**. Un fragmento de 10 sistemas podría requerir aproximadamente 0,6–1,2 h por política bajo esa suposición; el tiempo real puede desviarse por sistema y lectura Lustre. Se propone **6 h por fragmento de 10 sistemas, con comprobación piloto**, y subdividir los fragmentos lentos sin repetir los ya completos.
+- **Límites comprobados:** `scontrol show partition sapphire -o` declara `MaxTime=UNLIMITED`; `sacctmgr -nP show qos format=Name,MaxWall,MaxTRES` declara para QoS `normal` `MaxWall=5-00:00:00` (5 días). El **límite real del trabajo `3344624` fue el `#SBATCH --time=12:00:00` solicitado** (confirmado por `sacct Timelimit=12:00:00`); también tenía `#SBATCH --qos=normal`. Pueden existir límites adicionales por asociación o prioridad, no investigados. `sinfo` devolvió `Access/permission denied`, pero las dos consultas anteriores sí funcionaron. **Una solicitud de 6 h cabe dentro de los límites publicados**, pendiente de la aprobación normal del planificador.
+- **Recursos comprobados en el `.sbatch` original:** `--nodes=1 --ntasks=1 --cpus-per-task=4 --mem=16G --time=12:00:00 --account=uva_dma_2 --partition=sapphire --qos=normal`. El script fuerza `OMP_NUM_THREADS=1`, `OPENBLAS_NUM_THREADS=1`, `MKL_NUM_THREADS=1`, `NUMEXPR_NUM_THREADS=1`, usa un único proceso Python y no activa paralelismo por sistemas. `sacct` registra `MaxRSS=115987K` y `MaxVMSize=2811M` del paso **batch**: son métricas de dicho paso, **no garantía del pico de todas las lecturas/procesos**. Entorno verificado: `/home/uva_dma_2/uva_dma_2_1/venvs/md-poc-py311/bin/python3`, módulo `Python/3.11.5-GCCcore-13.2.0`, NumPy `1.26.4`, Pandas `2.2.3`, PyMBAR `4.0.3`. **Propuesta piloto, aún no validada:** 1 CPU / 8 GiB / 6 h / como máximo **2 fragmentos concurrentes**, con QoS `normal`; medir RSS y duración antes de subir concurrencia.
+
+### Comando científico realmente utilizado en el trabajo anterior
+
+El `.sbatch` verificado selecciona `REV_MODE=full`, activa el entorno indicado y ejecuta exactamente:
+
+```bash
+bash "$REV_CODE/calculos/run_revision.sh" \
+  "$REV_RUN" "$REV_INV" "$REV_OUTPUT" > "$RUNLOG" 2>&1
+```
+
+Variables cuyas rutas están respaldadas por el preflight, por `package_root.txt` y por la auditoría:
+
+```bash
+WORK=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks
+REV_CODE="$WORK/maintenance/paper2_cils_v3_20261112_101652/package"
+REV_RUN="$WORK/results/paper2_automation/auto_20261030_091302/training"
+REV_INV="$WORK/results/paper2_miti_20261109/inputs/inventory_miti.csv"
+REV_OUTPUT="$WORK/results/paper2_cils_v3_20261112_101652"
+REV_LOGDIR="$WORK/results/paper2_cils_v3_20261112_101652_logs"
+RUNLOG="$REV_LOGDIR/ejecucion_v3.log"
+```
+
+El contenido del script y su comando **sí** están verificados; la invocación externa original de `sbatch` y su forma concreta de exportar las variables `REV_*` **no aparece** en el `.sbatch`, por lo que no se inventa. En el preflight se verificaron los 22 archivos del paquete y SHA-256 del tar `f05bc1d96b7233ec3243a267de9b1f23c1c683f715e56f48321433095afdb17f`. Los hashes de `calculos/build_targets.py`, `reanalyse.py`, `temporal_controls.py`, `targets_config.json` y `run_revision.sh` del snapshot coinciden con los del manifiesto. Las cinco parejas de hashes se encuentran en [`evidencia_3344624/DIAGNOSTICO_RECURSOS.txt`](evidencia_3344624/DIAGNOSTICO_RECURSOS.txt).
 
 ## 2. Invariantes: nada de modificaciones científicas
 
@@ -22,7 +45,7 @@
 
 ## 3. Bloque A: reconstrucción de objetivos por sistemas, con checkpoint
 
-**Diseño:** dividir el inventario original, en orden, en **76 archivos** de hasta 10 sistemas; lanzar como array Slurm `--array=0-75%4` con recursos provisionales `--time=06:00:00 --cpus-per-task=1 --mem=8G --account=uva_dma_2 --partition=sapphire`, si `sapphire`/QoS lo permiten. No enviar hasta validar límite y RSS.
+**Diseño:** dividir el inventario original, en orden, en **76 archivos** de hasta 10 sistemas; preparar un array Slurm `--array=0-75%2` con recursos iniciales `--time=06:00:00 --cpus-per-task=1 --mem=8G --account=uva_dma_2 --partition=sapphire --qos=normal`. Sus 76 tareas se validan por separado; un TIMEOUT afecta a su fragmento, no a los demás. **Propuesta no enviada:** primero se debe verificar el generador, el consolidador y el consumo del primer fragmento. La concurrencia inicial 2 evita asumir que Lustre tolerará sin coste mayor paralelismo de lecturas.
 
 Para cada fragmento `i`, ejecutar el **mismo script científico** en dos procesos separados:
 ```bash
@@ -69,9 +92,9 @@ done
 
 ## 7. Bloqueos previos al envío: se investigan sin lanzar análisis
 
-1. Recuperar y publicar el **.sbatch realmente ejecutado, los logs completos y el manifiesto**, desde SCAYLE, como `evidencia_3344624/`, y extraer el comando exacto.
-2. Medir **`MaxTime` de sapphire, QoS efectivo, `Timelimit`, `AllocCPUS`, `ReqMem` y `MaxRSS`**; usar esos datos para ratificar/cambiar `6h/1 CPU/8 GiB/%4`. No atribuir el límite de 12h a la partición si podría ser el solicitado en el `.sbatch`.
-3. Resolver la ruta exacta del inventario 757 y del directorio `calculos/` **desplegados** desde el `.sbatch`/preflight, y cotejar SHA-256 con el paquete v3. Preparar y validar sintácticamente los ejecutores y el consolidador *antes* de enviarlos.
-4. **Medir duración de un primer fragmento y su RSS** al autorizar la futura ejecución; actualizar estimación de calendario/coste y decidir si reducir a 5 sistemas por fragmento para los casos lentos, **sin cambiar población ni criterios**.
+1. **HECHO:** `.sbatch` ejecutado, logs íntegros, manifiesto y preflight publicados en [`evidencia_3344624/`](evidencia_3344624/). Confirmados comando interno y rutas de fuentes, no la línea de envío externa `sbatch`.
+2. **HECHO:** recursos históricos (4 CPU, 16 GiB, 12 h) y límites publicados de partición/QoS comprobados. Con 1 CPU / 8 GiB / 6 h / concurrencia 2 la propuesta encaja nominalmente, pero requiere una prueba de tiempo/RSS antes de una tanda de 76 tareas.
+3. **PENDIENTE PREVIO AL ENVÍO:** implementar y validar un generador de fragmentos y un consolidador con marcadores atómicos, verificación de IDs/SHA y reanudación por fragmento/política; no es suficiente lanzar `build_targets.py` con un recorte manual sin manifiesto.
+4. **PENDIENTE PREVIO AL ENVÍO:** comprobar duración de un primer fragmento, ocupación RAM y presión de E/S, y ajustar concurrencia y tamaño solamente por criterios de capacidad; no por resultados predictivos ni descarte de sistemas.
 
 **Entrega de esta etapa:** propuesta técnica de ejecución recuperable. Estado experimental de las tres correcciones: **PENDIENTE**.
