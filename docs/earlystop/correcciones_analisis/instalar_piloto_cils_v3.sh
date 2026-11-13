@@ -12,6 +12,16 @@ module purge
 module load Python/3.11.5-GCCcore-13.2.0
 source /home/uva_dma_2/uva_dma_2_1/venvs/md-poc-py311/bin/activate
 
+# CALENDULA login has RLIMIT_NPROC=50; OpenBLAS otherwise tries 64 threads.
+# Set limits BEFORE importing numpy/pandas/pymbar or starting any Python worker.
+export OPENBLAS_NUM_THREADS=1
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+export BLIS_NUM_THREADS=1
+export VECLIB_MAXIMUM_THREADS=1
+export PYTHONNOUSERSITE=1
+
 mkdir -p "$BASE"
 test -x "$PY"
 "$PY" -c 'import sys, numpy, pandas, pymbar; print("PYTHON_ENTORNO=PASS",sys.executable)'
