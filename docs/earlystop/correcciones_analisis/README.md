@@ -54,6 +54,12 @@ La cancelación documentada es por límite de tiempo. No se ha demostrado un fal
 - [**`cils_v3_shards.py`**](cils_v3_shards.py): generador congelado de 76 fragmentos, ejecución por fragmento/política, checkpoint atómico verificable por SHA-256, reutilización sin recálculo y consolidación con comprobaciones de completitud/duplicados. - [**`instalar_piloto_cils_v3.sh`**](instalar_piloto_cils_v3.sh): instala directamente en SCAYLE el código completo desde el commit fijado con SHA de Git, repite pruebas sintéticas en SCAYLE, congela únicamente los 757 sistemas train y envía **solo el shard 000**, si todos los controles pasan. Nunca cargar con `source`; ejecutar como proceso hijo con `bash`. - [`cils_v3_pilot.sbatch`](cils_v3_pilot.sbatch): lanzador de un único fragmento (10 sistemas; ambas políticas separadas), **1 CPU/8 GiB/6 h**. El resto del array permanece sin enviar.
 - [`PLAN_REEJECUCION.md`](PLAN_REEJECUCION.md): fragmentación, recuperación y consolidación, incluidas las condiciones de aceptación. Hasta contar con un registro Slurm y sus dos checkpoints reales, **no hay duración, memoria ni resultados del piloto acreditados**.
 
+## Piloto ATLAS942 enviado — pendiente de resultado
+
+El **13/11/2026** se verificó directamente en la sesión CALÉNDULA que el `selftest` de reanudación pasó sus **11 comprobaciones sintéticas**, que `init` congeló los **757 sistemas en 76 fragmentos**, y que Slurm aceptó el **piloto `3387582`** para el fragmento 000 (10 sistemas), en `sapphire`. El estado comunicado al enviar fue `PD`; no se ha acreditado todavía `COMPLETED`, los checkpoints reales ni la duración/RSS del piloto.
+
+Ver [`PILOTO_3387582_ESTADO_INICIAL.md`](PILOTO_3387582_ESTADO_INICIAL.md). **No iniciar los demás fragmentos** hasta revisar las medidas del piloto; el resultado científico de las tres correcciones continúa pendiente.
+
 ## Matriz de resultados que se solicitaron
 
 | Evidencia | 1. Prefijos | 2. Core RMSD | 3. Calibración |
