@@ -13,10 +13,10 @@ test -x "$PY"
 import base64, hashlib, json, os, pathlib, sys, tempfile, urllib.request
 base=pathlib.Path(sys.argv[1])
 repo='fhernandogallego/md-hpc-benchmarks-public'
-revision='0d21ad313e25de118a0a907c38be4ce199d796e4'
+revision='178e42599aa0e65ca4b8a0da3b5b18732d13c27c'
 root='docs/earlystop/correcciones_analisis/'
 files={
- 'cils_v3_shards.py':'4eb36e04a06d2292415235c342bdca70de655ab8',
+ 'cils_v3_shards.py':'42a88171b3a2a3144652e294e390476d4264099f',
  'cils_v3_pilot.sbatch':'1f8d5ff8c6a18d19fc38467ab47cd9bcf26b6488',
 }
 def gitsha(data):
@@ -123,7 +123,7 @@ if [[ ! "$JOB" =~ ^[0-9]+$ ]]; then
 fi
 printf '%s\n' "$JOB" > "$JOBFILE"
 printf '%s job=%s sha_driver=%s\n' "$(date -Is)" "$JOB" \
- '4eb36e04a06d2292415235c342bdca70de655ab8' >> "$STATE/pilot_jobs.txt"
+ '42a88171b3a2a3144652e294e390476d4264099f' >> "$STATE/pilot_jobs.txt"
 echo "PILOT_SUBMITTED_JOB=$JOB"
 echo "PILOT_STDOUT=$STATE/logs/pilot_$JOB.out"
 echo "PILOT_STDERR=$STATE/logs/pilot_$JOB.err"
