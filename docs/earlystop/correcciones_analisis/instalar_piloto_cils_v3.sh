@@ -6,8 +6,15 @@ WORK=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks
 BASE="$WORK/maintenance/earlystop"
 STATE="$WORK/maintenance/paper2_cils_v3_relaunch_v1"
 PY=/home/uva_dma_2/uva_dma_2_1/venvs/md-poc-py311/bin/python3
+
+# A venv on SCAYLE needs the original EasyBuild Python shared library.
+module purge
+module load Python/3.11.5-GCCcore-13.2.0
+source /home/uva_dma_2/uva_dma_2_1/venvs/md-poc-py311/bin/activate
+
 mkdir -p "$BASE"
 test -x "$PY"
+"$PY" -c 'import sys, numpy, pandas, pymbar; print("PYTHON_ENTORNO=PASS",sys.executable)'
 
 "$PY" - "$BASE" <<'PYTHON'
 import base64, hashlib, json, os, pathlib, sys, tempfile, urllib.request
