@@ -48,6 +48,12 @@ La cancelación documentada es por límite de tiempo. No se ha demostrado un fal
 - Diagnóstico de coste: dos reconstrucciones consecutivas leían 757 sistemas y generaban CSV solo al terminar cada pasada; el `TIMEOUT` ocurrió antes del primer CSV final. El último `[100/757]` no cuantifica progreso posterior con precisión.
 - **Falta antes de cualquier envío:** crear y verificar el envoltorio de fragmentación, consolidación y marcadores atómicos, y medir duración/RSS del primer fragmento. Se prohíbe relanzar la orden `full` original de forma monolítica con la expectativa de reanudación.
 
+## Implementación de reanudación y piloto (13/11/2026)
+
+- [`PRUEBAS_SINTETICAS.md`](PRUEBAS_SINTETICAS.md) y [`PRUEBAS_SINTETICAS.json`](PRUEBAS_SINTETICAS.json): **11 comprobaciones locales PASS** con datos totalmente sintéticos; simulan interrupción, conservación/reutilización, faltantes, duplicados y alteración de hashes. **No son una ejecución ATLAS942.**
+- [`cils_v3_pilot.sbatch`](cils_v3_pilot.sbatch): lanzador preparado para un único fragmento (10 sistemas; incluye ambos tratamientos de ventanas constantes), **1 CPU/8 GiB/6 h**. Su ejecución debe realizarse sobre el inventario congelado y con el verificador de checkpoints instalado.
+- [`PLAN_REEJECUCION.md`](PLAN_REEJECUCION.md): fragmentación, recuperación y consolidación, incluidas las condiciones de aceptación. Hasta contar con un registro Slurm y sus dos checkpoints reales, **no hay duración, memoria ni resultados del piloto acreditados**.
+
 ## Matriz de resultados que se solicitaron
 
 | Evidencia | 1. Prefijos | 2. Core RMSD | 3. Calibración |
