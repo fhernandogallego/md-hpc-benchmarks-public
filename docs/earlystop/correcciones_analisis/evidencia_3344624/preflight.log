@@ -1,0 +1,36 @@
+=== PREFLIGHT PAPER 2 CILS V3 ===
+2026-11-12T10:16:52+01:00
+OK: /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_automation/auto_20261030_091302/training/dataset.npz
+OK: /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_automation/auto_20261030_091302/training/outer_folds.csv
+OK: /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_automation/auto_20261030_091302/training/train_future_rmsd_rows.csv
+OK: /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_miti_20261109/inputs/inventory_miti.csv
+3262490|paper2_auto|COMPLETED|uva_dma_2|sapphire|07:24:15
+3279497|miti_targets|COMPLETED|uva_dma_2|sapphire|00:09:06
+PACKAGE_V3_SHA256=PASS
+Verified files: 22
+Loading Python/3.11.5-GCCcore-13.2.0
+  Loading requirement: GCCcore/13.2.0 zlib/1.2.13-GCCcore-13.2.0 binutils/2.40-GCCcore-13.2.0 bzip2/1.0.8-GCCcore-13.2.0 ncurses/6.4-GCCcore-13.2.0 libreadline/8.2-GCCcore-13.2.0 Tcl/8.6.13-GCCcore-13.2.0 SQLite/3.43.1-GCCcore-13.2.0
+    XZ/5.4.4-GCCcore-13.2.0 libffi/3.4.4-GCCcore-13.2.0 OpenSSL/1.1
+Warning on use of the timeseries module: If the inherent timescales of the system are long compared to those being analyzed, this statistical inefficiency may be an underestimate.  The estimate presumes the use of many statistically independent samples.  Tests should be performed to assess whether this condition is satisfied.   Be cautious in the interpretation of the data.
+
+********* JAX NOT FOUND *********
+ PyMBAR can run faster with JAX  
+ But will work fine without it   
+Either install with pip or conda:
+      pip install pybar[jax]     
+               OR                
+      conda install pymbar       
+*********************************
+PYTHON_ENV=PASS /home/uva_dma_2/uva_dma_2_1/venvs/md-poc-py311/bin/python3
+Python: 3.11.5
+NumPy: 1.26.4
+Pandas: 2.2.3
+PyMBAR: 4.0.3
+INVENTORY_AUDIT: {"n_inventory": 757, "n_training_folds": 757, "n_folds_outside_inventory": 0, "n_core_csv_checked": 2271, "n_errors": 0, "errors": []}
+INVENTORY_PREFLIGHT=PASS
+MODO_SELECCIONADO=full
+V3_SUBMITTED_JOB=3344624
+RESULT_DIR=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_cils_v3_20261112_101652
+LOG_DIR=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_cils_v3_20261112_101652_logs
+CHECK: squeue -j 3344624
+CHECK_AFTER: sacct -j 3344624 -X --format=JobID,State,ExitCode,Elapsed

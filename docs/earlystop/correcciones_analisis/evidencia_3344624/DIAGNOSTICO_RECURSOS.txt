@@ -1,0 +1,97 @@
+AUDITORIA_RECURSOS_CILS_V3
+FECHA=2026-11-13T11:37:18.839848
+SOLO_LECTURA_SCHEDULER=SI
+JOB=3344624
+PAQUETE_ARCHIVE_SHA256=f05bc1d96b7233ec3243a267de9b1f23c1c683f715e56f48321433095afdb17f
+
+$ sacct -j 3344624 -P --format=JobID,JobName,State,ExitCode,Timelimit,Elapsed,AllocCPUS,ReqMem,MaxRSS,ReqTRES,AllocTRES,Start,End
+EXIT=0
+JobID|JobName|State|ExitCode|Timelimit|Elapsed|AllocCPUS|ReqMem|MaxRSS|ReqTRES|AllocTRES|Start|End
+3344624|paper2_cils_v3|TIMEOUT|0:0|12:00:00|12:00:28|4|16G||billing=4,cpu=4,mem=16G,node=1|billing=4,cpu=4,energy=15138307,mem=16G,node=1|2026-11-12T10:18:56|2026-11-12T22:19:24
+3344624.batch|batch|CANCELLED|0:15||12:00:30|4||115987K||cpu=4,mem=16G,node=1|2026-11-12T10:18:56|2026-11-12T22:19:26
+3344624.extern|extern|COMPLETED|0:0||12:00:30|4||||billing=4,cpu=4,mem=16G,node=1|2026-11-12T10:18:56|2026-11-12T22:19:26
+
+
+$ sacct -j 3344624.batch -P --format=JobID,State,ExitCode,Elapsed,MaxRSS,MaxVMSize,AveRSS
+EXIT=0
+JobID|State|ExitCode|Elapsed|MaxRSS|MaxVMSize|AveRSS
+3344624.batch|CANCELLED|0:15|12:00:30|115987K|2811M|115987K
+
+
+$ sinfo -h -p sapphire -o %P|%l|%c|%m|%D
+EXIT=1
+slurm_load_node: Access/permission denied
+
+
+$ scontrol show partition sapphire -o
+EXIT=0
+PartitionName=sapphire AllowGroups=ALL AllowAccounts=ALL AllowQos=ALL AllocNodes=ALL Default=NO QoS=N/A DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO ExclusiveTopo=NO GraceTime=0 Hidden=NO MaxNodes=UNLIMITED MaxTime=UNLIMITED MinNodes=0 LLN=NO MaxCPUsPerNode=UNLIMITED MaxCPUsPerSocket=UNLIMITED Nodes=cn[7001-7006,7021-7027,7041-7047,7061-7087,7092-7186,7188,7190-7192] PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO OverTimeLimit=NONE PreemptMode=OFF State=UP TotalCPUs=9344 TotalNodes=146 SelectTypeParameters=NONE JobDefaults=(null) DefMemPerCPU=16113 MaxMemPerCPU=16114 TRES=cpu=9344,mem=150565420M,node=146,billing=9344
+
+
+$ sacctmgr -nP show qos format=Name,MaxWall,MaxTRES
+EXIT=0
+normal|5-00:00:00|
+class_a|3-00:00:00|
+class_b|2-00:00:00|
+class_c|1-00:00:00|
+formacion|1-00:00:00|
+long|15-00:00:00|
+xlong|30-00:00:00|
+xxlong|45-00:00:00|
+unlimited||
+long_special|30-00:00:00|
+xnormal|7-00:00:00|
+
+
+SBATCH_LINEAS_RELEVANTES:
+0001: #!/usr/bin/env bash
+0002: #SBATCH --job-name=paper2_cils_v3
+0003: #SBATCH --account=uva_dma_2
+0004: #SBATCH --partition=sapphire
+0005: #SBATCH --qos=normal
+0006: #SBATCH --nodes=1
+0007: #SBATCH --ntasks=1
+0008: #SBATCH --cpus-per-task=4
+0009: #SBATCH --mem=16G
+0010: #SBATCH --time=12:00:00
+0014: module purge
+0015: module load Python/3.11.5-GCCcore-13.2.0
+0018: export PYTHONNOUSERSITE=1
+0030: python3 - <<'PY'
+0035: print("Python:", sys.executable, sys.version.split()[0])
+0042:   if ! bash "$REV_CODE/calculos/run_temporal_only.sh" \
+0045:     "$REV_OUTPUT" \
+0051:   if ! bash "$REV_CODE/calculos/run_revision.sh" \
+0054:     "$REV_OUTPUT" > "$RUNLOG" 2>&1; then
+0061: [ -s "$REV_OUTPUT/RESUMEN_BASELINES_ABLACION.txt" ]
+0064:   [ -s "$REV_OUTPUT/temporal_controls_$target/provenance.json" ]
+0068:   [ -s "$REV_OUTPUT/rmsd_reference_check.json" ]
+0069:   [ -s "$REV_OUTPUT/prefix_without_core/provenance.json" ]
+0071:   cp -a "$REV_V2DIR" "$REV_OUTPUT/v2_reutilizada"
+0075: cp "$RUNLOG" "$REV_OUTPUT/ejecucion_v3.log"
+0076: mkdir -p "$REV_OUTPUT/slurm_logs"
+0081:     cp "$file" "$REV_OUTPUT/slurm_logs/"
+0085: cp "$REV_SETUP/preflight.log" "$REV_OUTPUT/preflight.log"
+0086: cp "$REV_SETUP/inventory_audit.json" \
+0087:   "$REV_OUTPUT/inventory_audit.json"
+0088: cp "$REV_SETUP/training_not_inventory.csv" \
+0089:   "$REV_OUTPUT/training_not_inventory.csv"
+0091:   "$REV_OUTPUT/paquete_revision_scayle_v3.manifest.json"
+0097:   echo "inventory=$REV_INV"
+0100:   python3 -m pip freeze |
+0102: } > "$REV_OUTPUT/PROVENANCE_RUN.txt"
+0105: ARCHIVE="${REV_OUTPUT}.tar.gz"
+0107: tar -C "$(dirname "$REV_OUTPUT")" \
+0108:   -czf "$ARCHIVE" "$(basename "$REV_OUTPUT")"
+0113: echo "RESULT_DIR=$REV_OUTPUT"
+
+PACKAGE_ROOT=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/maintenance/paper2_cils_v3_20261112_101652/package
+
+CODIGO_DESPLEGADO=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/maintenance/paper2_cils_v3_20261112_101652/package
+calculos/build_targets.py sha256=facb86a58556600b67eda466f4688835afb64507368c3717bbb3f1676eadb12e expected=facb86a58556600b67eda466f4688835afb64507368c3717bbb3f1676eadb12e match=True
+calculos/reanalyse.py sha256=5ee3343c38df26d6e1f2af0333258a99a414a97e594806c767ef291ab27a1ec5 expected=5ee3343c38df26d6e1f2af0333258a99a414a97e594806c767ef291ab27a1ec5 match=True
+calculos/temporal_controls.py sha256=4d93fe81ecbc1dfcea1acd3841be4bfe9478ca3d92e79c3d802e4a70fc8fa5b4 expected=4d93fe81ecbc1dfcea1acd3841be4bfe9478ca3d92e79c3d802e4a70fc8fa5b4 match=True
+calculos/targets_config.json sha256=90352d9c0e70e4090d3eac884d8fca37f13d02b14f02a87d9a9a008ce9fb4e20 expected=90352d9c0e70e4090d3eac884d8fca37f13d02b14f02a87d9a9a008ce9fb4e20 match=True
+calculos/run_revision.sh sha256=ce280063f003f18a8375edf9b427cc05b3baebcff491b414da9fd8b43640054a expected=ce280063f003f18a8375edf9b427cc05b3baebcff491b414da9fd8b43640054a match=True
+ULTIMO_HITO_IMPRESO=100
+ULTIMO_HITO_NO_EQUIVALE_A_SISTEMAS_TERMINADOS

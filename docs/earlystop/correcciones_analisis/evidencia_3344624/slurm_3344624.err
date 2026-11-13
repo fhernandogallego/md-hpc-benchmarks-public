@@ -1,0 +1,11 @@
+Warning on use of the timeseries module: If the inherent timescales of the system are long compared to those being analyzed, this statistical inefficiency may be an underestimate.  The estimate presumes the use of many statistically independent samples.  Tests should be performed to assess whether this condition is satisfied.   Be cautious in the interpretation of the data.
+
+********* JAX NOT FOUND *********
+ PyMBAR can run faster with JAX  
+ But will work fine without it   
+Either install with pip or conda:
+      pip install pybar[jax]     
+               OR                
+      conda install pymbar       
+*********************************
+[2026-11-12T22:19:25.008] error: *** JOB 3344624 ON cn7191 CANCELLED AT 2026-11-12T22:19:25 DUE TO TIME LIMIT ***
