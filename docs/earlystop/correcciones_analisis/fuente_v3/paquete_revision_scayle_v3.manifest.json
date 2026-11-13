@@ -1,0 +1,29 @@
+{
+  "archive_sha256": "f05bc1d96b7233ec3243a267de9b1f23c1c683f715e56f48321433095afdb17f",
+  "files_sha256": {
+    "LEEME_REVISION.txt": "5881624d898d76ce081b9d37d99fb949f767e826af55fc7ac88243ccb2568ae1",
+    "PROTOCOLO_BASELINES_ABLACION.txt": "19d234a8a5bfb32fba7a6ff3ae2a6cf911bf56e236118a268ea27b4b2fcc43a1",
+    "PROTOCOLO_CONTROL_ESTRUCTURAL.txt": "18100919acb08b66043f24d377ac4e30ee60b0a4b2f085ca9d2f73ae8cd9a147",
+    "CAMBIOS_V3_PARA_CAJA.txt": "94269cdca0a418f941ba39c2461a7036eca63326351e768fa3af707385a0c329",
+    "calculos/audit_archive.py": "a2c58394155f5fa8dae674bc97a4f3776c6b5f3807fd935c31608c67308b47d9",
+    "calculos/test_targets.py": "1846f6661e4ef1de2fa1525bead1ff7bc3dbca2450db706a98fc125a79d23f00",
+    "calculos/run_revision.sh": "ce280063f003f18a8375edf9b427cc05b3baebcff491b414da9fd8b43640054a",
+    "calculos/make_revision_figure.py": "a10e4c4e715bf304dfb614ad21f1ef98552cd2cf037d5794ca0f2e67ba0bad70",
+    "calculos/reanalyse.py": "5ee3343c38df26d6e1f2af0333258a99a414a97e594806c767ef291ab27a1ec5",
+    "calculos/temporal_controls.py": "4d93fe81ecbc1dfcea1acd3841be4bfe9478ca3d92e79c3d802e4a70fc8fa5b4",
+    "calculos/structure_control.py": "d43dd7d20d8e43ad3d55c6e2103e6af4623c0a88e9f75a4e3381e8d4e76fdd77",
+    "calculos/build_targets.py": "facb86a58556600b67eda466f4688835afb64507368c3717bbb3f1676eadb12e",
+    "calculos/summarize_temporal.py": "859f9e58773b3c1ee559544430d6657c9e1fabda792fc160db4ba611e9891812",
+    "calculos/common.py": "dcf43c964f9598cf7d0a8c7e53317bb8375b826aa286584f5857356c70d139ad",
+    "calculos/test_reanalyse.py": "cf928fc4078cb96c59e9f7e616530f404a0ba22306b61024093f89f4771f719a",
+    "calculos/targets_config.json": "90352d9c0e70e4090d3eac884d8fca37f13d02b14f02a87d9a9a008ce9fb4e20",
+    "calculos/test_temporal_controls.py": "848f5a624d1c9983e0b7c0081d05fc538cf5f0477f2f887aa28e9407992880bc",
+    "calculos/run_temporal_only.sh": "a5a7cd6b458bcaf572ff7b8ed1d00d60725055aa66766aa63a729df79463f6d5",
+    "calculos/test_structure_control.py": "4d92402238db9ce65589b2de9cabce024484294c8c9375641561fb9d55e88bf1",
+    "calculos/verify_rebuilt_rmsd.py": "2e9561c0eb5277413c2399eabb5edefdff29b10b02d01ddf97cc8cfbf41348f2",
+    "sources/reference_rmsd20.provenance.json": "bf884d14b70702bb0b9901e39cada9b6c327f260d2f0171aab5711790c10d4c1",
+    "sources/reference_rmsd20.csv": "1b508407069beb356137ade91b84e57284ccf6c083bdb54a096e5ca1d9e821c0"
+  },
+  "checks": "24 unit tests; RMSD 5/10/20 ns and SASA 20 ns synthetic CLI tests; unpacked-package execution from a different cwd",
+  "atlas_new_baseline_ablation_results_available": false
+}
