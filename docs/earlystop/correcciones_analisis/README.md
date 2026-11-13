@@ -40,6 +40,14 @@ La **auditoría de SCAYLE del 13/11/2026** ha comprobado el estado del trabajo `
 
 La cancelación documentada es por límite de tiempo. No se ha demostrado un fallo metodológico de v3 ni tampoco que las tres correcciones hayan producido resultados ATLAS válidos. La no disponibilidad de JAX aparece como advertencia de rendimiento de PyMBAR, no como excepción fatal.
 
+## Evidencia original y plan de reejecución (13/11/2026)
+
+- [`evidencia_3344624/`](evidencia_3344624/): **.sbatch ejecutado**, logs íntegros, preflight, manifiesto v3 y [`DIAGNOSTICO_RECURSOS.txt`](evidencia_3344624/DIAGNOSTICO_RECURSOS.txt). SHA-256 del tar v3 verificado; hashes de cinco fuentes desplegadas coinciden con el manifiesto.
+- [`PLAN_REEJECUCION.md`](PLAN_REEJECUCION.md): reconstrucción por **76 fragmentos de hasta 10 sistemas**, dos políticas con checkpoints verificados; después, prefijos sin core y calibración por observable como trabajos separados, **sin envío**.
+- Recursos y límites verificados: `#SBATCH --cpus-per-task=4 --mem=16G --time=12:00:00 --qos=normal` en el trabajo anterior; `sapphire MaxTime=UNLIMITED`; QoS `normal MaxWall=5-00:00:00`. El límite que detuvo `3344624` fue el **solicitado de 12h**. Recursos tentativos nuevos: `1 CPU / 8 GiB / 6 h / simultaneidad 2`, **por medir**, no recursos ya validados para el nuevo flujo.
+- Diagnóstico de coste: dos reconstrucciones consecutivas leían 757 sistemas y generaban CSV solo al terminar cada pasada; el `TIMEOUT` ocurrió antes del primer CSV final. El último `[100/757]` no cuantifica progreso posterior con precisión.
+- **Falta antes de cualquier envío:** crear y verificar el envoltorio de fragmentación, consolidación y marcadores atómicos, y medir duración/RSS del primer fragmento. Se prohíbe relanzar la orden `full` original de forma monolítica con la expectativa de reanudación.
+
 ## Matriz de resultados que se solicitaron
 
 | Evidencia | 1. Prefijos | 2. Core RMSD | 3. Calibración |
