@@ -1,0 +1,79 @@
+Baselines del tramo final y ablacion - protocolo previo a ejecutar ATLAS
+Version 3, 10/11/2026
+
+PREGUNTAS
+1. Conserva el ridge su ventaja frente a un control simple que promedia o suaviza
+   la parte reciente del prefijo, con ventana elegida dentro de entrenamiento?
+2. Que aportan media/dispersion, ultimo valor, pendiente, extremos y otros canales?
+
+POBLACION Y PARTICIONES
+Se utilizan las mismas filas validas por observable, grupos y folds exteriores
+de entrenamiento. No se toca validacion ni test. Cada comparacion es emparejada
+sobre exactamente las mismas replicas/sistemas; se exportan sus identificadores.
+Para RMSD se verifica primero la equivalencia con train_future_rmsd_rows.csv.
+Los 5/10 ns mantienen el objetivo futuro despues de 20 ns y se explicita el hueco.
+Todos los ajustes y elecciones usan SOLO los grupos del entrenamiento exterior.
+
+BASELINES FIJOS
+- Persistencia: ultimo valor del observable objetivo.
+- Media de todo el prefijo, incluidos los extremos.
+- Media de los ultimos W ns, W={0.5,1,2,5,10}, solo W<=duracion del prefijo.
+  Ventana cerrada [t-W,t], con puntos originales cada 0.1 ns; sin interpolacion.
+- Media exponencialmente ponderada del prefijo, con semivida H={0.25,0.5,1,2,5} ns.
+  Peso del punto u: exp[-log(2)*(t-u)/H], normalizado por suma de pesos. No es una
+  prediccion extrapolada ni se usa la trayectoria posterior al prefijo.
+
+ELECCION DE BASELINE
+Se informan los candidatos fijos y tres procedimientos seleccionados:
+  trailing_mean_selected: W elegido entre medias finales;
+  ewma_selected: H elegido entre medias exponenciales;
+  simple_selected: eleccion conjunta entre persistencia, media completa y todos
+  los candidatos anteriores.
+En cada fold exterior se recorren los cuatro folds internos agrupados del helper
+previo. Se selecciona por MAE OOF interno del promedio de replicas por sistema.
+No hay parametros ajustados para un candidato fijo: sus predicciones dependen
+solo del prefijo; los folds internos definen que etiquetas pueden elegirlo.
+Desempate estable: persistencia, media completa, W ascendente, H ascendente.
+No se escoge el mejor candidato a posteriori usando errores exteriores.
+Se guarda candidato elegido por fold y puntuacion de CADA candidato interno.
+
+ABLACIONES RIDGE
+Rejilla de alpha ampliada previa, cuatro folds internos por grupos y mismo
+escalado de X/Y y ponderacion por replica que el ridge original.
+Las siguientes familias se aplican (a) al canal objetivo solo y (b) a todos los
+canales permitidos para el horizonte:
+  last: ultimo valor;
+  mean_std: media y desviacion poblacional;
+  mean_std_last: anteriores mas ultimo valor;
+  mean_std_last_slope: anteriores mas pendiente con tiempo en [-1,1];
+  full: anteriores mas minimo y maximo (los seis resumenes originales).
+A 20 ns, todos los canales son los ocho originales: full=48 caracteristicas.
+Se anade full sin los tres canales core: 30 caracteristicas.
+A 5/10 ns se excluyen SIEMPRE los canales core, definidos originalmente a 20 ns;
+todos los canales significa los cinco restantes, full=30 caracteristicas.
+El control de canal objetivo solo usa 1/2/3/4/6 caracteristicas.
+Core RMSD solo se admite a 20 ns con las etiquetas corregidas; no en 5/10 ns.
+Para cada ablacion se vuelve a seleccionar alpha dentro del entrenamiento.
+No se fijan coeficientes ni alpha de la version completa al retirar variables.
+
+ANALISIS PRINCIPAL Y SECUNDARIOS
+Principal: ridge full de todos los canales permitidos menos simple_selected,
+con error absoluto despues de agregar replicas y bootstrap de grupos completos.
+El resultado de 20 ns con ocho canales es la referencia del paper; a 5/10 ns
+la referencia usa cinco canales y no debe identificarse con el ridge original.
+Secundarios: full vs persistencia, media completa, trailing_selected y ewma_selected;
+full multicanal vs full del canal objetivo; full vs version sin core; incorporacion
+de ultimo valor, pendiente y extremos dentro de cada familia de canales.
+Tambien se comparan errores absolutos por replica promediados dentro de sistema,
+y se describen metricas por numero de replicas validas (1/2/3).
+IC 95%: 10000 resamples emparejados de grupos, semilla previa 20261016.
+Son IC descriptivos condicionados a los ajustes OOF; no se corrigen por multiples
+analisis, no se vuelve a entrenar en cada bootstrap y no son pruebas confirmatorias.
+
+EJECUCION Y LIMITES
+RMSD: horizontes 5,10,20 ns. Core/Rg/SASA/helice/lamina: 20 ns; helice/lamina
+tambien con ventanas constantes excluidas, sobre sus correspondientes mascaras.
+El paquete requiere dataset.npz y objetivos corregidos, aun no disponibles aqui.
+No se han calculado ni inventado resultados ATLAS de estas nuevas comparaciones.
+Si cambia la rejilla o el protocolo tras inspeccionar resultados, registrar otra
+version y conservar esta; no sustituir silenciosamente los experimentos anteriores.
