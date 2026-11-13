@@ -107,3 +107,11 @@ done
 - Ruta nueva sin sobrescritura de evidencias: `WORK/maintenance/paper2_cils_v3_relaunch_v1/`. Checkpoints verificables: `parts/include_000/complete.json`, `parts/exclude_000/complete.json`, cada uno con CSV, summary, log, SHA-256, walltime y RSS máximo del proceso hijo. Logs Slurm: `logs/pilot_JOBID.{out,err}`.
 - **Piloto ATLAS942**: aún NO ejecutado ni acreditado en esta revisión documental. Una vez que SCAYLE informe `COMPLETED 0:0`, ambos `SHARD_PASS` y verificaciones de hashes/filas, se publicarán el registro de Slurm, logs, checkpoints y medidas reales en esta carpeta con el commit resultante.
 - La consolidación de los **757 sistemas** solo está autorizada tras los **152 checkpoints** (76 fragmentos × 2 políticas), no tras el piloto.
+
+## 9. Incidencia del entorno de login: OpenBLAS (13/11/2026)
+
+El intento de verificación de Python en CALÉNDULA falló **antes de enviar** el piloto: el módulo Python 3.11.5 estaba cargado, pero OpenBLAS intentó inicializar 64 hilos con `RLIMIT_NPROC=50`. Se observaron `pthread_create failed`, error en la inicialización de NumPy y `Segmentation fault`. **Este fallo no prueba que el venv esté corrupto** y no afecta a los resultados previos del job 3344624.
+
+Solución operativa incorporada en [`instalar_piloto_cils_v3.sh`](instalar_piloto_cils_v3.sh): después de `module load Python/3.11.5-GCCcore-13.2.0` y activación del venv, definir **antes de cualquier importación** `OPENBLAS_NUM_THREADS=1`, `OMP_NUM_THREADS=1`, `MKL_NUM_THREADS=1`, `NUMEXPR_NUM_THREADS=1`, `BLIS_NUM_THREADS=1`, `VECLIB_MAXIMUM_THREADS=1`, `PYTHONNOUSERSITE=1`. El script del `.sbatch` del piloto ya limitaba los hilos principales, por lo que la incidencia corresponde al **preflight en login**, no al rendimiento observado del job previo.
+
+**Comprobación aún pendiente:** una nueva salida `ENTORNO=PASS` de CALÉNDULA, las pruebas `SELFTEST=PASS` y, después, `PILOT_SUBMITTED_JOB`; no se afirma que el piloto esté lanzado.
