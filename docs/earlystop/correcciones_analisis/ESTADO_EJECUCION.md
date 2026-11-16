@@ -26,3 +26,7 @@ El `0:0` del registro principal del job **no es éxito**, ya que `State=TIMEOUT`
 **Conclusión:** no reintroducir a la memoria las tres evidencias retiradas. No se necesita ejecutar análisis adicionales para documentar el estado de este trabajo. Consultar también [`README.md`](README.md).
 
 `WORK=/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks`.
+
+## Actualización 16/11/2026 — piloto de reanudación
+
+El piloto `3387582` (fragmento 000, 10 sistemas, políticas `include` y `exclude`) terminó **`COMPLETED 0:0`** en 01:36:49, con 180 filas por política y 131,6 MiB de memoria máxima. Mide solo la construcción de objetivos. Los 75 fragmentos restantes **no** se han lanzado y validation/test no se han abierto. Detalle, verificaciones pendientes y propuesta de recursos: [`PILOTO_3387582_RESULTADO.md`](PILOTO_3387582_RESULTADO.md).
