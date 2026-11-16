@@ -1,5 +1,7 @@
 # CILS v3: pruebas en SCAYLE y envío de piloto 3387582
 
+> **Actualización 16/11/2026:** el piloto 3387582 terminó `COMPLETED 0:0` en 01:36:49. Resultado y proyección de recursos en [`PILOTO_3387582_RESULTADO.md`](PILOTO_3387582_RESULTADO.md). Este documento se conserva como registro del envío.
+
 Fecha de registro: **13/11/2026**. Fuente: salida de terminal CALÉNDULA aportada tras ejecutar el instalador; este documento **no implica** lectura independiente de los archivos en SCAYLE. **No se han abierto validation/test ni enviado los 75 fragmentos restantes.**
 
 ## Entorno y distribución

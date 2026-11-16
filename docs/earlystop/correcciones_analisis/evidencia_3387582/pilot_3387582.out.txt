@@ -1,0 +1,10 @@
+# Captura pegada por Miti (cola del stdout, pilot_3387582.out). pilot_3387582.err estaba vacío.
+Loading Python/3.11.5-GCCcore-13.2.0
+PILOT_START job=3387582 time=2026-11-13T13:54:54+01:00
+SHARD_START shard=000 policy=include log=.../parts/.partial_include_000_hdv8scm_/build.log
+SHARD_PASS shard=000 policy=include systems=10 rows=180 elapsed_sec=2902.387 maxrss_kib=117424
+SHARD_START shard=000 policy=exclude log=.../parts/.partial_exclude_000_z17zbb22/build.log
+SHARD_PASS shard=000 policy=exclude systems=10 rows=180 elapsed_sec=2902.333 maxrss_kib=120340
+PILOT_CHECKPOINT include systems 10 rows 180 wall_seconds 2902.387 maxrss_kib 117424 cpu_seconds 2854.421
+PILOT_CHECKPOINT exclude systems 10 rows 180 wall_seconds 2902.333 maxrss_kib 120340 cpu_seconds 2887.11
+PILOT_PASS job=3387582 time=2026-11-13T15:31:42+01:00
