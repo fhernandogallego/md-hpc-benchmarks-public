@@ -7,7 +7,12 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 from pathlib import Path
+
+# Keep the lightweight split generator within SCAYLE login-node process quotas.
+for name in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[name] = "1"
 
 import numpy as np
 

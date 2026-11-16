@@ -51,6 +51,8 @@ que contenga la rama de trabajo del segundo paper. Primero inventariar las
 ejecuciones que existen en SCAYLE:
 
 ```bash
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1 BLIS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
 python -m src.paper2.inventory_atlas_packages \
   --runs-root "$SCRATCH/md-hpc-benchmarks/results/atlas_pipeline_runs" \
   --output-dir "$SCRATCH/md-hpc-benchmarks/results/paper2_hito0_inventory"
