@@ -29,4 +29,4 @@ El `0:0` del registro principal del job **no es éxito**, ya que `State=TIMEOUT`
 
 ## Actualización 16/11/2026 — piloto de reanudación
 
-El piloto `3387582` (fragmento 000, 10 sistemas, políticas `include` y `exclude`) terminó **`COMPLETED 0:0`** en 01:36:49, con 180 filas por política y 131,6 MiB de memoria máxima. Mide solo la construcción de objetivos. Los 75 fragmentos restantes **no** se han lanzado y validation/test no se han abierto. Detalle, verificaciones pendientes y propuesta de recursos: [`PILOTO_3387582_RESULTADO.md`](PILOTO_3387582_RESULTADO.md).
+El piloto `3387582` (fragmento 000, 10 sistemas, políticas `include` y `exclude`) terminó **`COMPLETED 0:0`** en 01:36:49, con 180 filas por política y 131,6 MiB de memoria máxima; el verificador de salida da `PILOT_VALIDATED=PASS` y `PAIR_VALIDATED=PASS` (hashes, esquema, orden y `n_problems=0`). Mide solo la construcción de objetivos. Los 75 fragmentos restantes **no** se han lanzado y validation/test no se han abierto. Detalle, límites y propuesta de recursos: [`PILOTO_3387582_RESULTADO.md`](PILOTO_3387582_RESULTADO.md).
