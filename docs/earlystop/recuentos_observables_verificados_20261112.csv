@@ -1,0 +1,11 @@
+universo,observable,sistemas_entrada,replicas_posibles,sistemas_retenidos,replicas_retenidas,sistemas_sin_replica_valida,replicas_invalidas
+train_924,rmsd_master,924,2772,760,1253,164,1519
+train_924,rg,924,2772,725,1154,199,1618
+train_924,sasa,924,2772,860,1675,64,1097
+train_924,helix,924,2772,878,1864,46,908
+train_924,strand,924,2772,878,1864,46,908
+rmsd_futuro_757,rmsd_master,757,2271,757,1250,0,1021
+rmsd_futuro_757,rg,757,2271,610,995,147,1276
+rmsd_futuro_757,sasa,757,2271,701,1386,56,885
+rmsd_futuro_757,helix,757,2271,728,1547,29,724
+rmsd_futuro_757,strand,757,2271,728,1547,29,724

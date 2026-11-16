@@ -1,0 +1,4 @@
+particion,sistemas,grupos,manifest_sha256,calibration_confirmada,grupo_cruzado
+train,924,817,bb12305d7ed029ec7c072e1789b357c77420ef35aeca39ed69469217a7109d37,NO,0
+validation,9,9,bb12305d7ed029ec7c072e1789b357c77420ef35aeca39ed69469217a7109d37,NO,0
+test,9,9,bb12305d7ed029ec7c072e1789b357c77420ef35aeca39ed69469217a7109d37,NO,0

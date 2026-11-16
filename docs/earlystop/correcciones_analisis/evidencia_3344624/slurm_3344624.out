@@ -1,0 +1,13 @@
+Loading Python/3.11.5-GCCcore-13.2.0
+  Loading requirement: GCCcore/13.2.0 zlib/1.2.13-GCCcore-13.2.0
+    binutils/2.40-GCCcore-13.2.0 bzip2/1.0.8-GCCcore-13.2.0
+    ncurses/6.4-GCCcore-13.2.0 libreadline/8.2-GCCcore-13.2.0
+    Tcl/8.6.13-GCCcore-13.2.0 SQLite/3.43.1-GCCcore-13.2.0
+    XZ/5.4.4-GCCcore-13.2.0 libffi/3.4.4-GCCcore-13.2.0 OpenSSL/1.1
+JOB_ID=3344624
+MODO=full
+2026-11-12T10:19:00+01:00
+Python: /home/uva_dma_2/uva_dma_2_1/venvs/md-poc-py311/bin/python3 3.11.5
+NumPy: 1.26.4
+Pandas: 2.2.3
+PyMBAR: 4.0.3

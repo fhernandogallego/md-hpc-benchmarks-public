@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 from datetime import datetime, timezone
@@ -33,11 +34,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--source",
         action="append",
-        required=True,
         metavar="SYSTEM=RELEASE",
         help=(
             "Validated source release. Repeat once per system. "
             "Example: --source 1k5n_A=/path/to/release"
+        ),
+    )
+
+    parser.add_argument(
+        "--source-manifest",
+        type=Path,
+        help=(
+            "CSV with system,release columns. Relative release paths "
+            "are relative to the CSV. Useful for large ATLAS batches."
         ),
     )
 
@@ -114,6 +123,27 @@ def parse_source(value: str) -> tuple[str, Path]:
         )
 
     return system, Path(release_text).expanduser()
+
+
+def read_source_manifest(path: Path) -> list[tuple[str, Path]]:
+    path = path.expanduser().resolve()
+    with path.open(encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        if not {"system", "release"}.issubset(reader.fieldnames or []):
+            raise ValueError("Source manifest needs system,release columns")
+        sources = []
+        for row in reader:
+            system = row["system"].strip()
+            release_text = row["release"].strip()
+            if not system or not release_text:
+                raise ValueError("Source manifest contains an empty system or release")
+            release = Path(release_text).expanduser()
+            if not release.is_absolute():
+                release = path.parent / release
+            sources.append((system, release))
+    if not sources:
+        raise ValueError("Source manifest contains no systems")
+    return sources
 
 
 def mask_signature(mask: np.ndarray) -> str:
@@ -263,8 +293,12 @@ def main() -> None:
 
     parsed_sources = [
         parse_source(value)
-        for value in args.source
+        for value in (args.source or [])
     ]
+    if args.source_manifest:
+        parsed_sources.extend(read_source_manifest(args.source_manifest))
+    if not parsed_sources:
+        raise ValueError("Provide --source or --source-manifest")
 
     systems = [
         system
@@ -712,7 +746,7 @@ def main() -> None:
     print("MULTI-SYSTEM DATASET ASSEMBLY")
     print("=" * 80)
 
-    for source in sources:
+    for source in sources[:20]:
         print(
             f"{source['system']}: "
             f"{source['X_raw'].shape[0]} samples, "
@@ -721,8 +755,11 @@ def main() -> None:
             "valid targets"
         )
 
+    if len(sources) > 20:
+        print(f"... {len(sources) - 20} additional systems (see manifest/metadata)")
+
     print()
-    print(f"Systems:            {systems}")
+    print(f"Systems:            {len(systems)}")
     print(f"X_raw:              {X_raw.shape}")
     print(
         f"target_values:      "
@@ -741,7 +778,7 @@ def main() -> None:
         f"{int(target_mask.sum())}/"
         f"{target_mask.size}"
     )
-    print(f"Sample IDs:         {sample_ids}")
+    print(f"Sample IDs:         {len(sample_ids)} (see sample manifest)")
     print()
     print(f"Output: {output_dir}")
     print()

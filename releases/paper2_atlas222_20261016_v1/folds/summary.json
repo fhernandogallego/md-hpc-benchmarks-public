@@ -1,0 +1,44 @@
+{
+  "seed": 20261016,
+  "systems": 170,
+  "groups": 149,
+  "valid_replicas": 288,
+  "folds": [
+    {
+      "fold": 0,
+      "eval_systems": 34,
+      "eval_groups": 29,
+      "eval_replicas": 55
+    },
+    {
+      "fold": 1,
+      "eval_systems": 34,
+      "eval_groups": 30,
+      "eval_replicas": 51
+    },
+    {
+      "fold": 2,
+      "eval_systems": 34,
+      "eval_groups": 30,
+      "eval_replicas": 60
+    },
+    {
+      "fold": 3,
+      "eval_systems": 34,
+      "eval_groups": 30,
+      "eval_replicas": 64
+    },
+    {
+      "fold": 4,
+      "eval_systems": 34,
+      "eval_groups": 30,
+      "eval_replicas": 58
+    }
+  ],
+  "group_overlap_between_folds": false,
+  "target_values_used_for_assignment": false,
+  "inner_selection_must_also_respect_groups": true,
+  "assignment_sha256": "79b983deb8c1f857fb7a22ce05dcdd107dbb1ff4fd37ee2971c046e7564e2149",
+  "targets_sha256": "3caa09b9171ea5d12dccc3d9b9f44b0e2eff622083c849e31f623c876a53c1d9",
+  "folds_sha256": "a450886546d0b9ed2a3ed7e377b31da45af2127070651ab9df61aa4fea3b9d38"
+}

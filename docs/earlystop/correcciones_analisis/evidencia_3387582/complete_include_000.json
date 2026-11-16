@@ -1,0 +1,20 @@
+{
+  "builder_sha256": "facb86a58556600b67eda466f4688835afb64507368c3717bbb3f1676eadb12e",
+  "child_cpu_seconds": 2854.421,
+  "child_maxrss_kib": 117424,
+  "config_sha256": "90352d9c0e70e4090d3eac884d8fca37f13d02b14f02a87d9a9a008ce9fb4e20",
+  "elapsed_seconds": 2902.387,
+  "files": {
+    "build.log": "4781be8958550de71243a8f66c8937a22dec1f70d515e6244848860b49a912e3",
+    "targets.csv": "2f22693a4378f5862898115b41fc13df27962e3ca68867c09b819a3252e3417f",
+    "targets.summary.json": "e3e958a250ba4b62552adf1f68ac69784da87dc8c8e2ce1deecd3bd196bf05ca"
+  },
+  "finished": "2026-11-13T13:43:19.710998+00:00",
+  "n_rows": 180,
+  "n_systems": 10,
+  "plan_sha256": "72d250f081670d3f7c2d3d964a861292fd2f19cf0f18a7ba49acc27f93334e06",
+  "policy": "include",
+  "shard": 0,
+  "shard_sha256": "315310d50cded87072dc0b070cc2fd632f5642642d8095171f64686fb97556c5",
+  "version": 1
+}

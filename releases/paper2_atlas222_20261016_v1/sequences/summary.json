@@ -1,0 +1,353 @@
+{
+  "systems_expected": 222,
+  "systems_with_consistent_sequences": 222,
+  "candidate_pdbs_parsed": 435,
+  "unique_exact_sequences": 198,
+  "exact_duplicate_groups": [
+    {
+      "systems": [
+        "1b2s_E",
+        "1b2s_F"
+      ],
+      "scopes": {
+        "1b2s_E": "new_unassigned",
+        "1b2s_F": "new_unassigned"
+      },
+      "length": 90
+    },
+    {
+      "systems": [
+        "1ef1_C",
+        "1ef1_D"
+      ],
+      "scopes": {
+        "1ef1_C": "new_unassigned",
+        "1ef1_D": "new_unassigned"
+      },
+      "length": 90
+    },
+    {
+      "systems": [
+        "1x6i_A",
+        "1x6j_A"
+      ],
+      "scopes": {
+        "1x6i_A": "new_unassigned",
+        "1x6j_A": "new_unassigned"
+      },
+      "length": 91
+    },
+    {
+      "systems": [
+        "2dlb_A",
+        "2dlb_B"
+      ],
+      "scopes": {
+        "2dlb_A": "new_unassigned",
+        "2dlb_B": "new_unassigned"
+      },
+      "length": 80
+    },
+    {
+      "systems": [
+        "2hnu_A",
+        "2hnu_B"
+      ],
+      "scopes": {
+        "2hnu_A": "new_unassigned",
+        "2hnu_B": "new_unassigned"
+      },
+      "length": 81
+    },
+    {
+      "systems": [
+        "2i9x_A",
+        "2i9x_B"
+      ],
+      "scopes": {
+        "2i9x_A": "new_unassigned",
+        "2i9x_B": "new_unassigned"
+      },
+      "length": 87
+    },
+    {
+      "systems": [
+        "2qsk_A",
+        "2qt4_A"
+      ],
+      "scopes": {
+        "2qsk_A": "new_unassigned",
+        "2qt4_A": "new_unassigned"
+      },
+      "length": 95
+    },
+    {
+      "systems": [
+        "2y4x_A",
+        "2y4x_B"
+      ],
+      "scopes": {
+        "2y4x_A": "new_unassigned",
+        "2y4x_B": "new_unassigned"
+      },
+      "length": 93
+    },
+    {
+      "systems": [
+        "3a1g_A",
+        "3a1g_C"
+      ],
+      "scopes": {
+        "3a1g_A": "new_unassigned",
+        "3a1g_C": "new_unassigned"
+      },
+      "length": 80
+    },
+    {
+      "systems": [
+        "3a39_A",
+        "5wqq_A"
+      ],
+      "scopes": {
+        "3a39_A": "new_unassigned",
+        "5wqq_A": "new_unassigned"
+      },
+      "length": 83
+    },
+    {
+      "systems": [
+        "3ajf_A",
+        "3ajf_B"
+      ],
+      "scopes": {
+        "3ajf_A": "new_unassigned",
+        "3ajf_B": "new_unassigned"
+      },
+      "length": 94
+    },
+    {
+      "systems": [
+        "3b4q_A",
+        "3b4q_B"
+      ],
+      "scopes": {
+        "3b4q_A": "new_unassigned",
+        "3b4q_B": "new_unassigned"
+      },
+      "length": 94
+    },
+    {
+      "systems": [
+        "3bpj_B",
+        "3bpj_C"
+      ],
+      "scopes": {
+        "3bpj_B": "new_unassigned",
+        "3bpj_C": "new_unassigned"
+      },
+      "length": 80
+    },
+    {
+      "systems": [
+        "3nrl_A",
+        "3nrl_B"
+      ],
+      "scopes": {
+        "3nrl_A": "new_unassigned",
+        "3nrl_B": "new_unassigned"
+      },
+      "length": 81
+    },
+    {
+      "systems": [
+        "3ofg_A",
+        "3ofg_B"
+      ],
+      "scopes": {
+        "3ofg_A": "new_unassigned",
+        "3ofg_B": "new_unassigned"
+      },
+      "length": 95
+    },
+    {
+      "systems": [
+        "3pes_A",
+        "3pes_B"
+      ],
+      "scopes": {
+        "3pes_A": "new_unassigned",
+        "3pes_B": "new_unassigned"
+      },
+      "length": 85
+    },
+    {
+      "systems": [
+        "3vc8_A",
+        "3vc8_B"
+      ],
+      "scopes": {
+        "3vc8_A": "new_unassigned",
+        "3vc8_B": "new_unassigned"
+      },
+      "length": 94
+    },
+    {
+      "systems": [
+        "3zzo_A",
+        "3zzr_A"
+      ],
+      "scopes": {
+        "3zzo_A": "new_unassigned",
+        "3zzr_A": "new_unassigned"
+      },
+      "length": 95
+    },
+    {
+      "systems": [
+        "4gip_A",
+        "4gip_B"
+      ],
+      "scopes": {
+        "4gip_A": "new_unassigned",
+        "4gip_B": "new_unassigned"
+      },
+      "length": 81
+    },
+    {
+      "systems": [
+        "4jo7_A",
+        "4jo7_C"
+      ],
+      "scopes": {
+        "4jo7_A": "new_unassigned",
+        "4jo7_C": "new_unassigned"
+      },
+      "length": 89
+    },
+    {
+      "systems": [
+        "4u5h_B",
+        "4u5h_G"
+      ],
+      "scopes": {
+        "4u5h_B": "new_unassigned",
+        "4u5h_G": "new_unassigned"
+      },
+      "length": 90
+    },
+    {
+      "systems": [
+        "6fbz_B",
+        "6fc0_B"
+      ],
+      "scopes": {
+        "6fbz_B": "new_unassigned",
+        "6fc0_B": "new_unassigned"
+      },
+      "length": 81
+    },
+    {
+      "systems": [
+        "6h86_A",
+        "6h86_B"
+      ],
+      "scopes": {
+        "6h86_A": "new_unassigned",
+        "6h86_B": "new_unassigned"
+      },
+      "length": 88
+    },
+    {
+      "systems": [
+        "7a66_B",
+        "7a66_C"
+      ],
+      "scopes": {
+        "7a66_B": "new_unassigned",
+        "7a66_C": "new_unassigned"
+      },
+      "length": 86
+    }
+  ],
+  "same_pdb_groups": [
+    [
+      "2dlb_A",
+      "2dlb_B"
+    ],
+    [
+      "2hnu_A",
+      "2hnu_B"
+    ],
+    [
+      "3a1g_A",
+      "3a1g_C"
+    ],
+    [
+      "3bpj_B",
+      "3bpj_C"
+    ],
+    [
+      "3nrl_A",
+      "3nrl_B"
+    ],
+    [
+      "4gip_A",
+      "4gip_B"
+    ],
+    [
+      "3pes_A",
+      "3pes_B"
+    ],
+    [
+      "2i9x_A",
+      "2i9x_B"
+    ],
+    [
+      "4jo7_A",
+      "4jo7_C"
+    ],
+    [
+      "6h86_A",
+      "6h86_B"
+    ],
+    [
+      "7a66_B",
+      "7a66_C"
+    ],
+    [
+      "1b2s_E",
+      "1b2s_F"
+    ],
+    [
+      "1ef1_C",
+      "1ef1_D"
+    ],
+    [
+      "4u5h_B",
+      "4u5h_G"
+    ],
+    [
+      "2y4x_A",
+      "2y4x_B"
+    ],
+    [
+      "3ajf_A",
+      "3ajf_B"
+    ],
+    [
+      "3b4q_A",
+      "3b4q_B"
+    ],
+    [
+      "3ofg_A",
+      "3ofg_B"
+    ],
+    [
+      "3vc8_A",
+      "3vc8_B"
+    ]
+  ],
+  "issues": [],
+  "scope": "observed_CA_residue_sequences_not_full_reference_sequences",
+  "split_modified": false
+}

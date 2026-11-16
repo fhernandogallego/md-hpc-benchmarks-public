@@ -1,0 +1,25 @@
+{
+  "source_bundle": "paper2_atlas942_20261103_v1",
+  "source_bundle_manifest_sha256": "2c951ed486afc2ae559a57f54a5d1e10d897cf15d7c9d43370c151feaa799224",
+  "copied_files_sha256": {
+    "summary.json": "742b91676b90baff08f6d9486a8bd992689e807c66b1bb8c867ed606e23efc25",
+    "training/system_metrics.csv": "acaa4a27b2193fedcd26d2f51d742ff64a70df7974e108179b4933744edcd797",
+    "training/paired_audit.json": "336019ae5a5d341d4b00b6f59dfd53e92839769fbc72ae1d294694b88720057c",
+    "training/full_train/metadata.json": "83f5afa21e81c2bab30bf15469c4766e05f98d98eb924d6adc23ff29bf2da900",
+    "cleanup/summary.json": "3d08e594c09f4eeac84028f097ceb8091b3c75e22b07aa1b56ed81ae9a42482c",
+    "training/fold_0/metadata.json": "f1f54b7d69c3ace100330523574c857da827e7f0b417f5e5881ecf97e2cdfe1a",
+    "training/fold_1/metadata.json": "24b9d8ac0dc48ef2d991cd94186de7bcc16f63f0099744419f3b57d670a2823a",
+    "training/fold_2/metadata.json": "04f81246b64764e87ddc561b5821734423dbb5703be9e80dd35b5dacb3599ada",
+    "training/fold_3/metadata.json": "3b0bd12e61116abb542e5ec1afa3864af8c14deadfe73219e5c4a75cf5ef2924",
+    "training/fold_4/metadata.json": "ca078329ec350a4bb2a13d0e88bc8ac4c45e75a6fe450f003bd5abf6451d4460",
+    "training/code/full_fit.py": "eee3d8772c238dcbf5fc52519a933c0415c35a6572321a94397d947961e7cd99",
+    "training/code/future_builder.py": "983e14a2f7f52683cead5283a479ac581ad74e4194eb7235e014c5c8b21d25d2",
+    "training/code/run_hito0_gru_rmsd.py": "558a1dccf527431406307dc26f8c7f70bd714d6546da450d96bf33527a247bc8",
+    "training/code/src/modeling/train_ridge_summary_outer.py": "83e54a4abf1426a4c8af284a760c73a36a9746e5e86130e74574aa93aeb933d7",
+    "training/code/src/paper2/run_hito0_baselines.py": "ef2e4f0ccfb8d51b3a927c13b04ab1209a73f09803946892f5a184ba5a937805",
+    "training/code/train_atlas222_grouped.py": "ded2a39c1f10c1a9dac1cceab4ffc018c7eb7a7b35067369c6785978dfe91814",
+    "training/code/worker.py": "eb536c477fe942dddbe8c310110730d7cb04fc99dccc9f4c7aba5b463d403472"
+  },
+  "weights_included": false,
+  "dataset_included": false
+}

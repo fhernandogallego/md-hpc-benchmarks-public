@@ -1,0 +1,6 @@
+# Captura pegada por Miti desde CALENDULA el 16/11/2026: sacct -j 3387582 -P --format=JobID,JobName,State,ExitCode,Elapsed,Timelimit,AllocCPUS,ReqMem,MaxRSS,TotalCPU,Start,End,NodeList
+JobID|JobName|State|ExitCode|Elapsed|Timelimit|AllocCPUS|ReqMem|MaxRSS|TotalCPU|Start|End|NodeList
+3387582|cils_v3_pilot_000|COMPLETED|0:0|01:36:49|06:00:00|1|8G||01:35:42|2026-11-13T13:54:53|2026-11-13T15:31:42|cn7180
+3387582.batch|batch|COMPLETED|0:0|01:36:49||1||134795K|01:35:42|2026-11-13T13:54:53|2026-11-13T15:31:42|cn7180
+3387582.extern|extern|COMPLETED|0:0|01:36:49||1|||00:00:00|2026-11-13T13:54:53|2026-11-13T15:31:42|cn7180
+# squeue -j 3387582 -> "slurm_load_jobs error: Invalid job id specified" (el trabajo ya no está en cola)

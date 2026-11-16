@@ -1,0 +1,13 @@
+# Captura pegada por Miti desde CALENDULA el 16/11/2026: verificador instalado + comprobación include/exclude.
+# Se ejecutó en un subshell con `module purge; module load Python/3.11.5-GCCcore-13.2.0` (sin el módulo falla con
+# "libpython3.11.so.1.0: cannot open shared object file"; no es un fallo del piloto). PYTHONDONTWRITEBYTECODE=1.
+PILOT_JOB_ID=3387582
+JobID|State|ExitCode|Elapsed|Timelimit|AllocCPUS|ReqMem|MaxRSS
+3387582|COMPLETED|0:0|01:36:49|06:00:00|1|8G|
+3387582.batch|COMPLETED|0:0|01:36:49||1||134795K
+3387582.extern|COMPLETED|0:0|01:36:49||1||
+[... stdout del piloto: ver pilot_3387582.out.txt; pilot_3387582.err vacío ...]
+PILOT_VERIFIED include systems 10 rows 180 wall_seconds 2902.387 cpu_seconds 2854.421 maxrss_kib 117424 sha256 2f22693a4378f5862898115b41fc13df27962e3ca68867c09b819a3252e3417f
+PILOT_VERIFIED exclude systems 10 rows 180 wall_seconds 2902.333 cpu_seconds 2887.11 maxrss_kib 120340 sha256 f1c9287a56b4956849eb8116126f616e145032b25f811c73c421210610fc12aa
+PILOT_VALIDATED=PASS; REST_OF_ARRAY_NOT_SUBMITTED
+PAIR_VALIDATED=PASS

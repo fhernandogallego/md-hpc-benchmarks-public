@@ -1,0 +1,23 @@
+{
+  "files": {
+    "atlas222_cv_worker.sbatch": "00d02a8da1d15004c898c47aacf660469fe245be6d28c3b621477bf3e06f3f39",
+    "code/run_hito0_gru_rmsd.py": "6ea3859eef5bb1c8d8edad6a81ae6a52a88b70bdc9d3d72a847010087426eea4",
+    "code/src/modeling/train_ridge_summary_outer.py": "816a0dffc10e28093848b3208b349fef716a74e7a004a1d64c61a82577da29f7",
+    "code/src/paper2/run_hito0_baselines.py": "4b77977aea4ca6d4eedc3372033b036c52ed89f39f6b459f5fe1a686a1c91267",
+    "code/train_atlas222_grouped.py": "877c77bc85a10b0fbaad35705faf4418bddc22e1edba306dd42ae8c7d7b67d10",
+    "dataset.npz": "ea2e00c4a542c8e95ca155be58e5e36e70f2985b220f83cf2cb2521168ae4058",
+    "outer_folds.csv": "a450886546d0b9ed2a3ed7e377b31da45af2127070651ab9df61aa4fea3b9d38",
+    "train_future_rmsd_rows.csv": "3caa09b9171ea5d12dccc3d9b9f44b0e2eff622083c849e31f623c876a53c1d9"
+  },
+  "scope": "train_only_future_RMSD_grouped_CV",
+  "hidden_size": 32,
+  "max_epochs": 150,
+  "ridge_alphas": [
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "base_seed": 20261007
+}

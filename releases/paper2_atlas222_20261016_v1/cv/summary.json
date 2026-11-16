@@ -1,0 +1,52 @@
+{
+  "scope": "train_only_grouped_cv_future_RMSD",
+  "systems": 170,
+  "groups": 149,
+  "replicas": 288,
+  "outer_folds": 5,
+  "validation_test_evaluated": false,
+  "confidence_intervals": "pending_group_resampling",
+  "predictions_sha256": "5fdc78cfe10b5f639e74d4060ae34d4a54da523bee9cd2278a7879aa23a475f9",
+  "metrics": [
+    {
+      "model": "trained_mean",
+      "n_systems": 170,
+      "n_groups": 149,
+      "mae": 2.227470790607647,
+      "rmse": 3.1261870349366685,
+      "r2": -0.007903271485067087
+    },
+    {
+      "model": "last_value_persistence",
+      "n_systems": 170,
+      "n_groups": 149,
+      "mae": 0.7289329002993874,
+      "rmse": 1.267452594177192,
+      "r2": 0.8343267511392733
+    },
+    {
+      "model": "snapshot0_ridge",
+      "n_systems": 170,
+      "n_groups": 149,
+      "mae": 1.75598887620825,
+      "rmse": 2.41463440699747,
+      "r2": 0.39869930043238744
+    },
+    {
+      "model": "ridge_summary",
+      "n_systems": 170,
+      "n_groups": 149,
+      "mae": 0.7871148133851742,
+      "rmse": 1.2278757439146795,
+      "r2": 0.8445116768605584
+    },
+    {
+      "model": "gru_residual_rmsd_pilot",
+      "n_systems": 170,
+      "n_groups": 149,
+      "mae": 0.70345834735384,
+      "rmse": 1.2259922936409513,
+      "r2": 0.8449883210487986
+    }
+  ]
+}

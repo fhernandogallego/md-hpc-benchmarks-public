@@ -1,0 +1,35 @@
+{
+  "default_t0_ns": 0.0,
+  "targets": {
+    "core_rmsd_q30": {
+      "column": "replica_prefix_rmsd_A",
+      "series_file": "core_R{r}_csv",
+      "equilibration": "detect"
+    },
+    "helix": {
+      "column": "helix_fraction",
+      "master_target_name": "helix",
+      "series_file": "sasa_R{r}_csv"
+    },
+    "rg": {
+      "column": "radius_gyration_A",
+      "master_target_name": "rg",
+      "series_file": "basic_R{r}_csv"
+    },
+    "rmsd": {
+      "column": "rmsd_backbone_A",
+      "master_target_name": "rmsd",
+      "series_file": "basic_R{r}_csv"
+    },
+    "sasa": {
+      "column": "total_sasa_A2",
+      "master_target_name": "sasa",
+      "series_file": "sasa_R{r}_csv"
+    },
+    "strand": {
+      "column": "strand_fraction",
+      "master_target_name": "strand",
+      "series_file": "sasa_R{r}_csv"
+    }
+  }
+}

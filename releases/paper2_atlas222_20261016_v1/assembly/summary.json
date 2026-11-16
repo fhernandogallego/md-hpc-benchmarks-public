@@ -1,0 +1,18 @@
+{
+  "systems": 222,
+  "samples": 666,
+  "new_systems_included": 142,
+  "new_systems_not_eligible": [
+    "3txs_C"
+  ],
+  "X_raw_shape": [
+    666,
+    201,
+    8
+  ],
+  "targets": "original_pipeline_targets_not_future_only",
+  "new_split_created": false,
+  "atlas80_split_sha256": "d31ef5c7d5fcea49e4f6414ea8bb70254ee5c63008b8c02707ab462c31e24bee",
+  "atlas80_metadata_sha256": "1899e3121864ced9e7b50bcf9a4ee5f7bd7614202af035a7f9a45cd442ad6181",
+  "dataset_sha256": "ea2e00c4a542c8e95ca155be58e5e36e70f2985b220f83cf2cb2521168ae4058"
+}

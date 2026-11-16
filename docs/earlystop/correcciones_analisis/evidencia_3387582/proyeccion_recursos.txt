@@ -1,0 +1,13 @@
+Tarea (10 sistemas, 1 política): 2902.4 s = 48.4 min; 290.2 s por sistema y política
+MaxRSS hijo: 117.5 MiB; CPU/wall = 0.989
+Resto (150 tareas: 148 de 10 sistemas + 2 de 7): 433613 s = 120.4 h de CPU (1 núcleo)
+Total 757 sistemas × 2 políticas: 122.1 h de CPU
+
+| Concurrencia (tareas a la vez) | Oleadas | Tiempo de reloj aprox. |
+|---|---|---|
+| 5 | 30 | 24.2 h |
+| 10 | 15 | 12.1 h |
+| 15 | 10 | 8.1 h |
+| 25 | 6 | 4.8 h |
+| 50 | 3 | 2.4 h |
+| 75 | 2 | 1.6 h |
