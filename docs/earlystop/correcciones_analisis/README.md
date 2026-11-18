@@ -58,7 +58,7 @@ La cancelación documentada es por límite de tiempo. No se ha demostrado un fal
 
 El **13/11/2026** se verificó directamente en la sesión CALÉNDULA que el `selftest` de reanudación pasó sus **11 comprobaciones sintéticas**, que `init` congeló los **757 sistemas en 76 fragmentos**, y que Slurm aceptó el **piloto `3387582`** para el fragmento 000 (10 sistemas), en `sapphire`. El estado comunicado al enviar fue `PD`; no se ha acreditado todavía `COMPLETED`, los checkpoints reales ni la duración/RSS del piloto.
 
-Ver [`PILOTO_3387582_ESTADO_INICIAL.md`](PILOTO_3387582_ESTADO_INICIAL.md). **Resultado (16/11/2026): `COMPLETED 0:0`, 01:36:49, 131,6 MiB; ver [`PILOTO_3387582_RESULTADO.md`](PILOTO_3387582_RESULTADO.md).** **No iniciar los demás fragmentos** hasta revisar las medidas del piloto; el resultado científico de las tres correcciones continúa pendiente.
+Ver [`PILOTO_3387582_ESTADO_INICIAL.md`](PILOTO_3387582_ESTADO_INICIAL.md). **Resultado (16/11/2026): `COMPLETED 0:0`, 01:36:49, 131,6 MiB; ver [`PILOTO_3387582_RESULTADO.md`](PILOTO_3387582_RESULTADO.md).** **Bloque A completado el 18/11/2026 (757 sistemas, `MERGE_PASS`): [`BLOQUE_A_RESULTADO.md`](BLOQUE_A_RESULTADO.md).** **No iniciar los demás fragmentos** hasta revisar las medidas del piloto; el resultado científico de las tres correcciones continúa pendiente.
 
 ## Matriz de resultados que se solicitaron
 

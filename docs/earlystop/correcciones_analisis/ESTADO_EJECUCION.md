@@ -30,3 +30,7 @@ El `0:0` del registro principal del job **no es éxito**, ya que `State=TIMEOUT`
 ## Actualización 16/11/2026 — piloto de reanudación
 
 El piloto `3387582` (fragmento 000, 10 sistemas, políticas `include` y `exclude`) terminó **`COMPLETED 0:0`** en 01:36:49, con 180 filas por política y 131,6 MiB de memoria máxima; el verificador de salida da `PILOT_VALIDATED=PASS` y `PAIR_VALIDATED=PASS` (hashes, esquema, orden y `n_problems=0`). Mide solo la construcción de objetivos. Los 75 fragmentos restantes **no** se han lanzado y validation/test no se han abierto. Detalle, límites y propuesta de recursos: [`PILOTO_3387582_RESULTADO.md`](PILOTO_3387582_RESULTADO.md).
+
+## Actualización 18/11/2026 — bloque A (objetivos de los 757 sistemas)
+
+Array `3406133` (150/150 `COMPLETED`) y consolidación `3406134` (`MERGE_PASS systems=757 rows_per_policy=13626`). Comprobación de RMSD frente a la referencia `PASS` (máscara idéntica, diferencia 0,0 Å). Recuentos idénticos a la auditoría salvo el **core**, que pasa de 1 136 a 947 réplicas válidas por su equilibrado propio. **No hay aún resultados científicos corregidos** (calibración, prefijos, baselines, core). Detalle en [`BLOQUE_A_RESULTADO.md`](BLOQUE_A_RESULTADO.md).

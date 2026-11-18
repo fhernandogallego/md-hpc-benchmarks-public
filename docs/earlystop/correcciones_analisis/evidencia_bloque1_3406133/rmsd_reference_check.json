@@ -1,0 +1,7 @@
+{
+  "maximum_absolute_label_difference_A": 0.0,
+  "n_valid_replicas": 1243,
+  "original_sha256": "a403c51c3da35c5a9899928b7b7fe90265124abfb163dd214ad10971ceb9d81c",
+  "rebuilt_sha256": "b45242bee882b33583101b3b49c1487514c0386f3da91ee7639cce9995520294",
+  "valid_mask_identical": true
+}

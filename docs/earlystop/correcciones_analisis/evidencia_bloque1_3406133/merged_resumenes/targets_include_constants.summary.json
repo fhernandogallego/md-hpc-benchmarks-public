@@ -1,0 +1,42 @@
+{
+  "calculation": "revised_build_targets_sharded",
+  "config_sha256": "90352d9c0e70e4090d3eac884d8fca37f13d02b14f02a87d9a9a008ce9fb4e20",
+  "constant_policy": "include",
+  "inventory_sha256": "19365fc2b891c39ae86c0d520957772957ede9010d6a23675180b2797493ab9e",
+  "n_problems": 0,
+  "per_target": {
+    "core_rmsd_q30": {
+      "replicas": 2271,
+      "valid_replicas": 947,
+      "valid_systems": 595
+    },
+    "helix": {
+      "replicas": 2271,
+      "valid_replicas": 1549,
+      "valid_systems": 728
+    },
+    "rg": {
+      "replicas": 2271,
+      "valid_replicas": 992,
+      "valid_systems": 610
+    },
+    "rmsd": {
+      "replicas": 2271,
+      "valid_replicas": 1243,
+      "valid_systems": 757
+    },
+    "sasa": {
+      "replicas": 2271,
+      "valid_replicas": 1384,
+      "valid_systems": 701
+    },
+    "strand": {
+      "replicas": 2271,
+      "valid_replicas": 1547,
+      "valid_systems": 728
+    }
+  },
+  "script_sha256": "facb86a58556600b67eda466f4688835afb64507368c3717bbb3f1676eadb12e",
+  "shards": 76,
+  "targets_sha256": "b45242bee882b33583101b3b49c1487514c0386f3da91ee7639cce9995520294"
+}

@@ -1,0 +1,13 @@
+politica,objetivo,sistemas,replicas,replicas_validas,replicas_invalidas,sistemas_con_valida,sistemas_con_1_valida,sistemas_con_2_validas,sistemas_con_3_validas,inval_ventana constante,inval_sin ventana futura,inval_duración<20 ns,inval_neff<10,inval_duración<20 ns y neff<10,inval_otro
+include,core_rmsd_q30,757,2271,947,1324,595,301,236,58,0,0,1322,1,1,0
+include,helix,757,2271,1549,722,728,168,299,261,4,0,706,0,12,0
+include,rg,757,2271,992,1279,610,304,230,76,0,0,1274,3,2,0
+include,rmsd,757,2271,1243,1028,757,363,302,92,0,0,1019,8,1,0
+include,sasa,757,2271,1384,887,701,202,315,184,0,0,884,2,1,0
+include,strand,757,2271,1547,724,728,169,299,260,102,0,609,2,11,0
+exclude,core_rmsd_q30,757,2271,947,1324,595,301,236,58,0,0,1322,1,1,0
+exclude,helix,757,2271,1542,729,727,171,297,259,11,0,706,0,12,0
+exclude,rg,757,2271,992,1279,610,304,230,76,0,0,1274,3,2,0
+exclude,rmsd,757,2271,1243,1028,757,363,302,92,0,0,1019,8,1,0
+exclude,sasa,757,2271,1384,887,701,202,315,184,0,0,884,2,1,0
+exclude,strand,757,2271,1299,972,646,189,261,196,350,0,609,2,11,0

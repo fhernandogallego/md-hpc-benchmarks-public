@@ -1,0 +1,16 @@
+{
+  "cohort_scope": "train_only; no validation/test",
+  "constant_policy_comparison": "PASS; differences confined to constant windows",
+  "created": "2026-11-17T22:39:21.613500+00:00",
+  "n_shards": 76,
+  "n_systems": 757,
+  "plan_sha256": "72d250f081670d3f7c2d3d964a861292fd2f19cf0f18a7ba49acc27f93334e06",
+  "rows_per_policy": 13626,
+  "sha256": {
+    "targets_exclude_constants.csv": "880ab7d39b164140388468e30042da93eb6d1d819b580787b98a8a197cac7942",
+    "targets_exclude_constants.summary.json": "9b42c57955639ee9d63d5aa8148f516330a89f64a3c18636288045b858a51bac",
+    "targets_include_constants.csv": "b45242bee882b33583101b3b49c1487514c0386f3da91ee7639cce9995520294",
+    "targets_include_constants.summary.json": "bb73ec50bc361b76ccef90c3b0be157fba5b05205ee4d4e83fb6bb0b0c663793"
+  },
+  "version": 1
+}

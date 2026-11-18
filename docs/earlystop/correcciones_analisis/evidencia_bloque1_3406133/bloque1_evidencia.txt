@@ -1,0 +1,130 @@
+== array
+    150 COMPLETED
+== tiempo (s), 3 mayores
+3248
+3305
+3331
+== memoria máxima (paso batch)
+3406133_21.batch|139779K
+3406133_113.batch|140498K
+3406133_110.batch|140718K
+== consolidación
+JobID|State|ExitCode|Elapsed
+3406134|COMPLETED|0:0|00:00:14
+    Tcl/8.6.13-GCCcore-13.2.0 SQLite/3.43.1-GCCcore-13.2.0
+    XZ/5.4.4-GCCcore-13.2.0 libffi/3.4.4-GCCcore-13.2.0 OpenSSL/1.1
+VERIFIED_CHECKPOINTS=152/152
+NOT_VERIFIED=[]
+MERGE_PASS systems=757 rows_per_policy=13626
+== .err con contenido
+0
+== restos .partial
+0
+== MERGE_PASS
+{
+  "cohort_scope": "train_only; no validation/test",
+  "constant_policy_comparison": "PASS; differences confined to constant windows",
+  "created": "2026-11-17T22:39:21.613500+00:00",
+  "n_shards": 76,
+  "n_systems": 757,
+  "plan_sha256": "72d250f081670d3f7c2d3d964a861292fd2f19cf0f18a7ba49acc27f93334e06",
+  "rows_per_policy": 13626,
+  "sha256": {
+    "targets_exclude_constants.csv": "880ab7d39b164140388468e30042da93eb6d1d819b580787b98a8a197cac7942",
+    "targets_exclude_constants.summary.json": "9b42c57955639ee9d63d5aa8148f516330a89f64a3c18636288045b858a51bac",
+    "targets_include_constants.csv": "b45242bee882b33583101b3b49c1487514c0386f3da91ee7639cce9995520294",
+    "targets_include_constants.summary.json": "bb73ec50bc361b76ccef90c3b0be157fba5b05205ee4d4e83fb6bb0b0c663793"
+  },
+  "version": 1
+}
+== resúmenes
+{
+  "calculation": "revised_build_targets_sharded",
+  "config_sha256": "90352d9c0e70e4090d3eac884d8fca37f13d02b14f02a87d9a9a008ce9fb4e20",
+  "constant_policy": "include",
+  "inventory_sha256": "19365fc2b891c39ae86c0d520957772957ede9010d6a23675180b2797493ab9e",
+  "n_problems": 0,
+  "per_target": {
+    "core_rmsd_q30": {
+      "replicas": 2271,
+      "valid_replicas": 947,
+      "valid_systems": 595
+    },
+    "helix": {
+      "replicas": 2271,
+      "valid_replicas": 1549,
+      "valid_systems": 728
+    },
+    "rg": {
+      "replicas": 2271,
+      "valid_replicas": 992,
+      "valid_systems": 610
+    },
+    "rmsd": {
+      "replicas": 2271,
+      "valid_replicas": 1243,
+      "valid_systems": 757
+    },
+    "sasa": {
+      "replicas": 2271,
+      "valid_replicas": 1384,
+      "valid_systems": 701
+    },
+    "strand": {
+      "replicas": 2271,
+      "valid_replicas": 1547,
+      "valid_systems": 728
+    }
+  },
+  "script_sha256": "facb86a58556600b67eda466f4688835afb64507368c3717bbb3f1676eadb12e",
+  "shards": 76,
+  "targets_sha256": "b45242bee882b33583101b3b49c1487514c0386f3da91ee7639cce9995520294"
+}
+{
+  "calculation": "revised_build_targets_sharded",
+  "config_sha256": "90352d9c0e70e4090d3eac884d8fca37f13d02b14f02a87d9a9a008ce9fb4e20",
+  "constant_policy": "exclude",
+  "inventory_sha256": "19365fc2b891c39ae86c0d520957772957ede9010d6a23675180b2797493ab9e",
+  "n_problems": 0,
+  "per_target": {
+    "core_rmsd_q30": {
+      "replicas": 2271,
+      "valid_replicas": 947,
+      "valid_systems": 595
+    },
+    "helix": {
+      "replicas": 2271,
+      "valid_replicas": 1542,
+      "valid_systems": 727
+    },
+    "rg": {
+      "replicas": 2271,
+      "valid_replicas": 992,
+      "valid_systems": 610
+    },
+    "rmsd": {
+      "replicas": 2271,
+      "valid_replicas": 1243,
+      "valid_systems": 757
+    },
+    "sasa": {
+      "replicas": 2271,
+      "valid_replicas": 1384,
+      "valid_systems": 701
+    },
+    "strand": {
+      "replicas": 2271,
+      "valid_replicas": 1299,
+      "valid_systems": 646
+    }
+  },
+  "script_sha256": "facb86a58556600b67eda466f4688835afb64507368c3717bbb3f1676eadb12e",
+  "shards": 76,
+  "targets_sha256": "880ab7d39b164140388468e30042da93eb6d1d819b580787b98a8a197cac7942"
+}
+== hashes
+e82609e473064a553aa73e87e3eeb305f2dbf0fb682cc69000cb7099b82030fd  /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/maintenance/paper2_cils_v3_relaunch_v1/merged/MERGE_PASS.json
+880ab7d39b164140388468e30042da93eb6d1d819b580787b98a8a197cac7942  /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/maintenance/paper2_cils_v3_relaunch_v1/merged/targets_exclude_constants.csv
+9b42c57955639ee9d63d5aa8148f516330a89f64a3c18636288045b858a51bac  /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/maintenance/paper2_cils_v3_relaunch_v1/merged/targets_exclude_constants.summary.json
+b45242bee882b33583101b3b49c1487514c0386f3da91ee7639cce9995520294  /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/maintenance/paper2_cils_v3_relaunch_v1/merged/targets_include_constants.csv
+bb73ec50bc361b76ccef90c3b0be157fba5b05205ee4d4e83fb6bb0b0c663793  /scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/maintenance/paper2_cils_v3_relaunch_v1/merged/targets_include_constants.summary.json
