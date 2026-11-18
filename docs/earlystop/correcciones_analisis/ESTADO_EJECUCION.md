@@ -38,3 +38,7 @@ Array `3406133` (150/150 `COMPLETED`) y consolidación `3406134` (`MERGE_PASS sy
 ## Actualización 18/11/2026 — fase 2, primera ronda (RMSD)
 
 `intervals_rmsd`, `prefix_rmsd` y `temporal_rmsd` ejecutados y validados (particiones sin solapamiento, cobertura recomputada, ridge de 48 descriptores reproduce la referencia). A 5 y 10 ns el ridge mejora a persistencia y a los baselines simples; a 20 ns la ventaja sobre el mejor baseline simple no se distingue de cero. Cobertura de los intervalos al 90/95 % global cercana a la nominal, pero con infracobertura en los sistemas más variables (variante absoluta). Pendientes Rg, core, SASA, hélice y lámina. Detalle en [`FASE2_PRIMERA_RONDA_20261118.md`](FASE2_PRIMERA_RONDA_20261118.md).
+
+## Actualización 18/11/2026 — fase 2, segunda ronda
+
+Ejecutadas y validadas (`VALIDACION_FASE2=PASS`) las etapas de Rg, core, SASA, hélice, lámina y las políticas `exclude` de hélice y lámina; sus recuentos coinciden con los del bloque A. A 20 ns, frente a un baseline simple que promedia la parte final del prefijo, el ridge no mejora en ningún observable y es peor en Rg y lámina. Los intervalos tienen cobertura global cercana o superior a la nominal, con infracobertura en los sistemas más variables. Los resultados del core se mantienen fuera de la memoria hasta confirmar la definición de sus canales. Detalle en [`FASE2_SEGUNDA_RONDA_20261118.md`](FASE2_SEGUNDA_RONDA_20261118.md).

@@ -1,0 +1,27 @@
+prefix_ns,contrast,unit,primary,delta_mae,ci_low,ci_high,relative_change
+20,ridge_all_full - simple_selected,aggregate_system,True,-1.2711632027120459,-7.958058115107771,5.317616232821346,-0.008457766216404403
+20,ridge_all_full - simple_selected,mean_replica_absolute_error_per_system,False,-2.590926145197159,-8.720419012603362,3.471212561911221,-0.014379284047338658
+20,ridge_all_full - trailing_mean_selected,aggregate_system,False,-5.707162512400771,-12.957777873493747,1.2976190280292748,-0.03688432476518806
+20,ridge_all_full - trailing_mean_selected,mean_replica_absolute_error_per_system,False,-8.231816082054195,-14.889668684015849,-1.7397467086627965,-0.04429862788912827
+20,ridge_all_full - ewma_selected,aggregate_system,False,-1.2711632027120459,-7.958058115107771,5.317616232821346,-0.008457766216404403
+20,ridge_all_full - ewma_selected,mean_replica_absolute_error_per_system,False,-2.590926145197159,-8.720419012603362,3.471212561911221,-0.014379284047338658
+20,ridge_all_full - persistence,aggregate_system,False,-21.318959494411104,-30.364773233186654,-12.22897732014103,-0.12515299839191218
+20,ridge_all_full - persistence,mean_replica_absolute_error_per_system,False,-34.81215706146466,-43.63696278698848,-25.909087389614896,-0.16389451298455743
+20,ridge_all_full - prefix_mean,aggregate_system,False,-19.899285207265393,-28.8014305025269,-11.162286956774434,-0.11780057101881158
+20,ridge_all_full - prefix_mean,mean_replica_absolute_error_per_system,False,-14.2686089967508,-22.52302754425912,-6.277384332916016,-0.07436899883166793
+20,ridge_all_full - ridge_target_full,aggregate_system,False,1.7731709136106133,-3.234143326830771,6.869073354053573,0.012041822054531933
+20,ridge_all_full - ridge_target_full,mean_replica_absolute_error_per_system,False,1.9878375410869182,-2.6432530544433432,6.8026580845237765,0.011319880419762247
+20,ridge_all_full - ridge_without_core_full,aggregate_system,False,2.075352888697836,-1.0648398779157908,5.4247807716027285,0.01412295956569408
+20,ridge_all_full - ridge_without_core_full,mean_replica_absolute_error_per_system,False,2.2483489722474417,-0.8545873834676208,5.57588437619871,0.012822403094960544
+20,ridge_target_mean_std_last - ridge_target_mean_std,aggregate_system,False,-11.794844551917635,-16.546003529192717,-7.097424349168817,-0.07301696151397746
+20,ridge_target_mean_std_last - ridge_target_mean_std,mean_replica_absolute_error_per_system,False,-7.456462421457559,-12.107998983705162,-2.8352555036239018,-0.04036788601503879
+20,ridge_target_mean_std_last_slope - ridge_target_mean_std_last,aggregate_system,False,-2.574233263449372,-4.408309333250255,-0.723406998942995,-0.01719125748506704
+20,ridge_target_mean_std_last_slope - ridge_target_mean_std_last,mean_replica_absolute_error_per_system,False,-1.9968896373326857,-3.8474479150079537,-0.18638276357285194,-0.011265551661682836
+20,ridge_target_full - ridge_target_mean_std_last_slope,aggregate_system,False,0.08444519969788189,-0.5290813610607159,0.7146267519954915,0.0005738068166940097
+20,ridge_target_full - ridge_target_mean_std_last_slope,mean_replica_absolute_error_per_system,False,0.34650037343507734,-0.23595517939904126,0.9402415987218523,0.0019770718002767797
+20,ridge_all_mean_std_last - ridge_all_mean_std,aggregate_system,False,-8.27937116535847,-12.746756329742608,-3.8292904966649255,-0.05266976322734546
+20,ridge_all_mean_std_last - ridge_all_mean_std,mean_replica_absolute_error_per_system,False,-6.673954650279427,-10.918404352086478,-2.3934916475120875,-0.03647928009556491
+20,ridge_all_mean_std_last_slope - ridge_all_mean_std_last,aggregate_system,False,-1.0903717057522329,-3.4459811359960724,1.2321332113377805,-0.007322125824963961
+20,ridge_all_mean_std_last_slope - ridge_all_mean_std_last,mean_replica_absolute_error_per_system,False,-0.6384400423915508,-2.894291707489837,1.5668413232231047,-0.0036217800091693573
+20,ridge_all_full - ridge_all_mean_std_last_slope,aggregate_system,False,1.1999537916021268,-0.8783606732287509,3.276382958721433,0.008117434530378087
+20,ridge_all_full - ridge_all_mean_std_last_slope,mean_replica_absolute_error_per_system,False,1.9541816543625998,-0.03168751589309688,3.941821025912152,0.011126092230024484

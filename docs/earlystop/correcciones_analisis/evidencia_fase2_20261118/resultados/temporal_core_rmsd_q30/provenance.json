@@ -1,0 +1,74 @@
+{
+  "alpha_grid": [
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0,
+    300.0,
+    1000.0,
+    3000.0,
+    10000.0
+  ],
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20261016,
+  "caution": "Short horizons exclude all 20 ns core-derived channels; valid-label selection is retrospective; no confirmatory multiple-comparison claims",
+  "dataset_sha256": "a4e2083c78e730c4eaf84caeb9262b2637af94ef2a3155ebc806bee85ad21db6",
+  "folds_sha256": "fea8e85214b5d0ba971f3f5c963e89e78c40c111d249c0ffbd9ca701791ee00b",
+  "full_rmsd_prediction_check": null,
+  "halflives_ns": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    5.0
+  ],
+  "horizons_ns": [
+    20
+  ],
+  "n_replicas": 947,
+  "n_systems": 595,
+  "numpy": "1.26.4",
+  "protocol_sha256": "19d234a8a5bfb32fba7a6ff3ae2a6cf911bf56e236118a268ea27b4b2fcc43a1",
+  "python": "3.11.5",
+  "rmsd_reference_check": null,
+  "scope": "Training-cohort grouped nested CV only; descriptive paired intervals condition on OOF fits",
+  "script_sha256": "4d93fe81ecbc1dfcea1acd3841be4bfe9478ca3d92e79c3d802e4a70fc8fa5b4",
+  "summary_blocks": {
+    "full": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "last": [
+      4
+    ],
+    "mean_std": [
+      0,
+      1
+    ],
+    "mean_std_last": [
+      0,
+      1,
+      4
+    ],
+    "mean_std_last_slope": [
+      0,
+      1,
+      4,
+      5
+    ]
+  },
+  "target": "core_rmsd_q30",
+  "targets_sha256": "b45242bee882b33583101b3b49c1487514c0386f3da91ee7639cce9995520294",
+  "windows_ns": [
+    0.5,
+    1.0,
+    2.0,
+    5.0,
+    10.0
+  ]
+}

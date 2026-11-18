@@ -61,12 +61,32 @@ def temporal(d):
     chk(prov['horizons_ns'] == [5, 10, 20], 'horizontes %s' % prov['horizons_ns'])
     return {'dif_pred_ridge_completo': prov['full_rmsd_prediction_check']['max_absolute_prediction_difference'], 'modelos_por_horizonte': {h: len({r['model'] for r in rd(d / 'metrics.csv') if r['prefix_ns'] == str(h)}) for h in (5, 10, 20)}}
 
+def temporal_generico(d, horizons):
+    prov = json.loads((d / 'provenance.json').read_text())
+    chk(prov['horizons_ns'] == horizons, '%s: horizontes %s' % (d.name, prov['horizons_ns']))
+    chk(prov.get('target') in d.name or d.name.endswith('rmsd'), '%s: objetivo %s' % (d.name, prov.get('target')))
+    return {'target': prov.get('target'), 'n_systems': prov['n_systems'], 'n_replicas': prov['n_replicas'], 'targets_sha256': prov['targets_sha256'][:8]}
+
+# recuentos esperados del bloque A (BLOQUE_A_RESULTADO.md): objetivo -> (réplicas válidas, sistemas válidos) por política
+ESPERADO = {'include': {'rmsd': (1243, 757), 'core_rmsd_q30': (947, 595), 'rg': (992, 610), 'sasa': (1384, 701), 'helix': (1549, 728), 'strand': (1547, 728)},
+            'exclude': {'helix': (1542, 727), 'strand': (1299, 646)}}
+
 if __name__ == '__main__':
     root = Path(sys.argv[1]); out = {}
-    if (root / 'intervals_rmsd').is_dir(): out['intervals_rmsd'] = intervals(root / 'intervals_rmsd', 'rmsd')
-    if (root / 'intervals_rg').is_dir(): out['intervals_rg'] = intervals(root / 'intervals_rg', 'rg')
-    if (root / 'prefix_rmsd').is_dir(): out['prefix_rmsd'] = prefix(root / 'prefix_rmsd')
-    if (root / 'temporal_rmsd').is_dir(): out['temporal_rmsd'] = temporal(root / 'temporal_rmsd')
+    for d in sorted(root.iterdir()):
+        if not d.is_dir(): continue
+        if d.name.startswith('intervals_'): out[d.name] = intervals(d, d.name[len('intervals_'):])
+        elif d.name == 'prefix_rmsd': out[d.name] = prefix(d)
+        elif d.name == 'temporal_rmsd': out[d.name] = temporal(d)
+        elif d.name.startswith('temporal_'):
+            out[d.name] = temporal_generico(d, [20])
+    # cruce con los recuentos del bloque A
+    for name, info in list(out.items()):
+        if name.startswith('temporal_') and name != 'temporal_rmsd':
+            pol = 'exclude' if name.endswith('_exclude') else 'include'
+            tgt = name[len('temporal_'):].replace('_exclude', '')
+            exp = ESPERADO[pol][tgt]
+            chk((info['n_replicas'], info['n_systems']) == exp, '%s: réplicas/sistemas %s distintos de los del bloque A %s' % (name, (info['n_replicas'], info['n_systems']), exp))
     print(json.dumps(out, ensure_ascii=False, indent=1, default=str))
     print('PROBLEMAS=%d' % len(bad)); [print(' ', b) for b in bad[:20]]
     print('VALIDACION_FASE2=%s' % ('PASS' if not bad else 'REVISAR'))
