@@ -1,0 +1,25 @@
+{
+  "bootstrap_draws": 10000,
+  "bootstrap_note": "paired point-error intervals condition on OOF fits; calibration and fit uncertainty not resampled",
+  "coverage_note": "absolute scores are descriptive with dependent systems; group-max variants target new exchangeable groups, not conditional coverage for each protein; intervals predict valid-replica aggregate labels",
+  "dataset_sha256": "a4e2083c78e730c4eaf84caeb9262b2637af94ef2a3155ebc806bee85ad21db6",
+  "folds_sha256": "fea8e85214b5d0ba971f3f5c963e89e78c40c111d249c0ffbd9ca701791ee00b",
+  "mode": "intervals",
+  "n_replicas": 1243,
+  "n_systems": 757,
+  "prefix_channels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "run": "/scratch/uva_dma_2/uva_dma_2_1/md-hpc-benchmarks/results/paper2_automation/auto_20261030_091302/training",
+  "seed": 20261007,
+  "selection_scope": "training cohort only",
+  "target": "rmsd",
+  "targets_sha256": "b45242bee882b33583101b3b49c1487514c0386f3da91ee7639cce9995520294"
+}

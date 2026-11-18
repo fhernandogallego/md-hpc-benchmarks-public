@@ -34,3 +34,7 @@ El piloto `3387582` (fragmento 000, 10 sistemas, políticas `include` y `exclude
 ## Actualización 18/11/2026 — bloque A (objetivos de los 757 sistemas)
 
 Array `3406133` (150/150 `COMPLETED`) y consolidación `3406134` (`MERGE_PASS systems=757 rows_per_policy=13626`). Comprobación de RMSD frente a la referencia `PASS` (máscara idéntica, diferencia 0,0 Å). Recuentos idénticos a la auditoría salvo el **core**, que pasa de 1 136 a 947 réplicas válidas por su equilibrado propio. **No hay aún resultados científicos corregidos** (calibración, prefijos, baselines, core). Detalle en [`BLOQUE_A_RESULTADO.md`](BLOQUE_A_RESULTADO.md).
+
+## Actualización 18/11/2026 — fase 2, primera ronda (RMSD)
+
+`intervals_rmsd`, `prefix_rmsd` y `temporal_rmsd` ejecutados y validados (particiones sin solapamiento, cobertura recomputada, ridge de 48 descriptores reproduce la referencia). A 5 y 10 ns el ridge mejora a persistencia y a los baselines simples; a 20 ns la ventaja sobre el mejor baseline simple no se distingue de cero. Cobertura de los intervalos al 90/95 % global cercana a la nominal, pero con infracobertura en los sistemas más variables (variante absoluta). Pendientes Rg, core, SASA, hélice y lámina. Detalle en [`FASE2_PRIMERA_RONDA_20261118.md`](FASE2_PRIMERA_RONDA_20261118.md).
